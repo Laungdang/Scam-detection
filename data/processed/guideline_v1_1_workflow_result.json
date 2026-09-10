@@ -1,0 +1,657 @@
+{
+ "final": {
+  "edited_path": "c:/Users/laung/OneDrive/Documents/scam-detection-chatbot/data/ANNOTATION_GUIDELINE_v1.1_draft.md",
+  "change_log": [
+   "Header: version line now records the 3-lens review round (consistency / usability / system-alignment) as the source of the finalize edits. [review all lenses]",
+   "§0 bullet 2: 'ตรวจได้' redefined as 'ผู้รับยืนยันได้ก่อนเสียเงิน/ข้อมูล' (metadata, user confirmation, or must-meet-in-person step) and states that a claim (ฝากบอก/รุ่นพี่/แอดมิน) is NOT a step-2 signal by itself (Q7 → caution), with Q2 'บัญชีแฟน' as the one self-admitted exception. [Q2, Q7; consistency minor §0; usability B3]",
+   "§1 heading scoped to tier A/S (tier N verdict optional per §4). [consistency minor]",
+   "§1 verdict table: danger now requires a step-2 signal 'ที่ข้อความระบุองค์ประกอบครบ'; caution (ข) references the 4-item closed opener list; safe example 'เพื่อนขอค่าข้าวคืน' annotated 'มี metadata ยืนยันผู้ส่ง'. [consistency B3, B7]",
+   "§1 ข้อห้าม: 'มีลิงก์อย่างเดียว' rule now says weird link in a message that requests nothing else → caution (§7 #3), aligning with step 2 (k). [consistency B9]",
+   "§1.1 ขั้น 0: positive narrative test (third party acted on the writer AND reader is not instructed); relaying an order ('รุ่นพี่ฝากบอกให้โอน') and inviting ('มีลิงก์ให้กรอก ลองเช็คก่อนนะ') = direct. [usability minor ขั้น 0; Q4, Q5]",
+   "§1.1 ขั้น 1: new 'นับเป็นการขอเสมอ' list — vague 'ยืนยันข้อมูล/ตัวตน/ส่งรหัส' always a request (B3 → step 4 if no channel); a link/app/account that exists but is not shown ('มีลิงก์ให้กรอก…') = request with channel, not a bare CTA (Q5). Exception A2 narrowed to CTAs whose object is buy/book/apply/register with no channel; B9 broadcast-handle exception added. [consistency B2, B3; usability B2]",
+   "§1.1 ขั้น 1 closed opener list 3 → 4: (3) widened to 'ข้อเสนอทางการเงินเกินจริง' incl. กู้ไม่ต้องค้ำ/อนุมัติทันที; (4) 'แจ้งว่าได้รางวัล/วงเงิน/เงินคืน/สิทธิ์พิเศษ' without channel. Resolves the ธปท. row (danger with no request) and 'สินเชื่อ ไม่ต้องค้ำ' (safe by literal step 1). [consistency B1 option ข]",
+   "§1.1 ขั้น 2 rewritten: (i) 'กฎก่อนนับ' — signals whose clarity depends on facts outside the message (unseen link domain, unseen account name, sender identity, claimed person) are 'ยังไม่ชัด' → step 4 (Q5, Q7); (ii) standalone signals (a) OTP/รหัส/PIN/เลขบัตร request regardless of claimed role and without urgency (Q4), (b) third-party/mule account admitted by sender (Q2), (c) secrecy, (d) advance fee; (iii) compound signals (e)-(l) each requiring all parts in the text; (iv) explicit 'ไม่ใช่สัญญาณขั้น 2' list (urgency/scarcity, หมดสิทธิ์, โอนก่อน/มัดจำ, refuse-verification, DM, ราคาถูก, relationship/role claims). [consistency B3, B4, B6, B9; usability B1, B2, B3, B4]",
+   "§1.1 ขั้น 2 (l): external LINE/Telegram ID is a signal ONLY together with a request the recipient loses on (โอน/มัดจำ/OTP/credential) or with a closed-list opener; ID + recipient-doesn't-lose request (Q3) or ID/command alone → step 5 caution. Removes the double-counting of ID as both request and signal. [consistency B4; usability B4]",
+   "§1.1 ขั้น 2 (k): weird URL/shortener/TLD is a signal only when the link is the channel of a money/data/install request or co-occurs with threat/authority/reward; otherwise step 5 caution (§7 #3). [consistency B9]",
+   "§1.1 ขั้น 2 (j): any closed-list opener (3)/(4) + any channel (inbox/DM/LINE/link/phone) → danger — this is the only mechanism by which DM changes a verdict. [consistency B8; usability trial A4ข]",
+   "§1.1 ขั้น 3: 'ตรวจได้' = verifiable before losing money/data; 'สถานที่จริง' defined (shop name/address, or area + must-meet step such as สัมภาษณ์หน้าร้าน/นัดรับ/COD — area alone is not enough); 'no metadata / no user confirmation = ตรวจไม่ได้ = treat as unknown sender/seller'; step order fixed: step 3 is always run, outcome = safe / danger (if step-2 signal) / step 4. [consistency minor ขั้น2↔3, §0; usability B6, minor ขั้น 3]",
+   "§1.1.1: closed list documented as 4 items with rationale for the two additions; new point 4 explains why DM lifts an opener to danger but does not lift โอนก่อน/มัดจำ. [consistency B1, B8]",
+   "§1.2: table restructured to 5 columns (id C01-C39 | ข้อความ | input_form · metadata · variant | verdict | เหตุผล) so metadata and text variants are no longer mixed into the message text in parentheses; every row tagged with input_form; reasons cite step-2 letters (a)-(l). [consistency minors (วงเล็บ, Q5 input_form); usability minor]",
+   "§1.2 row changes: ธปท. row → C11 caution / prize_scam (no channel) + new C12 with '<URL>' → danger; 'แม่โอนค่าเทอม' split into C04 (metadata → safe) and C05 (no metadata → caution + [verify_with_claimed_person]); C29 needs_info → [seller_identity, platform_policy]; C38 (Q5) tagged direct and the 'inbox ได้' variant removed; narrative rows C33/C34 have no channel variant; new C32 ('ทักไลน์อย่างเดียว' + line: @id → caution / other) and C39 ('ลด 90% bit.ly/xxxx' → caution / phishing_link). Q1-Q7 verdicts unchanged and binding. [consistency B1, B7, minors; usability B4]",
+   "§1.2 intro: blind-sheet protocol — A2 answers data/annotation/v1.1_calibration_blind.csv (exported by maintainer from id/text/metadata columns) and commits before reading the table; agreement measured after seeing the table does not count. [consistency minor; usability B5]",
+   "§1.3: 'url' definition widened to 'link/fill/verify via a channel that is not shown' (covers B3 row) and clarified that a shortener IS a URL; account_name_match limited to messages that specify a destination account, with 'sender admits it is someone else's account → danger per Q2'; new rules for sender_identity vs verify_with_claimed_person (both when relaying, only the latter when sender claims to be the person, neither when standalone signal (a)/(b) applies) and a standard needs_info set per case type. [consistency minors url/account_name_match; usability minors]",
+   "§1.4: positive narrative test; hedge words carry no weight in either form and are not an input_form marker (C38 = direct). [usability minor; Q4, Q5]",
+   "§2: phishing_link relabelled '(= credential theft ทุกช่องทาง, compat name)' with 'OTP via chat is always this category, never other'; financial_fraud example gains 'หมวดไม่ได้บอก verdict' note (C35 is caution); other definition now covers the A11 caution case ± ID; caution-category paragraph lists the category of each opener type. [consistency minor other; usability B3 minor, minor phishing_link]",
+   "§3 heading: lexicon reference bumped to v1.1 with an explicit note that the YAML must be bumped and that หมดสิทธิ์/ฝากบอก/third-party-account must live in the dimensions this table says. [consistency minor; system-alignment B4-B6]",
+   "§3 rows: urgency — orphan 'เร่ง+โอน' definition replaced by 'no level of urgency lifts to danger by itself'; money_request — (b)/(d) letters, 'ราคาถูก/ราคาพิเศษ ไม่ใช่สัญญาณ (no numeric criterion)', 'เพื่อนทวงเงิน (มี metadata)'; credential_request — clear vs vague credential, no urgency needed; link_action/reward — conditional per (k)/(f)/(j), unseen link → needs_info url; authority_claim — category by mechanism, role claim without destination/link/threat is not a signal; financial_offer — range straddling threshold counts as excessive (C16), typo fixed; refuse_verification — explicit trigger list incl. 'โอนก่อนเท่านั้น'; channel_shift — (ข) tied to step-2 (l), B9 limited to broadcast posts vs 'คำขอเจาะจงผู้รับ', (ก) says 'ไม่ใช่สัญญาณขั้น 2' instead of 'ไม่ยก verdict'; borrowing_pretext — 'ฝากบอก/รุ่นพี่' moved to the non-indicator column. [consistency B5, B8, B10, minors; usability B1, B3, minors]",
+   "§5 item 3: final.needs_info = union only when final.verdict = caution, else []. [consistency minor]",
+   "§5 item 5: first κ round of v1.1 uses the blind sheet; A2 must not open §1.2 before committing answers; record commit hash. [consistency minor; usability B5]",
+   "§7: #3 (shortener conditional), #7 (Q4 danger because of (a), not 'อ้างแอดมิน'), #8 ('ไม่ใช่สัญญาณขั้น 2' wording, uniform needs_info set), #9 ('ราคาถูกผิดปกติ' removed as lifter; (l)/(b) cited), #10 (ID + specific request → caution via step 5), #11 (gate rule, input_form direct), #15 (covers all 4 openers, category per opener), #16 (DM has effect only at step 1), #17 (± ID), #18 (broadcast criterion), #19 (C04/C05 split); new #20 (reward opener without channel), #21 (vague verify vs bare CTA), #22 (outside-fact gate). [consistency B1, B4, B5, B6, B8, B10; usability B4]",
+   "§8 changelog: five 'finalize' rows recording every change above with review-lens sources, plus a row listing the system-side proposals that are NOT applied in this file (prompt_edits / lexicon_edits). [all lenses]",
+   "NOT changed (out of scope per instructions): data/ANNOTATION_GUIDELINE.md, app/services/ai_service.py, data/lexicon/scam_lexicon.yaml, app/services/pattern_service.py, CLAUDE.md — proposals returned in prompt_edits / lexicon_edits / open_questions instead. Blind-sheet CSV referenced but not created."
+  ],
+  "prompt_edits": [
+   {
+    "where": "SYSTEM_PROMPT Hard Constraints, line 45 (opener + channel rule)",
+    "old_hint": "เชิญคุยช่องทางส่วนตัว (LINE/Telegram/inbox/DM) → verdict \"danger\"",
+    "new_text": "- เสนอรายได้/งาน/ผลตอบแทนเกินจริง (เช่น \"ได้เงินวันละ 10,000 ไม่ต้องสัมภาษณ์\") หรือ แจ้งว่าได้รางวัล/วงเงิน/เงินคืน **+** ช่องทางใด ๆ ให้ตอบรับ (LINE/Telegram/inbox/DM/ลิงก์/เบอร์) → verdict \"danger\" — ถ้ายังไม่มีช่องทางใดเลย → \"caution\" (ดูกฎ opener ข้างล่าง)",
+    "why": "Guideline §1.1 ขั้น 2 (j) / §7 #15, #20: opener (3)/(4) + any channel = danger; opener with no channel = caution. Current line only covers income offers and only LINE/inbox, so 'ได้รับวงเงิน 200,000 กดรับสิทธิ์ที่ <URL>' has no rule."
+   },
+   {
+    "where": "SYSTEM_PROMPT Hard Constraints, line 46 (channel shift)",
+    "old_hint": "ให้ย้ายช่องทาง (แอดไลน์/inbox/DM) **มิติเดียว**",
+    "new_text": "- ย้ายช่องทางมี 2 ระดับ: (ก) \"ทัก DM/inbox/ส่งในกลุ่ม\" บนแพลตฟอร์มเดิม = ช่องทางติดต่อ ไม่ใช่สัญญาณหลอก — ผลเดียวคือทำให้ข้อเสนอที่ระบุเงื่อนไขในข้อความกลายเป็น \"การขอ\" (ข้อเสนอเกินจริง + DM → \"danger\" ตามกฎข้างบน แต่ โอนก่อน/มัดจำ + DM → ยัง \"caution\"); (ข) ให้ย้ายไป LINE/Telegram ID ภายนอก จากคนที่ผู้ใช้ไม่รู้จัก หรือประโยคสั่ง \"ทักไลน์อย่างเดียว\" แม้ไม่มี ID = การขอที่ทำให้บริบทไม่ชัด → อย่างน้อย \"caution\" แม้ทิศทางเงินเป็นฝ่ายจ่ายให้ผู้ใช้ (\"ขอเลขบัญชี จะโอนค่าชีท line: @id\" → caution); ID ภายนอก **+** การขอให้ผู้ใช้โอน/มัดจำ/ส่ง OTP หรือ **+** ข้อเสนอเกินจริง → \"danger\"; ย้ายช่องทาง **มิติเดียว** โดยไม่มีการขอเงิน/ข้อมูลและไม่มีสัญญาณอื่น → ไม่เกิน \"caution\"; handle ที่ผู้โพสต์ \"หาซื้อ/ประกาศ\" แนบมาเองในโพสต์กระจายที่ไม่มีคำขอเจาะจงผู้ใช้ (\"มีใครขายชีท SC135 บ้าง line: @id\") ไม่ใช่การให้ผู้ใช้ย้ายช่องทาง → \"safe\"",
+    "why": "Guideline §3 channel_shift (ก)/(ข), §1.1 (l), §7 #16-#18: DM and external ID are different things; current prompt lumps them and only sets a ceiling, so C22/C27/C31 are undecidable."
+   },
+   {
+    "where": "SYSTEM_PROMPT Hard Constraints, line 47 (authority/role + fee)",
+    "old_hint": "อ้างหน่วยงาน/บทบาท (แอดมิน/คณะ/เจ้าหน้าที่/HR/รุ่นพี่)",
+    "new_text": "- อ้างบทบาททางการของสถาบัน/องค์กร (แอดมินคณะ/สำนักทะเบียน/เจ้าหน้าที่/HR/สโมสร/หัวหน้าห้อง) **+** ขอโอนค่าธรรมเนียมเพื่อรับสิทธิ์ (ค่าจอง/ค่าสมัคร/ค่ายืนยันสิทธิ์/ค่าชีท) **+** ระบุปลายทางที่ไม่ใช่ช่องทางทางการของสถาบัน (พร้อมเพย์เบอร์บุคคล หรือเลขบัญชีที่ให้ในแชท) → verdict \"danger\" แม้จำนวนเงินน้อย (สถาบันจริงเก็บผ่านระบบทะเบียน/bill payment/QR ในนามสถาบัน ไม่ใช่บัญชีบุคคล — กรณีนี้ \"ต้องตรวจสอบก่อน\" ไม่ใช่เหตุผลให้ลดเหลือ caution)\n- แต่ถ้าเป็นการอ้าง **คนรู้จัก** ที่ตรวจไม่ได้ (\"รุ่นพี่ฝากบอก\", \"เพื่อนฝากบอก\", \"พี่ในกลุ่มบอก\") + ขอเงินจำนวนสมเหตุสมผล (ค่าชีท/ค่ากิจกรรม) + เร่ง/\"ไม่งั้นหมดสิทธิ์\" **โดยไม่มีปลายทางไม่ทางการในข้อความ** → \"caution\" + needs_info: sender_identity, verify_with_claimed_person — เรื่องแบบนี้เกิดจริงได้ ต้องถามก่อน; \"หมดสิทธิ์/ของหมด/ไม่ทัน\" คือความเร่งด่วน (ของมีจำกัด) ไม่ใช่การขู่ (ขู่ = คดี/อายัด/ระงับ/ถูกแฮก); คำอ้างความสัมพันธ์ไม่ใช่สัญญาณหลอกโดยตัวเอง; ยกเป็น \"danger\" เฉพาะเมื่อเพิ่มพร้อมเพย์บุคคล/บัญชีในแชท, LINE ID ภายนอก, หรือผู้ใช้ถามคนที่ถูกอ้างแล้วไม่รู้เรื่อง",
+    "why": "Binding Q7 and guideline §7 #12 vs #13: current line names รุ่นพี่ + ค่าชีท + 'ขู่หมดสิทธิ์' and forbids 'ต้องตรวจสอบก่อน', which forces Q7 to danger; the destination condition is the only separator and is buried mid-sentence."
+   },
+   {
+    "where": "SYSTEM_PROMPT Hard Constraints, line 50 (ตัดสินจากการขอ)",
+    "old_hint": "ถ้าไม่มีการขอใดๆ เลย ข้อความมักเป็น \"safe\"",
+    "new_text": "- ตัดสินจาก **การขอ**: ข้อความนี้ขอให้ผู้ใช้ โอนเงิน / ให้ข้อมูลหรือรหัส (รวม \"ยืนยันข้อมูล/ตัวตน\" แม้ไม่บอกว่าอะไร) / กดลิงก์หรือติดตั้งแอป (รวมลิงก์ที่ \"มีอยู่\" แต่ไม่แสดงในข้อความ) / ย้ายไปคุยช่องทางภายนอก / โทรกลับ หรือไม่ — ถ้าไม่มีการขอใดๆ เลย → \"safe\" แม้จะมีคำเร่งด่วน **ยกเว้น 4 แบบนี้เท่านั้น** ที่ยังไม่ขออะไรแต่เป็น turn แรกของ scam หลาย turn → \"caution\": (1) \"เปลี่ยนเบอร์ใหม่/เบอร์ใหม่ เซฟไว้\" (2) ทักผิด/อยากรู้จัก จากคนแปลกหน้า (3) ข้อเสนอทางการเงินเกินจริงที่ยังไม่มีช่องทางติดต่อ — รายได้/ผลตอบแทนเกินจริง หรือ กู้ไม่ต้องค้ำ/อนุมัติทันที (\"งานออนไลน์วันละ 10,000 สมัครด่วน\" → caution; เพิ่ม inbox/DM/LINE → danger ตามกฎข้างบน) (4) แจ้งว่าได้รางวัล/วงเงิน/เงินคืน โดยยังไม่บอกช่องทางรับ (\"คุณได้รับวงเงินกู้จาก ธปท. 200,000\" → caution; + ลิงก์/เบอร์ → danger) — ไม่นับเป็นการขอ: call-to-action ลอยๆ ที่วัตถุคือซื้อ/จอง/สมัคร (\"จองภายในวันนี้\") ที่ไม่ระบุช่องทาง ลิงก์ เบอร์ บัญชี หรือข้อมูล, และ \"ทัก DM/inbox ได้/ส่งในกลุ่มได้\" บนแพลตฟอร์มเดิมเมื่อข้อความไม่มีข้อเสนอ/เงื่อนไขให้ทำตาม",
+    "why": "Guideline §1.1 ขั้น 1 + §1.1.1 (4-item closed opener list, 'ยืนยันข้อมูล' and unseen link always count as requests, bare CTA/DM do not). Current 'มัก' hedge lets 'เปลี่ยนเบอร์ใหม่นะ' come back safe and 'สมัครด่วน' (no channel) come back danger."
+   },
+   {
+    "where": "SYSTEM_PROMPT Hard Constraints, line 53 (ใครเป็นฝ่ายจ่าย)",
+    "old_hint": "→ safe ถ้าไม่มีสัญญาณอื่น; ยกระดับเฉพาะเมื่อตามมาด้วยสลิปปลอม",
+    "new_text": "→ safe ถ้าไม่มีสัญญาณอื่น (LINE/Telegram ID ภายนอกจากคนไม่รู้จัก พร้อมคำขอเจาะจงถึงผู้ใช้ นับเป็นสัญญาณอื่น → \"caution\"); ยกระดับเฉพาะเมื่อตามมาด้วยสลิปปลอม",
+    "why": "Guideline §7 #10 / C22: 'ขอเลขบัญชี จะโอนค่าชีท line: @id' is caution; current wording leaves it unclear whether an external ID counts as 'สัญญาณอื่น'."
+   },
+   {
+    "where": "SYSTEM_PROMPT Hard Constraints, line 54 (safe ไม่ต้องมีหลักฐาน — keep phrase 'ไม่ต้องกลัวการตอบ safe' for tests/test_qa_prompt.py:53)",
+    "old_hint": "บัญชีชื่อไม่ตรง/บัญชีแฟน) และไม่มีบริบทยืนยัน → อย่างน้อย \"caution\"",
+    "new_text": "- verdict \"safe\" ไม่ต้องมีหลักฐานยืนยันว่าปลอดภัย — แค่ไม่มีสัญญาณการหลอกก็ safe ได้ ไม่ต้องกลัวการตอบ safe — **ยกเว้น** เมื่อมีการขอให้ผู้ใช้โอนเงินให้คนที่ตรวจสอบตัวตนไม่ได้ (ผู้ขายไม่รู้จัก ขอโอนก่อน/โอนเต็มก่อนส่ง/มัดจำ) และไม่มีบริบทยืนยัน → \"caution\" + needs_info: seller_identity, platform_policy แม้ไม่มีสัญญาณหลอกอื่น\n- **บัญชีม้า**: ปลายทางเป็นบัญชีที่ผู้ส่งบอกเองว่าเป็นของแฟน/เพื่อน/ญาติ/คนอื่น หรือชื่อบัญชีไม่ตรงกับผู้ขาย/ผู้ที่อ้างตัว (\"บัญชีนี้ของแฟนเราเอง ปลอดภัยแน่นอน โอนมาเลย\") → verdict \"danger\" ทันที ไม่ต้องรอสัญญาณอื่นหรือการกดดันเพิ่ม — คำรับรอง \"ปลอดภัยแน่นอน/ไม่โกง\" ไม่มีน้ำหนัก; ถ้าข้อความระบุบัญชีปลายทางแต่ยังไม่บอกชื่อ → \"caution\" + needs_info: account_name_match",
+    "why": "Binding Q2 / guideline §1.1 (b), §7 #9: mule account is danger by itself; current line groups 'บัญชีแฟน' with 'ผู้ขายไม่รู้จัก' under 'อย่างน้อย caution'."
+   },
+   {
+    "where": "SYSTEM_PROMPT Hard Constraints, line 55 (เพดาน) — parenthetical list of absent signals",
+    "old_hint": "ราคาผิดปกติ/ชื่อบัญชีไม่ตรง",
+    "new_text": "ลิงก์แปลก/LINE ID ภายนอก/ชื่อบัญชีไม่ตรง-บัญชีคนอื่น/ขอ OTP — \"ราคาถูก/ราคาพิเศษ\" และ \"เร่ง/เหลือชิ้นเดียว\" ไม่ใช่สัญญาณ",
+    "why": "Guideline §7 #9 finalize removed 'ราคาถูกผิดปกติ' as a lifter (no numeric criterion); replace the tokens 'ลิงก์/LINE ID ภายนอก/ราคาผิดปกติ/ชื่อบัญชีไม่ตรง' inside the parentheses with this text."
+   },
+   {
+    "where": "SYSTEM_PROMPT Hard Constraints — INSERT new bullets immediately AFTER line 55 (the line ending with this hint)",
+    "old_hint": "เป็นวิธีขายปกติของคนขายของมือสองด้วย",
+    "new_text": "- **ข้อมูลไม่พอ ≠ ปลอดภัย และ ≠ อันตราย**: ถ้าข้อเท็จจริงที่จะชี้ขาด verdict ไม่อยู่ในข้อความ และผู้ใช้ยังไม่ได้บอกในบทสนทนา → verdict ของ turn นี้ต้องเป็น \"caution\" (ห้ามเดาเป็น safe หรือ danger) และใส่สิ่งที่ขาดใน needs_info จากรายการนี้เท่านั้น (เป็นรหัสเหมือน verdict ไม่ใช่ข้อความแสดงผู้ใช้):\n  · url — ข้อความพูดถึงลิงก์/ให้กดลิงก์/กรอกข้อมูลผ่านลิงก์ หรือให้ \"ยืนยันข้อมูล\" ผ่านช่องทางที่ไม่แสดง แต่ไม่มี URL ให้ดู (หลักฐานมิติ \"ให้กดลิงก์\" พบแค่คำ ไม่พบรูปแบบ url) — ต้องเห็นตัว URL ก่อนจึงจะตัดสินได้ (\"มีลิงก์ให้กรอกข้อมูลเพื่อรับสิทธิ์ ลองเช็คก่อนนะ\" → caution + needs_info: url ไม่ใช่ danger แม้จะมีรางวัล+กรอกข้อมูล+ลิงก์พร้อมกัน)\n  · sender_identity — ไม่รู้ว่าใครส่ง หรือผู้ส่งอ้างบทบาท/ความสัมพันธ์ที่ตรวจไม่ได้ (\"ระบบแจ้ง\", \"รุ่นพี่ฝากบอก\") — ไม่ใส่เมื่อการขอเป็น OTP/รหัส/บัญชีคนอื่น เพราะตัวตนผู้ขอไม่เปลี่ยน verdict\n  · seller_identity — ผู้ขายไม่ระบุร้าน/ตัวตน/ประวัติ\n  · platform_policy — ไม่รู้ว่าซื้อผ่านแพลตฟอร์ม/ร้านที่มีกฎให้จ่ายก่อน หรือมีระบบคุ้มครองผู้ซื้อไหม\n  · verify_with_claimed_person — ต้องยืนยันกับคนที่ถูกอ้างถึง (รุ่นพี่/แม่/เพื่อน/แอดมิน) ผ่านช่องทางเดิมที่รู้จัก (ใส่คู่กับ sender_identity เมื่อผู้ส่งอ้างว่า \"ฝากบอก\"; ใส่อย่างเดียวเมื่อผู้ส่งอ้างว่าเป็นคนนั้นเอง เช่น \"แม่โอนค่าเทอมให้หน่อย\" จากเบอร์ที่ไม่รู้จัก)\n  · account_name_match — ข้อความระบุบัญชีปลายทางแล้ว แต่ยังไม่เห็นว่าชื่อบัญชีตรงกับผู้ขาย/ผู้ที่อ้างไหม\n  ใส่เฉพาะสิ่งที่ \"ถ้ารู้แล้วจะเปลี่ยน verdict ได้\" ไม่ใช่ทุกอย่างที่ไม่รู้; ชุดมาตรฐาน: ผู้ขายไม่รู้จัก ขอโอนก่อน/มัดจำ → seller_identity, platform_policy; ลิงก์ที่มองไม่เห็น → url; \"ยืนยันข้อมูลบางอย่างภายในวันนี้\" ไม่ระบุผู้ส่ง/ช่องทาง → sender_identity, url (caution ไม่ใช่ danger — \"เร่ง + ขอข้อมูล\" เป็นสัญญาณอันตรายเฉพาะเมื่อระบุ credential ชัดหรือระบุช่องทาง)\n- สัญญาณที่ความชัดขึ้นกับข้อเท็จจริงนอกข้อความ (โดเมนของลิงก์ที่มองไม่เห็น, ชื่อบัญชีที่ยังไม่เห็น, ตัวตนผู้ส่ง, คนที่ถูกอ้าง) ถือว่า \"ยังไม่ชัด\" → caution + needs_info; แต่ห้ามใช้ \"ต้องถามข้อมูลเพิ่ม\" เลี่ยง danger เมื่อสัญญาณครบในข้อความแล้ว (บัญชีของแฟน/ญาติ/ชื่อไม่ตรง, อ้างบทบาทสถาบัน + พร้อมเพย์บุคคล, ขอ OTP/รหัส, จ่ายก่อนได้งาน/รางวัล, โอนเงิน + LINE ID ภายนอก) — verdict ของข้อความนี้คือ danger ข้อมูลเพิ่มค่อยเปลี่ยน verdict ใน turn ถัดไปได้\n- ลิงก์แปลก (shortener / TLD แปลก / ไม่ใช่โดเมนทางการ) เป็นสัญญาณ danger เมื่อลิงก์เป็นช่องทางของการขอเงิน/ข้อมูล/ติดตั้งแอป หรือมาพร้อมขู่/อ้างหน่วยงาน/รางวัล; ลิงก์แปลกในโปรโมชั่นที่ไม่ขออะไรอื่น (\"ลด 90% วันนี้ bit.ly/xxx\") → \"caution\" ไม่ใช่ danger\n- เมื่อ needs_info ไม่ว่าง: follow_up ต้องเป็น **คำถามเจาะจง 1 ข้อ** ถามสิ่งที่ขาดข้อแรก (ไม่ใช่ประโยคปิดทั่วไป); action \"ด่วน\" คือ \"รอก่อน อย่าเพิ่งโอน/กดลิงก์/ส่งข้อมูล จนกว่าจะได้คำตอบ\" (เขียนเป็นคำสั่งตรงตามกฎ actions); summary ต้องบอกว่ายังตัดสินไม่ได้เพราะขาดอะไร\n- needs_info ต้องว่างเมื่อ verdict เป็น safe หรือ danger\n- เมื่อผู้ใช้ตอบคำถามนั้นใน turn ถัดไป ให้ตัดสินใหม่จากคำตอบ: ยืนยันว่ารู้จักผู้ส่งผ่านช่องทางเดิม / ร้านมีนโยบายจ่ายก่อนและตรวจตัวตนได้ / ถามคนที่ถูกอ้างแล้วยืนยันจริง → ลดเป็น safe ได้; URL เป็นโดเมนไม่ทางการ-shortener-TLD แปลก / ชื่อบัญชีไม่ตรง / คนที่ถูกอ้างไม่รู้เรื่อง → ยกเป็น danger",
+    "why": "Guideline §1.3 (needs_info, closed list, Q&A implication via follow_up), §1.1 ขั้น 2 'กฎก่อนนับ', §7 #3/#11/#14/#22; binding Q5-Q7. No 'ข้อมูลไม่พอ' behaviour exists in the prompt today, so Q5 trends to danger and Q1/Q6/Q7 never ask the decisive question."
+   },
+   {
+    "where": "SYSTEM_PROMPT Hard Constraints, line 57 (wage thresholds)",
+    "old_hint": "รายชั่วโมง 40-100 บาท ≈ ค่าแรงขั้นต่ำ",
+    "new_text": "- \"ค่าจ้าง/ราคา/ยอด\" ที่ปรากฏเป็นตัวเลข ไม่ใช่การขอเงิน — ประกาศงานที่ระบุสถานที่จริง (ชื่อร้าน/ที่อยู่ หรือ ย่าน + ขั้นตอนพบตัวจริงก่อนจ่ายอะไร เช่น สัมภาษณ์หน้าร้าน/นัดรับ) ค่าจ้างปกติ (รายชั่วโมง 60-100 บาท ≈ ค่าแรงขั้นต่ำ ไม่ใช่ \"สูงผิดปกติ\") = safe; \"รายได้เกินจริง\" หมายถึง รายชั่วโมงเกิน ~2 เท่าค่าแรงขั้นต่ำ หรือ วันละ 1,000 บาทขึ้นไป โดยไม่ต้องทักษะ/สัมภาษณ์ (ถ้าให้เป็นช่วง เช่น \"วันละ 500-2,000\" ตัวเลขใดในช่วงถึงเกณฑ์ก็นับ), ผลตอบแทน > ~15% ต่อปี, รับประกันกำไร",
+    "why": "Guideline §3 financial_offer (B8ข, C16, C19) and lexicon regex daily_income (fires at ≥1,000): prompt currently says 'วันละหลายพัน', contradicting evidence the model receives."
+   },
+   {
+    "where": "SYSTEM_PROMPT Hard Constraints, line 58 (narrative) — APPEND to the same bullet",
+    "old_hint": "ไม่ใช่ \"ข้อความนี้/คนที่ส่งข้อความนี้เป็นมิจฉาชีพ\"",
+    "new_text": " — คำกันเหนียวของผู้เล่า (\"ลองเช็คก่อนนะ\", \"ระวังนะ\", \"ไม่แน่ใจ\") ไม่มีน้ำหนักต่อ verdict ตัดสินจากการขอที่ถูกเล่าเท่านั้น; การ **ขอ** OTP/รหัสยืนยัน/รหัสผ่าน/PIN/เลขบัตร ผ่านแชท = ขโมย credential → \"danger\" ไม่ว่าผู้ขออ้างเป็นใคร (แอดมินกลุ่ม/เจ้าหน้าที่/เพื่อน) และไม่ต้องมีความเร่งด่วนประกอบ — ตัวตนผู้ขอไม่เปลี่ยน verdict จึงไม่ต้องถาม (ต่างจากระบบ **ส่ง** OTP ให้ = safe); ประโยคที่สั่ง/ชวนผู้ใช้ (\"รุ่นพี่ฝากบอกให้โอน\", \"มีลิงก์ให้กรอก ลองเช็คดู\") ไม่ใช่การเล่าเหตุการณ์ ให้ตัดสินเป็นข้อความที่ส่งถึงผู้ใช้",
+    "why": "Binding Q4 / guideline §1.1 (a), §1.4, §7 #7: OTP request is a standalone signal without urgency; hedge has no weight; relaying/inviting = direct."
+   },
+   {
+    "where": "SYSTEM_PROMPT JSON schema for response_type \"analysis\" — INSERT two keys right after the \"verdict\" line",
+    "old_hint": "ไม่ใช่แค่ผลเบื้องต้นของระบบ\",",
+    "new_text": "  \"needs_info\": [\"ว่าง [] ถ้า verdict เป็น safe หรือ danger; ถ้า caution เพราะข้อมูลไม่พอ ใส่ค่าจากรายการปิดเท่านั้น: url / sender_identity / seller_identity / platform_policy / verify_with_claimed_person / account_name_match\"],\n  \"category\": \"ถ้า verdict ≠ safe ใส่หมวดกลไกหลัก 1 ค่า: phishing_link / impersonation_authority / financial_fraud / prize_scam / loan_offer / investment_scam / romance_scam / borrowing_scam / other; ถ้า safe ใส่ null — caution ก็ต้องมีหมวด (หมวดของ pattern ที่ข้อความนี้เป็นขั้นแรก: โอนก่อนส่ง → financial_fraud, เปลี่ยนเบอร์ → borrowing_scam, ทักผิด/อยากรู้จัก → romance_scam, พูดถึงลิงก์เก็บข้อมูล → phishing_link, ขอ OTP ผ่านแชท → phishing_link, ค่าชีท/ค่าจอง/ค่าสมัครปลอม → financial_fraud, รายได้เกินจริง → investment_scam, กู้ไม่ต้องค้ำ → loan_offer, แจ้งได้รางวัล/วงเงิน → prize_scam); other ใช้ได้เฉพาะ caution ที่ให้ย้ายช่องทางอย่างเดียวและกลไกยังไม่ปรากฏ\",",
+    "why": "Guideline §1.3 (needs_info field) and §2 (category required for every non-safe verdict, incl. caution) — the guideline is declared the Q&A eval rubric, so the response needs both fields to be scored; qa_engine passes `structured` through, no code change."
+   },
+   {
+    "where": "SYSTEM_PROMPT JSON schema for response_type \"analysis\" — REPLACE the whole \"follow_up\" line",
+    "old_hint": "ประโยคปิดสั้นๆ 1 ประโยค เชิญให้ถามต่อได้",
+    "new_text": "  \"follow_up\": \"1 ประโยค — ถ้า needs_info ไม่ว่าง ต้องเป็นคำถามเจาะจง 1 ข้อที่คำตอบจะเปลี่ยน verdict ได้ เช่น url: 'ลิงก์เต็มที่เขาส่งมาคืออะไรครับ ก๊อปมาให้ดูได้ไหม' / seller_identity+platform_policy: 'ซื้อผ่านแอปที่มีระบบคุ้มครองผู้ซื้อ หรือโอนตรงให้คนขายที่ไม่เคยซื้อด้วยมาก่อนครับ' / verify_with_claimed_person: 'ลองทักรุ่นพี่คนนั้นตรงๆ ผ่านช่องทางเดิมที่เคยคุยกัน ว่าฝากบอกจริงไหม แล้วมาบอกผมได้เลยครับ' / sender_identity: 'ข้อความนี้มาจากเบอร์หรือบัญชีที่คุณรู้จักอยู่แล้วหรือเปล่าครับ' / account_name_match: 'ชื่อบัญชีปลายทางตรงกับชื่อคนขายไหมครับ' — ถามข้อเดียว ห้ามถามสิ่งที่ข้อความบอกไว้แล้ว; ถ้า needs_info ว่าง ใช้ประโยคปิดสั้นๆ เชิญให้ถามต่อ เช่น 'ถ้ามีข้อมูลเพิ่มเติมหรืออยากถามอะไร ส่งมาได้เลยครับ'\"",
+    "why": "Guideline §1.3 'นัยต่อ Q&A mode': follow_up must become the specific question when needs_info is set; current definition is a generic closing line (UI renders follow_up at app/ui/index.html:707, so users will see the question)."
+   }
+  ],
+  "lexicon_edits": [
+   "data/lexicon/scam_lexicon.yaml line 28: bump `version: \"1.0\"` → `\"1.1\"` (14 dimensions already exist; guideline §3 now cites v1.1). [consistency minor; system-alignment]",
+   "threat (lines 236-242): DELETE terms หมดสิทธิ์ / เสียสิทธิ์ / ตัดสิทธิ์ / ที่นั่งเต็ม and the `regex: consequence_if_not` block; ADD `note: ขู่ = คดี/อายัด/ระงับ/ถูกแฮก ที่ต้อง \"แก้\" — หมดสิทธิ์/ของหมด อยู่ใน urgency ไม่ใช่มิตินี้ (guideline v1.1 §3, Q7)`. Q7 evidence currently reports 'ขู่/สร้างความกลัว: หมดสิทธิ์' = hidden-verdict anchoring. [system-alignment B4]",
+   "urgency (after line 62 `จองก่อนได้ก่อน`): APPEND terms หมดสิทธิ์ [kaggle_tu(synthetic)], เสียสิทธิ์, ตัดสิทธิ์, ที่นั่งเต็ม, ของหมด [domain] with comment 'scarcity — ย้ายจาก threat ตาม guideline v1.1 §3'; ADD to urgency `regex:` `- {name: consequence_if_not, pattern: 'ไม่งั้น|ไม่เช่นนั้น|มิฉะนั้น|หากไม่|ถ้าไม่.{0,12}จะ'}` (มิฉะนั้น/หากไม่ดำเนินการ already live here). [system-alignment B4]",
+   "money_request `regex:` (after promptpay_phone, line 102): ADD `- {name: third_party_account, pattern: 'บัญชี(นี้|นั้น)?(ของ|เป็นของ|ชื่อ)?(แฟน|เพื่อน|ญาติ|พี่สาว|พี่ชาย|น้อง|แม่|พ่อ|ลูก|หลาน|คนอื่น|คนรู้จัก)'}` and `- {name: account_name_mismatch, pattern: 'ชื่อ(บัญชี)?\\s*ไม่ตรง|ไม่ตรงกับชื่อ|คนละชื่อ|ชื่อไม่เหมือน'}` — newmm tokenises 'บัญชีนี้ของแฟนเราเอง' as บัญชี|นี้|ของ|แฟน so term `บัญชีแฟน` never matches Q2; keep the 4 existing terms. [system-alignment B6; Q2]",
+   "money_request `terms`: APPEND ค่าชีท [kaggle_tu(synthetic)], ค่าจอง [kaggle_tu(synthetic)], ค่าจองสิทธิ์ [kaggle_tu(synthetic)], ค่ายืนยันสิทธิ์ [domain], ค่ากิจกรรม [domain] with comment 'ค่าธรรมเนียมเพื่อ \"รับสิทธิ์\" (guideline v1.1 §2 financial_fraud / B10)'. [system-alignment minor]",
+   "borrowing_pretext (lines 374-386): `label_th` → `อ้างเป็นคนรู้จัก/อ้างคนรู้จักฝากบอก (ยืมเงิน/ฉุกเฉิน/ค่าใช้จ่าย)`; ADD `caveat: รุ่นพี่/เพื่อน/ฝากบอก เป็นคำอ้างในข้อความ — ไม่ยืนยันว่ารู้จักจริง ข้อความจากคนรู้จักจริงก็ใช้คำพวกนี้; บริบทชอบธรรมต้องมาจากสิ่งที่ผู้ใช้ยืนยันเอง`; APPEND terms ฝากบอก [kaggle_tu(synthetic)], ฝากมาบอก [domain], รุ่นพี่ [kaggle_tu(synthetic)], เพื่อนฝาก [domain], พี่ในกลุ่ม [domain]. Q7 evidence currently says 'ไม่พบ: อ้างเป็นคนรู้จัก'. [system-alignment B5; Q7]",
+   "authority_claim `terms` (after line 195 HR): APPEND สโมสร, หัวหน้าห้อง, พี่รหัส, เจ้าหน้าที่ทะเบียน, งานทะเบียน [domain] — guideline §3 widened authority_claim to institutional roles. [system-alignment minor]",
+   "OPTIONAL / NOT test-free: money_request `label_th: ขอให้โอน/จ่ายเงิน` → `พูดถึงการโอน/จ่ายเงิน/ช่องทางรับเงิน (ยังไม่บอกว่าใครจ่ายใคร)` — reviewer claimed no test pins this label, but tests/test_pattern_service.py:145 and :180 assert the exact string 'ขอให้โอน/จ่ายเงิน'; rename only together with those two assertions. [system-alignment minor — flagged in open questions]",
+   "Related code fix (not lexicon): app/services/pattern_service.py tokenize() — strip brackets/quotes before word_tokenize (`re.sub(r\"[()\\[\\]{}\\\"'“”‘’]\", \" \", text)`) so '(inbox ได้)' matches `inbox`; add regression test `assert \"inbox\" in _found(\"ของดี (inbox ได้)\")[\"channel_shift\"].terms_found`. Lexical-matching fix permitted by CLAUDE.md 6.8. [system-alignment minor]"
+  ],
+  "open_questions_for_author": [
+   "Closed opener list expanded 3 → 4 (added '(4) แจ้งว่าได้รางวัล/วงเงิน/เงินคืน/สิทธิ์พิเศษ โดยไม่มีช่องทาง' and widened (3) to include กู้ไม่ต้องค้ำ/อนุมัติทันที). This is my resolution of consistency-B1 via the reviewer's option (ข): the ธปท. row is now C11 caution / prize_scam and a new C12 with '<URL>' is danger. The alternative (ก) was to keep only 3 openers and add a channel to the original row. Confirm (ข), or revert to (ก) and delete C11/#20.",
+   "Category vocabulary mismatch: guideline §2 has 9 categories (includes `loan_offer`); CLAUDE.md 4.5 ScamCategory and ml_schema have 8. Decide: add `loan_offer` to CLAUDE.md/ml_schema (recommended — the prompt_edits category key lists 9) or drop it from the guideline and map to prize_scam/financial_fraud.",
+   "'ราคาถูกผิดปกติ + มัดจำ' was removed as a danger lifter from §7 #9 and from the prompt's เพดาน list (no numeric criterion → #8/#9 contradicted each other). If you want it back, supply a criterion (e.g. branded/new item at < ~50% market price + pay-first) so it can be added to §1.1 ขั้น 2 and §3 money_request with a calibration pair.",
+   "Q5 'มีลิงก์ให้กรอกข้อมูลเพื่อรับสิทธิ์ ลองเช็คก่อนนะ' is now tagged input_form: direct (an invitation to the reader), not narrative — §1.4 previously listed 'ลองเช็คก่อนนะ' as a narrator hedge. Verdict unchanged (caution + needs_info: url); only tier assignment (A vs N) depends on this. Confirm.",
+   "System-alignment proposed renaming lexicon money_request.label_th to drop the 'ขอให้' direction; that label IS pinned by tests/test_pattern_service.py:145 and :180 (the review said no test asserts it). Rename + update both assertions, or keep the label and rely on the caveat.",
+   "Blind sheet `data/annotation/v1.1_calibration_blind.csv` is now referenced in §1.2 and §5.5 but was not created (kept scope to the draft). Should I generate it from the C01-C39 table (columns: id, text, input_form_metadata_variant) before the A2 round?",
+   "Moving หมดสิทธิ์/consequence_if_not from `threat` to `urgency` changes Q&A evidence text only; ml/features.py uses its own hardcoded word list (CLAUDE.md 6.8), so no model version bump should be needed — please confirm ml/features.py does not read the YAML before applying the lexicon edits."
+  ]
+ },
+ "draft_change_log": [
+  "Header bumped to version 1.1 (2026-08-29); scope line now also covers use as the Q&A-mode external eval criterion; versioning note lists the record groups needing re-annotation.",
+  "§0: four new guiding principles derived from the 7 decisions — direction of the request (Q3), claims in the text are not verifiable context (Q7), insufficient information is neither safe nor danger (Q5-Q7), narrative inputs are judged on the narrated request (Q4); explicit tie to CLAUDE.md 5.2/6.8 (dimensions are facts, no weights).",
+  "§1 verdict table: caution now covers (a) weak signals, (b) closed-list openers with no request, (c) decisive fact absent → needs_info; safe requires *verifiable* legitimate context. Two new prohibitions: no danger for urgency/scarcity + prepay from an unknown seller alone (Q1, Q6); no safe because the text claims a relationship/role (Q7). 'Unsure myself' (low confidence) is separated from 'information not in text' (needs_info).",
+  "§1.1 decision procedure rewritten: new step 0 for narrative inputs (input_form direct/narrative, Q4/B2); step 1 lists what does NOT count as a request (buyer asking seller's account — Q3/A8; floating CTA — A2; DM/inbox on same platform without an offer — B7) plus the closed-list opener exception (A1); step 2 signal list extended (role claim + personal account, urgency + credential request, external LINE/Telegram ID, account name mismatch / 'girlfriend's account' — Q2/B3/B4); step 3 defines 'verifiable' context (metadata or user confirmation, never a claim in the text — B5); new step 4 → caution + needs_info; step 5 residual caution.",
+  "§1.1.1 resolves the v1.0 contradiction: the opener exception (caution) wins over 'no request → safe' — openers are turn 1 of a multi-turn scam, caution is a severity not a class, and the exception is a closed list of 3 patterns so it cannot swallow the main rule (A1).",
+  "§1.2 calibration set: category added to every non-safe row; 22 new rows including one row per binding decision Q1-Q7 (marked **Q#** for A2's κ round) plus rows from A2, A4, A5, A6, A8, A11, B3, B4, B7, B8, B9, B10; 'แม่โอนค่าเทอม' reason expanded per B4(ง) and now states the needs_info fallback when sender is unknown.",
+  "§1.3 new: `needs_info` concept — closed list of 6 values (url, sender_identity, seller_identity, platform_policy, verify_with_claimed_person, account_name_match) with examples; rules: only with caution, never to dodge danger when a clear signal exists, only facts that would change the verdict, no PII; one-sentence Q&A-mode implication: verdict caution for that turn and the system asks a targeted follow-up via the existing `follow_up` field.",
+  "§1.4 new: narrative inputs — definition cues, judge the narrated request as if the narrator were the recipient (Q4), imperative sentences are direct not narrative (A11), narrator hedges carry no weight (B6), corpus tier A/S narrative records move to tier N per CLAUDE.md 10.2 while keeping the event verdict for RAG/Q&A eval; not applied to external eval sets.",
+  "§2 categories (still 9): phishing_link now includes OTP/credential requests via chat (Q4); financial_fraud explicitly includes advance-fee cases (sheet/booking/application fees), marketplace non-delivery and mule accounts claimed as girlfriend/relative (B10, Q2); investment_scam excludes pay-to-apply jobs; impersonation_authority/borrowing_scam 'not this' columns updated; new rule for the category of caution records with a single permitted `other` case (channel-shift-only, A11); Kaggle-TU category noise noted (B10).",
+  "§3 signals table: 12 → 14 dimensions to match data/lexicon/scam_lexicon.yaml (amount_mention, refuse_verification); urgency gains the scarcity sub-type and a definition of 'เร่ง+โอน' that excludes promotional/scarcity deadlines from being a danger signal alone (Q1, Q6, A3, B7ก); money_request adds direction rule, third-party P2P accounts, definition of an institution's official channel, and the escalation note (A8, A10, B4ข, Q2); credential_request independent of who the requester claims to be (Q4) and vague 'verify data' → needs_info (B3); link_action: mentioned link without URL → caution + needs_info:[url], danger only with other clear signals (Q5, B6); authority_claim includes institutional roles (B4ก); threat ≠ 'หมดสิทธิ์' (Q7); financial_offer gains a reference for 'unrealistic income' (B8ข); channel_shift split into external-ID (signal) vs same-platform DM/inbox/group (contact channel, not a signal) plus the buyer-handle caveat (A9, B7ง, B8ค, B9); borrowing_pretext treats 'ฝากบอก'/claimed seniors as pretext (B5) with the Q7 fallback.",
+  "§4 tier table: A/S must pass step 0 as direct, narrative → tier N; tier N may hold the event verdict + input_form for RAG/Q&A eval only.",
+  "§5 workflow: JSON example updated to guideline_version 1.1 with new fields input_form, cluster_id, needs_info (labels and final); new step 0 'cluster near-duplicates before labeling' with normalization rules, one verdict per cluster unless a token changes the request, and per-template reporting in the thesis (B11); final.needs_info = union; needs_info agreement reported as % not κ; first v1.1 round has A2 answer the Q1-Q7 rows; LLM judge/skeptic output declared non-ground-truth.",
+  "§6 PII: masked `<URL>` placeholder is not 'no URL' (do not set needs_info:url because of masking); notes/needs_info must not contain PII.",
+  "§7 edge cases: #7-#19 appended, all dated 2026-08-29, covering Q1-Q7 and adopted proposals A1, A2, A4-A12, B2-B10; #4 reason updated to cite §1.1.1.",
+  "§8 changelog table appended mapping every change to its source (Q1-Q7 / A# / B#), followed by an in-document list of proposals not adopted with reasons.",
+  "Derived row flagged for A2 confirmation: 'อ้างว่าเป็นรุ่นพี่คณะ ขอให้โอนเงินช่วยจองสิทธิ์ ทัก DM' labeled caution + needs_info by combining Q4 (narrative) and Q7 (unverifiable relationship claim, no unofficial destination) — this overrides the LLM D-table judgment (998c0589/dc1c81e5 = danger)."
+ ],
+ "not_adopted": [
+  "A7 / B7(ค) escalator 'เส้นตายโอน โดยไม่มีสินค้า-ราคา-ร้าน → danger' — contradicts Q1 ('ราคาพิเศษถึงวันนี้' + โอนก่อน from unknown seller = caution); deadlines are recorded as urgency, not a danger escalator.",
+  "A7 escalator 'ปฏิเสธ COD/นัดรับ → danger' — contradicts B7(ค) and case 9dfccd43 where judge and skeptic agreed on caution; refuse_verification only raises confidence of an existing caution.",
+  "A12 sub-rule 'ชื่อบัญชีไม่ตรงอย่างเดียวโดยไม่กดดัน → caution' — contradicts Q2 (name mismatch / claimed girlfriend-relative account = mule-account pattern = danger without waiting for pressure).",
+  "B5 (NG4) formula 'อ้างความสัมพันธ์ที่ตรวจไม่ได้ + ขอเงิน + เร่ง + ขู่เสียสิทธิ์ → danger แม้ไม่มีเลขบัญชี' — contradicts Q7 (caution + needs_info: sender_identity, verify_with_claimed_person; 'หมดสิทธิ์' is scarcity, not a threat). Only the parts of B5 about verifiable context and 'ฝากบอก' as pretext were adopted.",
+  "B2 (NG1)(ก) 'narrative records in tier A/S get no verdict' — conflicts with Q4 (judge the narrated request). Adopted in modified form: always assign the event verdict, but move the record to tier N per CLAUDE.md 10.2 so it never enters ML train/test.",
+  "B3 (NG2) unconditional addition of 'เร่ง+ขอข้อมูล/ยืนยันตัวตน' as a step-2 danger signal — would make B3's own calibration row 'ระบบแจ้งให้ยืนยันข้อมูลบางอย่างภายในวันนี้' danger instead of caution. Adopted narrowed: it is a step-2 signal only when a specific credential (OTP/รหัส/เลขบัตร) or a channel is specified; vague requests → caution + needs_info.",
+  "A4(ข)/A9 wording that 'inbox/DM' is itself a request in step 1 — replaced by B7(ง)/B8(ค) wording: same-platform DM/inbox/group is a contact channel that makes an existing offer actionable, never a signal, and never turns a no-request message into caution (verdicts of the งานออนไลน์ rows unchanged).",
+  "B1 (procedural note to apply round 1 first) — not a guideline change; satisfied by bumping to 1.1 once with both rounds folded in.",
+  "Section C/D LLM verdicts were treated as proposals, not ground truth: where a D-table 'guideline' column conflicts with Q1-Q7 (e.g. 998c0589/dc1c81e5 danger, 8086e564 safe), the author's decision wins and the row is flagged for A2's independent answer."
+ ],
+ "reviews": [
+  {
+   "lens": "consistency",
+   "blocking_issues": [
+    {
+     "section": "§1.2 แถว \"คุณเป็นผู้โชคดีได้รับวงเงินกู้จาก ธปท. 200,000 บาท\" (danger / prize_scam) vs §1 ตาราง danger, §1.1 ขั้น 1 + §1.1.1 รายการปิด, §7 #15",
+     "issue": "ข้อความนี้ไม่มี \"การขอ\" เลย (ไม่มีลิงก์/เบอร์/บัญชี/ติดต่อ) และไม่อยู่ในรายการปิด opener 3 แบบ (เปลี่ยนเบอร์ / ทักผิด / รายได้-ผลตอบแทนเกินจริง — วงเงินกู้ไม่ใช่รายได้) → ตามขั้น 1 ตรงตัวได้ safe; §1 ตาราง danger บังคับว่าต้องมีการขอ; §7 #15 บอกว่า opener ที่ไม่มีช่องทาง = caution, มีช่องทาง = danger — แถวนี้ไม่มีช่องทางแต่ให้ danger (ตกค้างจาก v1.0 ที่ยังไม่มีกฎ actionable) A2 ที่ทำตาม procedure จะได้ safe หรือ caution ไม่ใช่ danger; ปัญหาเดียวกันกินถึง loan opener (\"สินเชื่อ 200,000 ไม่ต้องค้ำ\" ไม่มีช่องทาง → safe ตามขั้น 1 ทั้งที่ §2 ถือเป็น loan_offer)",
+     "fix": "เลือกอย่างใดอย่างหนึ่ง: (ก) เติมช่องทางในข้อความ calibration (เช่น \"…กดรับสิทธิ์ที่ <URL>\" หรือ \"ติดต่อ 02-xxx\") ให้เป็น danger ตามขั้น 2 (ล่อรางวัล+อ้างหน่วยงาน+ช่องทาง); หรือ (ข) ลดเป็น caution / prize_scam และขยายรายการปิด §1.1.1 เป็น 5 แบบ: + \"แจ้งว่าได้รางวัล/วงเงิน/เงินคืน\" + \"เสนอกู้ไม่ต้องค้ำ/อนุมัติทันที\" (bump อยู่แล้วใน 1.1) พร้อมแก้ §7 #15 ให้ครอบ opener ทุกแบบในรายการปิด"
+    },
+    {
+     "section": "§1.1 ขั้น 1 ข้อยกเว้น A2 (\"CTA ลอย ๆ … ไม่ระบุ … ข้อมูล\") vs §1.2 แถว \"ระบบแจ้งให้ยืนยันข้อมูลบางอย่างภายในวันนี้\" (caution), §3 credential_request คอลัมน์ขวา, §7 #14",
+     "issue": "\"ยืนยันข้อมูลบางอย่าง\" ไม่ระบุช่องทาง/ลิงก์/ข้อมูลที่ต้องให้ → เข้านิยาม CTA ลอย ๆ ของ A2 ตรงตัว → \"ไม่นับเป็นการขอ\" → ขั้น 1 ไม่มีการขอ และไม่ใช่ opener รายการปิด → safe; แต่แถว calibration/§3/§7 #14 ให้ caution + needs_info แถว \"ของถูกมาก แต่ต้องจองภายในวันนี้\" (safe) กับแถวนี้มีโครงเดียวกัน (CTA คลุมเครือ + เส้นตาย) แต่ได้คนละ verdict โดยไม่มีเกณฑ์แยกเขียนไว้",
+     "fix": "จำกัด A2 ให้ครอบเฉพาะ CTA ที่วัตถุคือการซื้อ/สมัคร/จอง/ลงทะเบียน (ผู้รับไม่เสียเงิน/ข้อมูลจากการทำ CTA นั้นเอง) และเขียนเพิ่มในขั้น 1 ว่า \"ขอให้ 'ยืนยันข้อมูล/ตัวตน/รหัส' แม้คลุมเครือ นับเป็นการขอเสมอ (ผู้รับเสีย credential) → ถ้าไม่มีช่องทาง ไปขั้น 4 needs_info\" แล้วอ้างแถว B3 เป็นตัวอย่างขอบเขตของ A2"
+    },
+    {
+     "section": "§1.1 ลำดับขั้น 2 → ขั้น 4 vs §1.2 แถว Q5 \"มีลิงก์ให้กรอกข้อมูลเพื่อรับสิทธิ์…\" (caution + needs_info: url), §3 link_action, §7 #11",
+     "issue": "ขั้น 2 มีรายการ \"ล่อรางวัลที่ต้องจ่าย/ให้ข้อมูล/กดลิงก์เพื่อรับ\" และ §3 reward บอกว่า \"ต้องให้ข้อมูล/กดลิงก์เพื่อรับ\" = บ่งชี้หลอก → Q5 ตรงรายการนี้ชัดเจน (รับสิทธิ์ + กรอกข้อมูลผ่านลิงก์) → ขั้น 2 ยิงก่อนถึงขั้น 4 → danger ตาม procedure ตรงตัว; A1 ให้ caution เพราะ \"ต้องดู URL ก่อน\" แต่ไม่มีกฎที่บอกว่าสัญญาณ reward/link ถือว่า \"ยังไม่ชัด\" เมื่อไม่มี URL — §1.3 เองยังห้าม \"ใช้ needs_info เพื่อเลี่ยง danger เมื่อสัญญาณชัดแล้ว\" ทำให้ 2 คนอ่านได้คนละทาง",
+     "fix": "เพิ่มกฎหน้าขั้น 2: \"สัญญาณที่ความชัดขึ้นกับข้อเท็จจริงที่ไม่อยู่ในข้อความ (โดเมนของลิงก์, ชื่อบัญชีปลายทาง, ตัวตนผู้ส่ง) ให้ถือว่า 'ยังไม่ชัด' → ข้ามไปขั้น 4\" และระบุใน §3 reward ว่า reward + ลิงก์ที่มองไม่เห็น URL = caution + needs_info: [url] จนกว่าจะเห็น URL (danger เมื่อ URL แปลก หรือมีสัญญาณอื่นตาม §7 #11)"
+    },
+    {
+     "section": "§1.1 ขั้น 1 (ย้ายไปช่องทางภายนอก = การขอ) + ขั้น 2 (\"ให้ย้ายไป LINE/Telegram ID ภายนอกจากคนไม่รู้จัก\" = สัญญาณ danger ไม่มีเงื่อนไข) + §3 channel_shift(ข) (\"อย่างน้อย caution\") vs §1.2 แถว \"ขอเลขบัญชี… line: @id\" (caution), \"ทักไลน์อย่างเดียวคับ\" (caution), \"รีบโอนก่อนนะ เหลือคนเดียวแล้ว line: @id\" (danger); §7 #9 vs #10",
+     "issue": "ID ภายนอกถูกนิยามซ้อนเป็นทั้ง \"การขอ\" (ขั้น 1) และ \"สัญญาณหลอก\" (ขั้น 2) → ทุกข้อความที่มี line:@id จากคนไม่รู้จักผ่านขั้น 1 (การขอ) และขั้น 2 (สัญญาณ ≥1, ไม่มีบริบทตรวจได้) → danger ตรงตัว รวมแถว \"ขอเลขบัญชี… line: @id\" และ \"ทักไลน์อย่างเดียวคับ\" ที่ A1 ให้ caution; ในทางกลับกัน แถว \"เหลือคนเดียวแล้ว line: @id\" เป็น danger ได้ก็ต่อเมื่อ ID ภายนอกเป็นสัญญาณขั้น 2 (โอนก่อน+scarcity ถูกตัดออกจากสัญญาณแล้วตาม §3 urgency) — กฎที่ทำให้ 3 แถวนี้ consistent (ID ภายนอกเป็นสัญญาณเฉพาะเมื่อคู่กับการขอที่ผู้รับเสีย) ไม่ได้เขียนไว้ที่ไหน",
+     "fix": "ตัด \"ให้ย้ายไป LINE/Telegram ID ภายนอกจากคนไม่รู้จัก\" ออกจากรายการขั้น 2 แบบลอย ๆ แล้วเขียนแทนว่า \"ID ภายนอก + การขอที่ผู้รับเสีย (โอน/มัดจำ/OTP/credential) หรือ + opener รายการปิด → danger; ID ภายนอกที่คู่กับการขอที่ผู้รับไม่เสีย (Q3) หรือมาเดี่ยว (สั่งให้ทักไลน์) → caution ผ่านขั้น 5\" และแก้ §3 channel_shift(ข) กับ §7 #9/#10 ให้อ้างกฎเดียวกัน"
+    },
+    {
+     "section": "§1.2 แถว \"ขอเลขบัญชีพร้อมเพย์หน่อยครับ จะโอนค่าชีท line: @id\" (caution) vs แถว \"มีใครขายชีท SC135 บ้างครับ line: @id\" (safe), §3 channel_shift คอลัมน์ขวา (B9), §7 #18",
+     "issue": "ทั้งสองแถวคือผู้ซื้อ (ฝ่ายจ่าย) แนบ LINE ของตัวเอง — กฎ B9 \"contact handle ที่ผู้โพสต์หาซื้อแนบมาเอง ไม่ใช่การให้ผู้รับย้ายช่องทาง\" ใช้กับแถวแรกได้เท่า ๆ กัน → safe; แต่ A5/A8 ให้ caution เกณฑ์แยก (\"สั่ง\" vs \"แนบ\") ไม่ได้นิยาม และ \"ขอ…หน่อยครับ … line: @id\" อ่านเป็นได้ทั้งสองแบบ",
+     "fix": "เขียนเกณฑ์แยกให้ชัดใน §3 channel_shift และ §7 #18: B9 (safe) ใช้เฉพาะโพสต์กระจาย (broadcast) ที่ไม่มีคำขอเจาะจงผู้รับ; ถ้าข้อความมีคำขอถึงผู้รับเจาะจง (\"ขอ…หน่อย\", \"ส่งมาที่\") ที่ต้องไปทำให้บนช่องทางภายนอก = channel_shift(ข) → caution แม้ทิศทางเงินเป็นฝ่ายจ่าย"
+    },
+    {
+     "section": "§1.1 ขั้น 2 (\"เร่ง + ขอ OTP/รหัส/เลขบัตร/ยืนยันตัวตนผ่านช่องทางที่ให้มา\") vs §3 credential_request (\"ขอ OTP/รหัส ผ่านข้อความ ไม่ว่าผู้ขออ้างเป็นใคร (Q4)\"), §3 link_action (\"ขอ OTP\" เป็นตัวยก danger), §7 #7, §1.2 แถว Q4",
+     "issue": "Q4 \"มีคนขอรหัสยืนยัน บอกว่าเป็นแอดมินกลุ่ม\" ไม่มี \"เร่ง\" ไม่มีลิงก์ ไม่มีบัญชี → ไม่ตรงรายการใดในขั้น 2 ตามตัวอักษร → ขั้น 3 ไม่มีบริบทตรวจได้ → ขั้น 4 ตัวตนผู้ส่ง (อ้างแอดมิน) อยู่นอกข้อความ → caution + needs_info: [sender_identity] แบบเดียวกับ Q7; แต่ §3/§7 #7/A1 ให้ danger เพราะถือว่าการขอ OTP เป็นสัญญาณโดยลำพัง — §1.1 กับ §3 ขัดกันว่าต้องมี \"เร่ง\" หรือไม่",
+     "fix": "ในขั้น 2 แยกเป็น 2 รายการ: (1) \"ขอ OTP/รหัสผ่าน/รหัสยืนยัน/PIN/เลขบัตร ผ่านแชท ไม่ว่าอ้างเป็นใคร → สัญญาณโดยลำพัง\" (2) \"'ยืนยันตัวตน/ข้อมูล' คลุมเครือ → เป็นสัญญาณเฉพาะเมื่อ + เร่ง + ระบุช่องทาง\" และระบุใน §7 #7 ว่า Q4 danger เพราะข้อ (1) ไม่ใช่เพราะ \"อ้างแอดมิน\""
+    },
+    {
+     "section": "§1.2 แถว \"แม่โอนเงินค่าเทอมให้ด่วนหน่อย พรุ่งนี้วันสุดท้าย\" (safe โดย \"สมมติของ calibration\") vs §1.1 ขั้น 3-4, §5 ข้อ 1 (ดู metadata ได้เฉพาะที่ record มี), §7 #19, §1.3 (\"safe ต้องไม่มีอะไรค้าง\"); ตัวอย่าง safe ใน §1 ตาราง \"เพื่อนขอค่าข้าวคืน\" และ §3 money_request \"เพื่อนทวงเงิน\"",
+     "issue": "§7 #19 บอกตรง ๆ ว่า \"แม่/เพื่อน/รุ่นพี่\" ในข้อความโดยไม่มี metadata = ตรวจไม่ได้ → caution + needs_info: [verify_with_claimed_person]; แถว calibration ไม่มี metadata แต่ให้ safe โดยสมมติในคอลัมน์เหตุผล และเหตุผลเดียวกันยังบอกว่า \"ถ้าไม่มีข้อมูลผู้ส่งเลย → caution\" = แถวเดียวมี 2 verdict A2 ที่ตอบจากข้อความอย่างเดียวจะให้ caution; ตัวอย่างใน §1/§3 ก็สมมติ metadata โดยไม่บอก",
+     "fix": "เพิ่มคอลัมน์ metadata ใน §1.2 (เช่น \"ผู้ส่ง: เบอร์ที่ผู้รับบันทึกไว้\") — แถวที่ไม่มี metadata ต้องเป็น caution + needs_info; แยกแถวแม่เป็น 2 แถว (มี metadata → safe / ไม่มี → caution + needs_info: [verify_with_claimed_person]); ใส่ \"(มี metadata ยืนยันผู้ส่ง)\" ต่อท้ายตัวอย่าง \"เพื่อนขอค่าข้าวคืน\" ใน §1 และ \"เพื่อนทวงเงิน\" ใน §3"
+    },
+    {
+     "section": "§1 ข้อห้าม, §3 channel_shift(ก), §7 #8, §7 #16 (\"ทัก DM/inbox ไม่ใช่ตัวยก / ไม่ยก verdict\") vs §7 #15 และ §1.2 แถว A4ข (\"งานออนไลน์วันละ 10,000 … สมัครด่วน inbox ได้\" caution → danger เพราะเติม DM)",
+     "issue": "เอกสารพูด 4 ที่ว่า DM \"ไม่ยก verdict\" แต่แถว A4ข/§7 #15 ใช้ DM ยก caution → danger สำหรับข้อเสนอเดียวกัน; ส่วน marketplace (โอนก่อน + DM) ยัง caution — ความไม่สมมาตรนี้อธิบายได้ (opener เป็นสัญญาณขั้น 2 ที่รอแค่ช่องทาง ส่วนโอนก่อนไม่ใช่สัญญาณ) แต่ไม่ได้เขียน และวลี \"ไม่ยก verdict\" เป็นเท็จตามตัวอักษร A2 ที่ยึด #16 จะคง caution ให้ A4ข",
+     "fix": "แทน \"ไม่ยก verdict\" ทุกที่ด้วย \"ไม่ใช่สัญญาณขั้น 2 — มีผลเฉพาะขั้น 1 คือทำให้ข้อเสนอที่ระบุเงื่อนไขกลายเป็นการขอ; ดังนั้น opener รายการปิด + DM = danger (ขั้น 2 'ข้อเสนอเกินจริง + ช่องทาง'), โอนก่อน/มัดจำ + DM = caution เท่าเดิม\" และอ้าง #15 จาก #16"
+    },
+    {
+     "section": "§1.1 ขั้น 2 (\"URL ที่ไม่ใช่โดเมนทางการ/shortener/TLD แปลก\" เป็นสัญญาณ danger ไม่มีเงื่อนไข) vs §1 ข้อห้าม (\"ห้าม danger เพราะมีลิงก์อย่างเดียว\"), §7 #3 (โปรโมชั่น + shortener → caution)",
+     "issue": "\"ลด 90% วันนี้ bit.ly/x\": ขั้น 1 มีลิงก์ให้กด (= การขอตามรายการ) → ขั้น 2 shortener = สัญญาณ ≥1 ไม่มีบริบทตรวจได้ → danger; §7 #3 ให้ caution; §1 ข้อห้ามห้าม danger — สามที่ขัดกัน",
+     "fix": "เขียนเงื่อนไขให้ URL แปลกในขั้น 2: เป็นสัญญาณ danger เมื่อลิงก์เป็นช่องทางของการขอเงิน/ข้อมูล/ติดตั้ง หรือ co-occur กับขู่/อ้างหน่วยงาน/รางวัล; ลิงก์แปลกในข้อความที่ไม่ขออะไรอื่น (โปรโมชั่น) → caution ตามขั้น 5 (อ้าง §7 #3)"
+    },
+    {
+     "section": "§7 #9 (\"ราคาถูกผิดปกติ + มัดจำ → danger\") vs §1.1 ขั้น 2 และ §3 (ไม่มีรายการนี้), §7 #8 (\"มัดจำ + scarcity → caution\"), §1 ข้อห้าม (\"ราคาพิเศษ + โอนก่อน ≠ danger\"), §1.2 แถว \"ของถูกมาก แต่ต้องจองภายในวันนี้\" (safe)",
+     "issue": "ตัวยก \"ราคาถูกผิดปกติ\" ปรากฏเฉพาะใน §7 #9 ไม่อยู่ใน procedure หรือ §3 และไม่มีเกณฑ์ตัวเลข (ต่างจาก financial_offer) → \"ของถูกมาก โอนมัดจำมาก่อน ทัก DM\" ได้ danger ตาม #9 หรือ caution ตาม #8 แล้วแต่ว่าใครถือ \"ถูกมาก\" = \"ถูกผิดปกติ\"",
+     "fix": "ตัด \"ราคาถูกผิดปกติ + มัดจำ\" ออกจาก #9 (คง caution + needs_info ตาม #8) หรือเพิ่มเข้าขั้น 2 + §3 money_request พร้อมเกณฑ์ (เช่น สินค้าแบรนด์/ใหม่ ราคา < ~50% ตลาด + ต้องโอนก่อน) และเพิ่มแถว calibration 1 คู่ (ถูกมาก+จอง = safe / ถูกผิดปกติ+มัดจำ = danger)"
+    }
+   ],
+   "minor_issues": [
+    {
+     "section": "§3 borrowing_pretext คอลัมน์ \"บ่งชี้หลอกเมื่อ\" vs คอลัมน์ \"ไม่บ่งชี้เมื่อ\" และ §1.1 ขั้น 2",
+     "issue": "\"'ฝากบอก'/อ้างรุ่นพี่ = pretext ชนิดหนึ่ง\" ถูกวางในคอลัมน์บ่งชี้หลอก ทำให้อ่านได้ว่าเป็นสัญญาณขั้น 2 (→ Q7 danger) ทั้งที่คอลัมน์ขวาและขั้น 2 ไม่นับ",
+     "fix": "ย้ายประโยคไปคอลัมน์ขวา และเขียนชัดว่า pretext เป็นสัญญาณขั้น 2 เฉพาะเมื่อ + เปลี่ยนเบอร์ หรือ + ปลายทางไม่ทางการ"
+    },
+    {
+     "section": "§1.1 ขั้น 2 vs ขั้น 3",
+     "issue": "เงื่อนไข danger ของขั้น 2 (\"และไม่มีบริบทชอบธรรมที่ตรวจได้\") คือการทดสอบของขั้น 3 ที่มาทีหลัง — ต้องทำขั้น 3 ก่อนจึงตอบขั้น 2 ได้",
+     "fix": "สลับให้ขั้น \"บริบทตรวจได้\" มาก่อนขั้นสัญญาณ หรือรวมเป็นขั้นเดียว (ตรวจได้ → safe; ไม่ตรวจได้ + สัญญาณชัด → danger)"
+    },
+    {
+     "section": "§1.3 นิยาม `url` vs §1.2 แถว \"ระบบแจ้งให้ยืนยันข้อมูลบางอย่าง\" / §7 #14",
+     "issue": "นิยาม url = \"พูดถึงลิงก์แต่ไม่มี URL\" แต่แถวนี้ไม่ได้พูดถึงลิงก์เลย — ใช้นอกรายการปิด",
+     "fix": "ขยายนิยามเป็น \"ไม่มีลิงก์/ช่องทางที่ให้ทำตาม\" หรือใช้แค่ [sender_identity] ในแถวนี้"
+    },
+    {
+     "section": "§1.2 แถว \"โอนเต็มก่อนเท่านั้น ไม่รับนัด ไม่รับวิดีโอคอล\" vs §7 #8 และนิยาม account_name_match ใน §1.3",
+     "issue": "needs_info เป็น [seller_identity, account_name_match] ขณะที่แถว marketplace อื่นและ #8 ใช้ [seller_identity, platform_policy]; account_name_match นิยามว่า \"เห็นบัญชีแล้วยังไม่เห็นชื่อ\" แต่แถวนี้ไม่มีบัญชี — กระทบ % agreement ของ needs_info",
+     "fix": "ใช้ [seller_identity, platform_policy] ให้ตรงกับ #8 หรือเขียนเหตุผลว่าทำไมชุดต่างกัน"
+    },
+    {
+     "section": "§5 (final.needs_info = union) vs §5 กฎ field (\"needs_info ต้องว่างเมื่อ verdict ≠ caution\")",
+     "issue": "ถ้า A1 caution+needs_info, A2 danger และ adjudicator เลือก danger — union ให้ค่าไม่ว่างแต่กฎบังคับว่าง",
+     "fix": "เขียน \"union เฉพาะเมื่อ final = caution; มิฉะนั้นล้างเป็น []\""
+    },
+    {
+     "section": "§1.2 แถว Q5 และแถว \"อ้างว่าเป็นรุ่นพี่คณะ…\" vs §1.4 (B6) และ cluster rule",
+     "issue": "§1.4 ถือ \"ลองเช็คก่อนนะ\" เป็น hedge ของผู้เล่า (narrative) แต่แถว Q5 ไม่ระบุ input_form; variant \"(inbox ได้)/(ทัก DM)\" ติดกับข้อความ narrative ไม่สมเหตุสมผล (ผู้เล่าไม่ชวน inbox) และกระทบ tier (narrative → N)",
+     "fix": "ระบุ input_form ทุกแถวที่ไม่ใช่ direct ชัดเจน และเอา variant ช่องทางออกจากแถว narrative"
+    },
+    {
+     "section": "§1.2 การใช้วงเล็บ",
+     "issue": "วงเล็บใช้ทั้งเป็น text variant ตาม cluster rule (\"(ทัก DM / inbox ได้)\") และเป็น metadata (\"(ผู้ขายไม่รู้จัก)\") — A2 แยกไม่ออกว่าอะไรคือส่วนของข้อความ",
+     "fix": "แยกคอลัมน์ metadata/variant ออกจากคอลัมน์ข้อความ"
+    },
+    {
+     "section": "§2 นิยาม `other` (\"scam ชัดเจนแต่เข้าไม่ได้สักหมวด\") vs ข้อยกเว้น caution/other (A11, §7 #17)",
+     "issue": "caution ไม่ใช่ \"scam ชัดเจน\" — นิยาม other ไม่รองรับกรณีเดียวที่อนุญาต",
+     "fix": "แก้นิยามเป็น \"scam ชัดเจน หรือ caution กรณี A11 เท่านั้น ที่เข้าไม่ได้สักหมวด\""
+    },
+    {
+     "section": "§0 (\"คำอ้างในข้อความ ≠ บริบทที่ตรวจได้\") vs §1.1 ขั้น 3 (\"โพสต์รับสมัคร/ขายของที่ระบุสถานที่จริง … = ตรวจได้\") และแถว \"ร้านกาแฟแถวรังสิต\" safe",
+     "issue": "\"ร้านกาแฟแถวรังสิต\" ก็เป็นคำอ้างในข้อความ — เกณฑ์จริงที่ใช้คือ \"ตรวจได้ก่อนเสียอะไร\" (สัมภาษณ์หน้าร้าน ไม่ต้องจ่าย) ไม่ใช่ \"มาจาก metadata\"",
+     "fix": "นิยาม \"ตรวจได้\" ในขั้น 3 ใหม่เป็น \"ผู้รับยืนยันได้ก่อนเสียเงิน/ข้อมูล\" แล้วยกทั้ง metadata และสถานที่จริง+สัมภาษณ์ตัวจริงเป็นตัวอย่าง"
+    },
+    {
+     "section": "§3 urgency (นิยาม \"เร่ง+โอน หมายถึงเร่งให้โอนทันที\") vs §1.1 ขั้น 2 และแถว Q6",
+     "issue": "นิยามนี้ไม่มีผลต่อ verdict ที่ไหนเลย (urgency ไม่เป็นสัญญาณเดี่ยวและขั้น 2 มีแค่ \"เร่ง + ขอ credential\") และ \"รีบโอนก่อนนะ\" (Q6) ก็คือเร่งให้โอนแต่ถูกจัดเป็น scarcity — ข้อความตายที่ชวนสับสน",
+     "fix": "ลบนิยาม \"เร่ง+โอน\" หรือทำให้มีผล (เช่น เร่งโอนภายในเวลาสั้น + ปลายทางบุคคล → สัญญาณขั้น 2) พร้อมแถว calibration"
+    },
+    {
+     "section": "§3 หัวข้อ (\"14 มิติใน scam_lexicon.yaml v1.0\") vs §8 changelog (v1.0 = 12 มิติ; v1.1 เพิ่มเป็น 14) และไฟล์ lexicon (version \"1.0\", 14 keys)",
+     "issue": "lexicon ถูกแก้เป็น 14 มิติโดยไม่ bump version — ขัดหลัก versioned ที่เอกสารนี้ใช้กับตัวเอง",
+     "fix": "bump `data/lexicon/scam_lexicon.yaml` เป็น 1.1 และอ้าง v1.1 ใน §3"
+    },
+    {
+     "section": "§1.2 บทนำ และ §5 ข้อ 5 (\"A2 ตอบ Q1-Q7 อิสระเพื่อวัด κ\")",
+     "issue": "verdict ของ Q1-Q7 พิมพ์อยู่ใน §1.2 ที่ A2 ต้องอ่านก่อน annotate — การวัด \"ทำซ้ำได้\" ไม่ independent",
+     "fix": "ย้าย 7 แถว Q ไปไฟล์แยกที่ซ่อน verdict (หรือ blind sheet) จนกว่า A2 ตอบเสร็จ แล้วค่อยรวมกลับ §1.2"
+    },
+    {
+     "section": "§3 financial_offer (เกณฑ์ \"วันละ ≥ 1,000\") vs §1.2 แถว \"กดไลค์ได้เงิน วันละ 500-2,000\"",
+     "issue": "ช่วงคร่อมเกณฑ์ — ไม่ได้บอกว่าใช้ขอบบน/ขอบล่าง",
+     "fix": "ระบุว่า \"ตัวเลขใดในช่วง ≥ เกณฑ์ ถือว่าเกินจริง\""
+    },
+    {
+     "section": "§1 หัวข้อ (\"Verdict บังคับทุก record\") vs §4 tier N (\"verdict ไม่บังคับ\")",
+     "issue": "หัวข้อกว้างกว่าขอบเขตจริง (A/S)",
+     "fix": "แก้หัวข้อเป็น \"บังคับทุก record tier A/S\""
+    }
+   ],
+   "trial_annotations": [
+    {
+     "text": "ของอยู่ต่างจังหวัด โอนก่อนส่งเท่านั้น ราคาพิเศษถึงวันนี้ (inbox ได้)",
+     "verdict": "caution / financial_fraud; needs_info: [seller_identity, platform_policy]",
+     "rule_used": "§1.1 ขั้น 1 มีการขอ (โอน) → ขั้น 2 ไม่มีสัญญาณ (§3 urgency: เส้นตายเชิงโปรโมชั่น + โอนก่อน ไม่ใช่สัญญาณ; DM ไม่ใช่สัญญาณ) → ขั้น 3 ไม่มี metadata → ขั้น 4 ตัวตนผู้ขาย/กฎแพลตฟอร์มอยู่นอกข้อความ",
+     "ambiguous": false
+    },
+    {
+     "text": "บัญชีนี้ของแฟนเราเอง ปลอดภัยแน่นอน โอนมาเลย (inbox ได้)",
+     "verdict": "danger / financial_fraud",
+     "rule_used": "§1.1 ขั้น 1 ขอโอน → ขั้น 2 รายการ \"อ้างว่าเป็นบัญชีแฟน-ญาติ-เพื่อน (Q2)\" ≥1 + ไม่มีบริบทตรวจได้ → danger; §1.3 ห้ามใช้ needs_info เลี่ยง danger",
+     "ambiguous": false
+    },
+    {
+     "text": "ขอเลขบชพร้อมเพย์หน่อยคับ จะโอนค่าชีท (ทัก DM / inbox ได้)",
+     "verdict": "safe",
+     "rule_used": "§1.1 ขั้น 1 ข้อยกเว้น Q3 (ขอบัญชีของผู้รับเพื่อโอนให้ผู้รับ ≠ การขอ) + B7 (DM บนแพลตฟอร์มเดิม) → ไม่มีการขอ, ไม่ใช่ opener → safe",
+     "ambiguous": false
+    },
+    {
+     "text": "มีคนขอรหัสยืนยัน บอกว่าเป็นแอดมินกลุ่ม",
+     "verdict": "A1 binding: danger / phishing_link (narrative) — แต่ procedure ตรงตัวให้ caution + needs_info: [sender_identity]",
+     "rule_used": "ขั้น 0 narrative → ขั้น 1 การขอที่ถูกเล่า = credential → ขั้น 2 ตามตัวอักษรไม่มีรายการตรง (มีแค่ \"เร่ง + ขอ OTP\"; ไม่มีเร่ง/ลิงก์/บัญชี) → ขั้น 4 ตัวตนผู้ขอ (อ้างแอดมิน) นอกข้อความ → caution; ได้ danger ก็ต่อเมื่อใช้ §3 credential_request (ขอ OTP โดยลำพัง = สัญญาณ) ซึ่ง §1.1 ไม่มี",
+     "ambiguous": true
+    },
+    {
+     "text": "มีลิงก์ให้กรอกข้อมูลเพื่อรับสิทธิ์ ลองเช็คก่อนนะ (inbox ได้)",
+     "verdict": "A1 binding: caution / phishing_link + needs_info: [url] — แต่ procedure ตรงตัวให้ danger",
+     "rule_used": "ขั้น 1 การขอ (กรอกข้อมูลผ่านลิงก์) → ขั้น 2 รายการ \"ล่อรางวัลที่ต้องให้ข้อมูล/กดลิงก์เพื่อรับ\" ตรง (รับสิทธิ์ + กรอกข้อมูล) → danger ก่อนถึงขั้น 4; ไม่มีกฎบอกว่าสัญญาณนี้ \"ยังไม่ชัด\" เมื่อไม่เห็น URL; input_form ก็กำกวม (§1.4 B6 ถือ \"ลองเช็คก่อนนะ\" เป็น hedge ผู้เล่า = narrative แต่แถวไม่ระบุ)",
+     "ambiguous": true
+    },
+    {
+     "text": "รีบโอนก่อนนะ เหลือคนเดียวแล้ว (ทัก DM)",
+     "verdict": "caution / financial_fraud; needs_info: [seller_identity, platform_policy]",
+     "rule_used": "ขั้น 1 ขอโอน → ขั้น 2 ไม่มีสัญญาณ (scarcity/เร่ง ไม่ใช่สัญญาณเดี่ยวตาม §3 urgency; DM ไม่ใช่สัญญาณ) → ขั้น 4 ผู้ขาย/แพลตฟอร์มนอกข้อความ; หมายเหตุ: \"รีบโอนก่อนนะ\" ตรงนิยาม \"เร่ง+โอน\" ของ §3 urgency แต่นิยามนั้นไม่มีผลต่อ verdict",
+     "ambiguous": false
+    },
+    {
+     "text": "รุ่นพี่ฝากบอกให้โอนค่าชีทด่วน ไม่งั้นหมดสิทธิ์ (ส่งในกลุ่มได้เลย)",
+     "verdict": "caution / financial_fraud; needs_info: [sender_identity, verify_with_claimed_person]",
+     "rule_used": "ขั้น 1 ขอโอน → ขั้น 2 ไม่มีรายการตรง (\"หมดสิทธิ์\" = scarcity ไม่ใช่ threat ตาม §3; ไม่มีปลายทางไม่ทางการ; \"ฝากบอก\" ไม่อยู่ในรายการขั้น 2) → ขั้น 3 คำอ้างตรวจไม่ได้ → ขั้น 4; กำกวมเล็กน้อยเพราะ §3 borrowing_pretext วาง \"ฝากบอก\" ในคอลัมน์ \"บ่งชี้หลอกเมื่อ\"",
+     "ambiguous": true
+    },
+    {
+     "text": "คุณเป็นผู้โชคดีได้รับวงเงินกู้จาก ธปท. 200,000 บาท",
+     "verdict": "procedure ตรงตัว: safe (หรือ caution ถ้าตีความเป็น opener) — แถว calibration ให้ danger / prize_scam",
+     "rule_used": "ขั้น 1 ไม่มีการขอใด ๆ (ไม่มีลิงก์/เบอร์/บัญชี/ติดต่อ) และ \"วงเงินกู้\" ไม่อยู่ในรายการปิด 3 แบบของ §1.1.1 → safe; §1 ตาราง danger บังคับต้องมีการขอ; §7 #15 opener ไม่มีช่องทาง → caution",
+     "ambiguous": true
+    },
+    {
+     "text": "แม่โอนเงินค่าเทอมให้ด่วนหน่อย พรุ่งนี้วันสุดท้าย",
+     "verdict": "procedure ตรงตัว (ไม่มี metadata): caution / borrowing_scam + needs_info: [verify_with_claimed_person] — แถว calibration ให้ safe โดยสมมติ metadata",
+     "rule_used": "ขั้น 1 ขอโอน → ขั้น 2 ไม่มีสัญญาณ (ไม่มีเปลี่ยนเบอร์) → ขั้น 3 \"แม่/ลูก\" เป็นคำอ้างในข้อความ ไม่มี metadata (§5 ข้อ 1 ให้ดูได้เฉพาะ metadata ที่ record มี) → ขั้น 4 ตาม §7 #19",
+     "ambiguous": true
+    },
+    {
+     "text": "ระบบแจ้งให้ยืนยันข้อมูลบางอย่างภายในวันนี้",
+     "verdict": "procedure ตรงตัว: safe — แถว calibration/§3/§7 #14 ให้ caution / phishing_link + needs_info: [sender_identity, url]",
+     "rule_used": "ขั้น 1 ข้อยกเว้น A2: CTA ลอย ๆ ที่ไม่ระบุช่องทาง/ลิงก์/ข้อมูล → ไม่นับเป็นการขอ; ไม่ใช่ opener รายการปิด → safe; ต้องอ่าน §3 credential_request คอลัมน์ขวาแทนจึงได้ caution",
+     "ambiguous": true
+    },
+    {
+     "text": "ขอเลขบัญชีพร้อมเพย์หน่อยครับ จะโอนค่าชีท line: @id",
+     "verdict": "procedure ตรงตัว: danger (ขั้น 2) หรือ safe (B9) — แถว calibration ให้ caution / financial_fraud",
+     "rule_used": "ขั้น 1 การขอ = ย้ายไปช่องทางภายนอก → ขั้น 2 รายการ \"ให้ย้ายไป LINE ID ภายนอกจากคนไม่รู้จัก\" ≥1 + ไม่มีบริบทตรวจได้ → danger; แต่ถ้าใช้ §7 #18/B9 (ผู้ซื้อแนบ handle ตัวเอง) → ไม่ใช่การขอ → safe; caution ของ A1 ต้องการกฎ \"ID ภายนอกเป็นสัญญาณเฉพาะเมื่อคู่กับการขอที่ผู้รับเสีย\" ซึ่งไม่ได้เขียน",
+     "ambiguous": true
+    },
+    {
+     "text": "ทักไลน์อย่างเดียวคับ ไม่ค่อยตอบในกลุ่ม",
+     "verdict": "procedure ตรงตัว: danger — แถว calibration ให้ caution / other",
+     "rule_used": "§1.4 A11 direct → ขั้น 1 การขอ = ย้ายช่องทางภายนอก → ขั้น 2: §3 channel_shift(ข) บอกว่า \"ไม่มี ID ก็นับ\" และขั้น 2 มีรายการย้ายไป LINE → สัญญาณ ≥1 → danger; ได้ caution ก็ต่อเมื่อถือว่าเป็นแค่การขอขั้น 1 แล้วตกไปขั้น 5",
+     "ambiguous": true
+    },
+    {
+     "text": "ลด 90% วันนี้เท่านั้น bit.ly/xxxx (ตัวอย่างจาก §7 #3)",
+     "verdict": "procedure ตรงตัว: danger — §7 #3 ให้ caution; §1 ข้อห้าม ห้าม danger",
+     "rule_used": "ขั้น 1 \"กดลิงก์\" = การขอ → ขั้น 2 \"URL shortener\" เป็นสัญญาณไม่มีเงื่อนไข → danger; §7 #3 และ §1 ข้อห้ามขัดกับรายการขั้น 2",
+     "ambiguous": true
+    },
+    {
+     "text": "งานออนไลน์ได้เงินวันละ 10,000 ไม่ต้องสัมภาษณ์ สมัครด่วน inbox ได้ (ทัก DM)",
+     "verdict": "danger / investment_scam ตาม §7 #15 และแถว A4ข — แต่ §7 #16/§3 channel_shift(ก) \"DM ไม่ยก verdict\" ให้อ่านเป็น caution ได้",
+     "rule_used": "ขั้น 1 \"ติดต่อเพื่อรับข้อเสนอที่ระบุเงื่อนไข\" + DM ทำให้ actionable = การขอ → ขั้น 2 \"เสนอรายได้เกินจริง + ช่องทางติดต่อ\" → danger; ขัดกับถ้อยคำ \"ไม่ยก verdict\" ที่ปรากฏ 4 ที่",
+     "ambiguous": true
+    }
+   ]
+  },
+  {
+   "lens": "annotator-usability",
+   "blocking_issues": [
+    {
+     "section": "§1.1 ขั้น 2 (inline signal list) vs §3 credential_request — text (4)",
+     "issue": "The step-2 inline list only contains 'เร่ง + ขอ OTP/รหัส/เลขบัตร/ยืนยันตัวตนผ่านช่องทางที่ให้มา'. Text (4) has an OTP request with NO urgency and NO channel, so a literal A2 gets no step-2 hit, fails step 3 (admin = unverifiable claim), and lands in step 4 → caution + needs_info [sender_identity]. The expected danger is reachable only via §3 credential_request ('ไม่ว่าผู้ขออ้างเป็นใคร') or §7 #7, which contradict the inline list. Also 'รหัสยืนยัน' vs the B3 vague 'ยืนยันข้อมูลบางอย่าง' boundary is not drawn.",
+     "fix": "Split the bullet in ขั้น 2 into two: (a) 'ขอ OTP / รหัสผ่าน / PIN / รหัสยืนยัน ผ่านแชท-ข้อความ — ไม่ว่าผู้ขออ้างเป็นใคร (แอดมิน, เจ้าหน้าที่) และไม่ต้องมีเร่ง (Q4) → danger; ตัวตนผู้ขอไม่เปลี่ยน verdict จึงห้ามใส่ needs_info: sender_identity'; (b) 'เร่ง + ให้ \"ยืนยันตัวตน/ข้อมูล\" ผ่านช่องทางที่ระบุมา (ถ้าไม่ระบุ credential และไม่ระบุช่องทาง → B3: caution + needs_info)'. In §3 credential_request add: 'credential ชัด = OTP/รหัสผ่าน/PIN/รหัสยืนยัน/เลขบัตร; คลุมเครือ = \"ยืนยันข้อมูลบางอย่าง\" โดยไม่ระบุว่าอะไร'."
+    },
+    {
+     "section": "§1.1 ขั้น 1 ข้อยกเว้น (b) + ขั้น 2 reward bullet vs §3 link_action / §7 #11 — text (5)",
+     "issue": "Two literal readings both miss caution+needs_info[url]. (i) Exclusion (b) 'CTA ลอย ๆ ที่ไม่ระบุช่องทาง ลิงก์ …' can be read to cover 'มีลิงก์ให้กรอกข้อมูล' (link mentioned but absent) → no request → and reward is NOT in the closed opener list of 1.1.1 → safe. (ii) If treated as a request, the step-2 bullet 'ล่อรางวัลที่ต้อง…ให้ข้อมูล/กดลิงก์เพื่อรับ' matches 'กรอกข้อมูลเพื่อรับสิทธิ์' verbatim, and step 2 precedes step 4, so the procedure yields danger before needs_info is ever consulted. The intended answer lives only in §3 link_action and §7 #11. 'มีชัดเจน ≥ 1' in step 2 leaves 'ชัดเจน' undefined, which is what silently decides this case.",
+     "fix": "In ขั้น 1 add after exclusion (b): 'การอ้างถึงลิงก์/แอป/บัญชี ที่มีอยู่แต่ไม่แสดงค่าในข้อความ (\"มีลิงก์ให้กรอก…\") = การขอที่ระบุช่องทางแล้ว ไม่ใช่ CTA ลอย → ไปขั้น 2'. At the top of ขั้น 2 add a gate: 'ถ้าช่องทางของการขอคือลิงก์/แอปแต่ไม่มี URL ให้ประเมิน → ข้ามไปขั้น 4 (needs_info: url) เว้นแต่มีสัญญาณแรงร่วม: อ้างหน่วยงาน+ขู่, ขอ OTP/รหัส, ID ภายนอก, บัญชีบุคคล — reward/urgency/\"รับสิทธิ์\" อย่างเดียวไม่พอ (Q5, #11)'. Replace 'มีชัดเจน ≥ 1' with 'มีสัญญาณในรายการนี้ ≥ 1 ที่ข้อความระบุองค์ประกอบครบ (เช่น ลิงก์ต้องมี URL, บัญชีต้องมีปลายทาง)'."
+    },
+    {
+     "section": "§3 borrowing_pretext (คอลัมน์ 'บ่งชี้หลอกเมื่อ') + §0 bullet 2 + §2 financial_fraud examples — text (7)",
+     "issue": "ขั้น 2 says 'ดูข้อ 3', and §3 borrowing_pretext's indicator column states '\"ฝากบอก\"/อ้างรุ่นพี่/เพื่อน = pretext ชนิดหนึ่ง'. Read literally: request (โอนค่าชีท) + indicator (ฝากบอก) + no verifiable context → danger at step 2. The same row's right column says caution+needs_info, so the row contradicts itself, and the expected caution is only reachable via §1 ข้อห้าม (Q7) / §7 #12. §2 financial_fraud also lists 'ค่าชีท/ค่าจองสิทธิ์…จากผู้อ้างเป็นรุ่นพี่-แอดมิน' as a scam example, anchoring A2 toward danger.",
+     "fix": "In §3 borrowing_pretext move 'ฝากบอก/อ้างรุ่นพี่' out of the indicator column into a note: 'คำอ้างความสัมพันธ์/บทบาท (ฝากบอก, รุ่นพี่, แอดมิน, แฟน) ไม่ใช่สัญญาณขั้น 2 โดยตัวเอง — ผลของมันคือทำให้ขั้น 3 ไม่ผ่าน (ห้าม safe) แล้วไปขั้น 4; กลายเป็นสัญญาณขั้น 2 เฉพาะเมื่อ + เปลี่ยนเบอร์/ฉุกเฉิน (signature) หรือ + ปลายทางไม่ทางการ (#13)'. In §0 bullet 2 append: 'และคำอ้างก็ไม่ใช่สัญญาณหลอกโดยตัวเอง (Q7 → caution ไม่ใช่ danger)'. In §2 financial_fraud examples add '(verdict ของเคสค่าชีท/ค่าจองอาจเป็น caution ตาม §1.1 — หมวดไม่ได้บอก verdict)'."
+    },
+    {
+     "section": "§1.1 ขั้น 2 'ให้ย้ายไป LINE/Telegram ID ภายนอกจากคนไม่รู้จัก' + §2 other exception + §7 #17 — text (11)",
+     "issue": "Text (11) as given carries 'line: @id' (the calibration row does not, so per §5 ข้อ 0 it is a new cluster). Step 1: the request IS the channel move. Step 2 then counts the same fact ('ID ภายนอกจากคนไม่รู้จัก') as a signal → danger. But §3 channel_shift (ข) says 'อย่างน้อย caution', and the calibration row 'ขอเลขบัญชี… line: @id' → caution shows an external ID with no money/data request is not danger. Category is then unresolvable: §2 and #17 allow `other` only 'โดยไม่มี ID แปลก', so with an ID no category fits. A2 will split between danger/?? and caution/other.",
+     "fix": "Rewrite the step-2 bullet: 'ให้ย้ายไป LINE/Telegram ID ภายนอกจากคนไม่รู้จัก **ร่วมกับ** การขอเงิน/ข้อมูล/ข้อเสนอในข้อความเดียวกัน (รีบโอน + @id → danger; ขอเลขบัญชีเพื่อจ่ายให้ + @id → caution ตาม A5)'. Add to ขั้น 1 exceptions: 'ถ้าการขอมีแค่ย้ายช่องทาง (ไม่มีเงิน/ข้อมูล/ลิงก์/ข้อเสนอ) → caution / other + notes ไม่ว่าจะมี ID หรือไม่ (A11)'. Update §2 exception and #17 to '± ID'. Add calibration row 'ทักไลน์อย่างเดียวคับ ไม่ค่อยตอบในกลุ่ม line: @id → caution / other' as its own cluster."
+    },
+    {
+     "section": "§1.2 calibration table + §5 ข้อ 5 (κ round for Q1–Q7)",
+     "issue": "§5 says A2 must answer the Q1–Q7 rows independently to test whether A1's decisions are reproducible, but those seven rows are printed with verdict, category, needs_info and rationale in the same document A2 reads first. Any agreement measured this way is copying, not reproducibility. (This exercise had to deliberately ignore §1.2 to be meaningful; a real A2 will not.)",
+     "fix": "Move the Q1–Q7 texts (ideally all 12 test texts) to a blind sheet, e.g. data/annotation/v1.1_calibration_blind.csv with columns text only; A2 fills verdict/category/needs_info/input_form/confidence there; append the answers to §1.2 only after A2's sheet is committed. Add to §5 ข้อ 5: 'A2 ต้องตอบ blind sheet ก่อนเปิดอ่าน §1.2; บันทึก commit hash ของคำตอบ A2 ก่อนเปิดตาราง'."
+    },
+    {
+     "section": "§1.1 ขั้น 3 'ระบุสถานที่จริง' — text (9) (low divergence risk)",
+     "issue": "'ร้านกาแฟแถวรังสิต' names an area, not a shop or address. 'สถานที่จริง' is undefined, so A2 can reasonably say the seller is unidentified → step 4 needs_info [seller_identity] → caution instead of the intended safe. I reached safe only because 'มีสัมภาษณ์หน้าร้าน' satisfies 'ตรวจตัวจริงได้'.",
+     "fix": "Define in ขั้น 3: 'สถานที่จริง = ชื่อร้าน/ที่อยู่ หรือ ย่าน/ถนน + ขั้นตอนที่ต้องพบตัวจริงก่อนจ่ายอะไร (สัมภาษณ์หน้าร้าน, นัดรับ, COD) — ย่านอย่างเดียวโดยไม่มีขั้นตอนพบตัว = ตรวจไม่ได้'."
+    }
+   ],
+   "minor_issues": [
+    {
+     "section": "§3 urgency — definition '\"เร่ง+โอน\" หมายถึงเร่งให้โอนทันที/ภายในเวลาสั้น' — text (6)",
+     "issue": "The definition is orphaned: nothing in ขั้น 2 uses 'เร่ง+โอน', yet it reads like a standalone signal, and 'รีบโอนก่อนนะ' fits it literally. Verdict still resolves to caution because §1 ข้อห้าม names Q6 explicitly, but the sentence invites a pause.",
+     "fix": "Delete the definition or replace with: 'urgency/scarcity + โอน โดยไม่มีสัญญาณอื่นในรายการขั้น 2 = caution เสมอ (Q1, Q6) — ไม่มีระดับความเร่งใดที่ยกเป็น danger ด้วยตัวเอง'."
+    },
+    {
+     "section": "§1.1 ขั้น 0 / §1.4 narrative criterion — texts (5), (7)",
+     "issue": "§1.4 lists 'ลองเช็คก่อนนะ' as a narrator hedge, implying (5) is narrative, but (5) has no third-party actor and the calibration row does not tag it narrative. (7) 'รุ่นพี่ฝากบอกให้โอน' (relay) is direct while 'อ้างว่าเป็นรุ่นพี่คณะ ขอให้โอน' is narrative — the distinction hinges on one marker word. input_form disagreements do not affect κ but they move records to tier N (§1.4), so they matter.",
+     "fix": "Give a positive test in ขั้น 0: 'narrative = ข้อความเล่าว่ามีบุคคลที่สามขอ/ทำอะไรกับผู้เขียน (\"มีคน/เขา/โดน…ขอ/บอก\") และไม่ได้สั่งผู้อ่านให้ทำ; การส่งต่อคำสั่ง (\"ฝากบอกให้คุณโอน\") และการชวน (\"มีลิงก์ให้กรอก ลองเช็คดู\") = direct'. Tag every §1.2 row with its input_form."
+    },
+    {
+     "section": "§1.3 needs_info values sender_identity vs verify_with_claimed_person",
+     "issue": "Overlapping definitions: (7) gets both, 'แม่โอนค่าเทอม' (B4) gets only verify_with_claimed_person. A2 cannot tell when to use one vs both; this hurts the '% needs_info set agreement' metric in §5.",
+     "fix": "Add a rule: 'sender_identity = ตัวตนของผู้ส่งเองไม่รู้; verify_with_claimed_person = ข้อความอ้างถึงบุคคลที่สาม (รุ่นพี่, แม่, แอดมิน); ใส่ทั้งคู่เมื่อผู้ส่งอ้างว่าส่งต่อแทนบุคคลที่สาม (ฝากบอก); ใส่แค่ verify_with_claimed_person เมื่อผู้ส่งอ้างว่าเป็นบุคคลนั้นเอง'."
+    },
+    {
+     "section": "§1.1 ขั้น 3 — 'ผู้ขายไม่รู้จัก' assumption — text (1), (6)",
+     "issue": "Calibration rows say '(ผู้ขายไม่รู้จัก)' as if it were in the text; the procedure never states that absence of metadata means 'treat as unknown'. A2 could argue the seller might be a known shop and hesitate at step 3.",
+     "fix": "Add one line to ขั้น 3: 'ไม่มี metadata / ไม่มีคำยืนยันของผู้ใช้ = ตรวจไม่ได้ = ถือว่าผู้ส่ง/ผู้ขายไม่รู้จัก'."
+    },
+    {
+     "section": "§3 refuse_verification — text (1) 'โอนก่อนส่งเท่านั้น'",
+     "issue": "Unclear whether 'เท่านั้น' (no COD implied) counts as refuse_verification. Affects only confidence, not verdict, but A2 will annotate it inconsistently.",
+     "fix": "List explicit triggers: 'ไม่รับนัด / ไม่รับวิดีโอคอล / ไม่รับ COD / \"โอนก่อนเท่านั้น\" / ส่งอย่างเดียว'."
+    },
+    {
+     "section": "§1.3 account_name_match row — text (2)",
+     "issue": "'ถ้าเห็นแล้วไม่ตรง → danger' presumes the annotator has seen the account name; in (2) the mismatch is admitted by the seller, not seen. Step 2 covers it, but the row could tempt needs_info.",
+     "fix": "Change to: 'เห็นแล้วไม่ตรง หรือ ผู้ขายบอกเองว่าเป็นบัญชีคนอื่น (แฟน/ญาติ/เพื่อน) → danger ตาม Q2 ไม่ใช่ needs_info'."
+    },
+    {
+     "section": "§2 phishing_link naming — text (4)",
+     "issue": "A chat OTP request with no link maps to `phishing_link`; the text says so, but the name is counterintuitive and A2 may drift to `other` (the exact v1 error class from Week 4).",
+     "fix": "Add a parenthetical to the category: 'phishing_link (= credential theft ทุกช่องทาง; ชื่อคงไว้เพื่อ compat กับ v1.0 — การขอ OTP/รหัสผ่านแชทอยู่หมวดนี้เสมอ)'."
+    }
+   ],
+   "trial_annotations": [
+    {
+     "text": "ของอยู่ต่างจังหวัด โอนก่อนส่งเท่านั้น ราคาพิเศษถึงวันนี้ inbox ได้",
+     "verdict": "caution / financial_fraud; needs_info: [seller_identity, platform_policy]; input_form: direct",
+     "rule_used": "ขั้น 1: โอนก่อน = การขอ; 'inbox ได้' = ช่องทาง (ข้อยกเว้น ค, §3 channel_shift ก). ขั้น 2: ไม่มีรายการ match; §1 ข้อห้าม 'ราคาพิเศษถึงวันนี้ + โอนก่อน ≠ danger (Q1)'; §3 urgency คอลัมน์ไม่บ่งชี้. ขั้น 3: ไม่มี metadata. ขั้น 4: seller_identity, platform_policy. §2: โอนก่อนส่ง → financial_fraud. ('เท่านั้น' = refuse_verification? affects confidence only.)",
+     "ambiguous": false
+    },
+    {
+     "text": "บัญชีนี้ของแฟนเราเอง ปลอดภัยแน่นอน โอนมาเลย",
+     "verdict": "danger / financial_fraud; needs_info: []; input_form: direct",
+     "rule_used": "ขั้น 0: ประโยคสั่ง = direct (§1.4). ขั้น 1: โอน. ขั้น 2: 'อ้างว่าเป็นบัญชีแฟน-ญาติ-เพื่อน (Q2)' อยู่ในรายการ; ไม่มีบริบทตรวจได้ → danger. §1.3: ห้ามใช้ needs_info เลี่ยง danger กรณีบัญชีแฟน. §2: บัญชีม้าอ้างแฟน → financial_fraud.",
+     "ambiguous": false
+    },
+    {
+     "text": "ขอเลขบชพร้อมเพย์หน่อยคับ จะโอนค่าชีท",
+     "verdict": "safe; category: null; input_form: direct",
+     "rule_used": "ขั้น 1 ข้อยกเว้น: 'ขอเลขบัญชี/พร้อมเพย์ของผู้รับ เพื่อโอนให้ผู้รับ (Q3)' ไม่ใช่การขอ; ไม่ใช่ opener รายการปิด 1.1.1 → safe. §7 #10 confirms.",
+     "ambiguous": false
+    },
+    {
+     "text": "มีคนขอรหัสยืนยัน บอกว่าเป็นแอดมินกลุ่ม",
+     "verdict": "danger / phishing_link; needs_info: []; input_form: narrative",
+     "rule_used": "ขั้น 0: 'มีคน…บอกว่าเป็น…' = narrative → ประเมินการขอที่ถูกเล่า. ขั้น 1: ขอรหัส = credential. ขั้น 2 รายการ inline ไม่ match (มีแต่ 'เร่ง + ขอ OTP' และข้อความไม่มีเร่ง/ช่องทาง) → ตามตัวอักษรตกไปขั้น 4 → caution + needs_info [sender_identity]. เลือก danger เพราะ §3 credential_request 'ขอ OTP/รหัส ไม่ว่าผู้ขออ้างเป็นใคร (Q4)' + §7 #7. §2: ขอ OTP ผ่านแชท → phishing_link.",
+     "ambiguous": true
+    },
+    {
+     "text": "มีลิงก์ให้กรอกข้อมูลเพื่อรับสิทธิ์ ลองเช็คก่อนนะ",
+     "verdict": "caution / phishing_link; needs_info: [url]; input_form: direct (unsure — §1.4 lists 'ลองเช็คก่อนนะ' as narrator hedge)",
+     "rule_used": "ขั้น 1: กรอกข้อมูลผ่านลิงก์ = การขอ (แต่ข้อยกเว้น (b) 'CTA ลอย ๆ ที่ไม่ระบุ…ลิงก์' อ่านได้ว่าไม่ใช่การขอ → safe เพราะ reward ไม่อยู่ใน closed list). ขั้น 2: bullet 'ล่อรางวัลที่ต้องให้ข้อมูล/กดลิงก์เพื่อรับ' match ตรงตัว → danger ตามลำดับขั้น (ขั้น 2 มาก่อนขั้น 4). เลือก caution + needs_info [url] เพราะ §3 link_action 'ไม่มี URL → caution + needs_info' และ §7 #11 เจาะจงกว่า; hedge ไม่มีน้ำหนัก (§1.4). Three readings (safe / danger / caution) all defensible from the procedure text.",
+     "ambiguous": true
+    },
+    {
+     "text": "รีบโอนก่อนนะ เหลือคนเดียวแล้ว ทัก DM",
+     "verdict": "caution / financial_fraud; needs_info: [seller_identity, platform_policy]; input_form: direct",
+     "rule_used": "ขั้น 1: โอน = การขอ; 'ทัก DM' = ช่องทาง (§3 channel_shift ก). ขั้น 2: ไม่มีรายการ match; §1 ข้อห้าม 'ของเหลือน้อย + โอนก่อน จากผู้ขายไม่รู้จัก ≠ danger (Q6)'; §3 urgency scarcity คอลัมน์ไม่บ่งชี้; §7 #8. ขั้น 4: seller_identity, platform_policy. (Brief pause at §3 urgency definition 'เร่งให้โอนทันที' — see minor issue — but ข้อห้าม names this case.)",
+     "ambiguous": false
+    },
+    {
+     "text": "รุ่นพี่ฝากบอกให้โอนค่าชีทด่วน ไม่งั้นหมดสิทธิ์",
+     "verdict": "caution / financial_fraud; needs_info: [sender_identity, verify_with_claimed_person]; input_form: direct",
+     "rule_used": "ขั้น 0: สั่งผู้รับให้โอน = direct แม้มี 'ฝากบอก' (§1.4 'ประโยคที่สั่ง = direct'). ขั้น 1: โอน. ขั้น 2 รายการ inline ไม่ match ('หมดสิทธิ์' = scarcity ไม่ใช่ threat per §3; ไม่มีปลายทาง) — แต่ §3 borrowing_pretext คอลัมน์ 'บ่งชี้หลอก' ระบุ '\"ฝากบอก\" = pretext' → อ่านตรงตัว = สัญญาณ → danger. เลือก caution ตาม §1 ข้อห้าม (Q7) + §7 #12. ขั้น 3: คำอ้างตรวจไม่ได้. ขั้น 4: sender_identity + verify_with_claimed_person (unsure whether both or only the latter — cf. B4 row).",
+     "ambiguous": true
+    },
+    {
+     "text": "งานออนไลน์ได้เงินวันละ 10,000 ไม่ต้องสัมภาษณ์ สมัครด่วน",
+     "verdict": "caution / investment_scam; needs_info: []; input_form: direct",
+     "rule_used": "ขั้น 1: 'สมัคร' ลอย ไม่ระบุช่องทาง = ไม่ใช่การขอ (ข้อยกเว้น b) → ข้อยกเว้น opener รายการปิด 'เสนอรายได้เกินจริง' (§3 financial_offer: วันละ ≥ 1,000 ไม่ต้องสัมภาษณ์) → caution. §2: category ของ opener → investment_scam. needs_info ว่างเพราะขั้น 1 จบก่อนถึงขั้น 4. §7 #15.",
+     "ambiguous": false
+    },
+    {
+     "text": "ร้านกาแฟแถวรังสิตรับพาร์ทไทม์ ชั่วโมงละ 70 บาท มีสัมภาษณ์หน้าร้าน ทัก DM",
+     "verdict": "safe; category: null; input_form: direct",
+     "rule_used": "ขั้น 1: มีข้อเสนอ + ทัก DM = 'ติดต่อเพื่อรับข้อเสนอที่ระบุเงื่อนไข' → นับเป็นการขอ (ข้อยกเว้น ค ไม่ใช้เพราะข้อความมีข้อเสนอ). ขั้น 2: 70 บาท/ชม. ปกติ (§3 financial_offer 60-80) ไม่มีสัญญาณ. ขั้น 3: 'สถานที่จริง + ค่าจ้างปกติ + ตรวจตัวจริงได้' → safe. Hesitation: 'แถวรังสิต' is an area, not a named shop — 'สถานที่จริง' undefined; could go ขั้น 4 seller_identity → caution.",
+     "ambiguous": true
+    },
+    {
+     "text": "แอดมินคณะแจ้ง ค่าจองสิทธิ์สอบ 200 บาท โอนพร้อมเพย์ 08xxxxxxxx ภายในวันนี้",
+     "verdict": "danger / financial_fraud; needs_info: []; input_form: direct",
+     "rule_used": "ขั้น 1: โอน. ขั้น 2: 'อ้างหน่วยงาน/บทบาท + ขอโอนไปบัญชี/พร้อมเพย์บุคคล' match; §3 money_request นิยามช่องทางทางการ (พร้อมเพย์เบอร์ที่ให้ในแชท ≠ ทางการ). §1.3: ห้ามใช้ needs_info เลี่ยง danger กรณี 'แอดมินคณะ + พร้อมเพย์บุคคล'. §2: อ้างบทบาทสถาบันเก็บค่าธรรมเนียม → financial_fraud ไม่ใช่ impersonation_authority. §7 #13.",
+     "ambiguous": false
+    },
+    {
+     "text": "ทักไลน์อย่างเดียวคับ ไม่ค่อยตอบในกลุ่ม line: @id",
+     "verdict": "caution / other (+notes); needs_info: []; input_form: direct — literal ขั้น 2 gives danger; category has no sanctioned value",
+     "rule_used": "ขั้น 0: ประโยคสั่ง = direct (A11). ขั้น 1: 'ย้ายไปช่องทางภายนอก' = การขอ. ขั้น 2: bullet 'ให้ย้ายไป LINE/Telegram ID ภายนอกจากคนไม่รู้จัก' match → danger ตามตัวอักษร (same fact counted as request and as signal). Chose caution because §3 channel_shift (ข) says 'อย่างน้อย caution' and calibration 'ขอเลขบัญชี… line: @id' = caution shows external ID without money/data request is not danger. Category: §2/#17 allow `other` only 'โดยไม่มี ID' → no category fits with @id. New cluster vs calibration row per §5 ข้อ 0 (adds line: @id).",
+     "ambiguous": true
+    },
+    {
+     "text": "ส่งงานด่วนนะครับ พรุ่งนี้เช้าอาจารย์จะตรวจ",
+     "verdict": "safe; category: null; input_form: direct",
+     "rule_used": "ขั้น 1: 'ส่งงาน' ไม่อยู่ในรายการสิ่งที่ทำให้ผู้รับเสีย (เงิน/ข้อมูล/ลิงก์/ช่องทาง/โทร/ข้อเสนอ); ไม่ใช่ opener รายการปิด → safe. §0: 'ด่วน' อย่างเดียวไม่ใช่การขอ.",
+     "ambiguous": false
+    }
+   ]
+  },
+  {
+   "lens": "system-alignment",
+   "blocking_issues": [
+    {
+     "section": "ai_service.py SYSTEM_PROMPT — Hard Constraints block (after line 55 'เพดาน') + JSON schema for response_type \"analysis\" (line 74 verdict, line 92 follow_up) | guideline v1.1 §1.3 needs_info, §1.1 step 4, edge #11, #12, #14, #19",
+     "issue": "No 'ข้อมูลไม่พอ' behaviour exists anywhere. The prompt has no needs_info concept, and follow_up is defined as 'ประโยคปิดสั้นๆ 1 ประโยค เชิญให้ถามต่อได้' — a generic closing line, which §1.3 explicitly says must be replaced by a specific question. Consequences verified against the live scanner: Q5 ('มีลิงก์ให้กรอกข้อมูลเพื่อรับสิทธิ์') delivers evidence = ขอข้อมูล 'กรอกข้อมูล' + ให้กดลิงก์ 'ลิงก์' + รางวัล 'รับสิทธิ์' with no rule about a missing URL → current prompt pushes toward danger (binding: caution + needs_info:url). Q6/Q1/Q7/B3 get caution from line 55 but the user is never asked the decisive question (seller_identity/platform_policy/verify_with_claimed_person/url). qa_engine.resolve_claude_verdict only validates `verdict` and passes `structured` through untouched (ai_structured=structured), so a new needs_info key needs no code change — this is prompt-only, consistent with CLAUDE.md 2.3/5.3.",
+     "fix": "1) INSERT into Hard Constraints immediately after the line starting '- **เพดาน**: การขอให้โอน ...':\n\n- **ข้อมูลไม่พอ ≠ ปลอดภัย และ ≠ อันตราย**: ถ้าข้อเท็จจริงที่จะชี้ขาด verdict ไม่อยู่ในข้อความ และผู้ใช้ยังไม่ได้บอกในบทสนทนา → verdict ของ turn นี้ต้องเป็น \"caution\" (ห้ามเดาเป็น safe หรือ danger) และใส่สิ่งที่ขาดใน needs_info จากรายการนี้เท่านั้น (เป็นรหัสเหมือน verdict ไม่ใช่ข้อความที่แสดงผู้ใช้):\n  · url — ข้อความพูดถึงลิงก์/ให้กดลิงก์/กรอกข้อมูลผ่านลิงก์ แต่ไม่มี URL ให้ดู (หลักฐานมิติ \"ให้กดลิงก์\" พบแค่คำ ไม่พบรูปแบบ url) — ต้องเห็นตัว URL ก่อนจึงจะตัดสินได้\n  · sender_identity — ไม่รู้ว่าใครส่ง หรือผู้ส่งอ้างบทบาท/ความสัมพันธ์ที่ตรวจไม่ได้ (\"ระบบแจ้ง\", \"รุ่นพี่ฝากบอก\", \"แอดมิน\")\n  · seller_identity — ผู้ขายไม่ระบุร้าน/ตัวตน/ประวัติ\n  · platform_policy — ไม่รู้ว่าซื้อผ่านแพลตฟอร์ม/ร้านที่มีกฎให้จ่ายก่อน หรือมีระบบคุ้มครองผู้ซื้อไหม\n  · verify_with_claimed_person — ต้องยืนยันกับคนที่ถูกอ้างถึง (รุ่นพี่/แม่/เพื่อน/แอดมิน) ผ่านช่องทางเดิมที่รู้จัก\n  · account_name_match — ยังไม่เห็นว่าชื่อบัญชีปลายทางตรงกับผู้ขาย/ผู้ที่อ้างไหม\n  ใส่เฉพาะสิ่งที่ \"ถ้ารู้แล้วจะเปลี่ยน verdict ได้\" ไม่ใช่ทุกอย่างที่ไม่รู้\n- เมื่อ needs_info ไม่ว่าง: follow_up ต้องเป็น **คำถามเจาะจง 1 ข้อ** ถามสิ่งที่ขาดข้อแรก (ไม่ใช่ประโยคปิดทั่วไป); action \"ด่วน\" คือ \"รอก่อน อย่าเพิ่งโอน/กดลิงก์/ส่งข้อมูล จนกว่าจะได้คำตอบ\"; summary ต้องบอกว่ายังตัดสินไม่ได้เพราะขาดอะไร\n- needs_info ต้องว่างเมื่อ verdict เป็น safe หรือ danger — และห้ามใช้ \"ต้องถามข้อมูลเพิ่ม\" เลี่ยง danger เมื่อสัญญาณหลอกชัดแล้ว (บัญชีของแฟน/ญาติ/ชื่อไม่ตรง, อ้างบทบาทสถาบัน + พร้อมเพย์บุคคล, ขอ OTP/รหัส) — verdict ของข้อความนี้คือ danger ข้อมูลเพิ่มค่อยเปลี่ยน verdict ใน turn ถัดไปได้\n- เมื่อผู้ใช้ตอบคำถามนั้นใน turn ถัดไป ให้ตัดสินใหม่จากคำตอบ: ยืนยันว่ารู้จักผู้ส่งผ่านช่องทางเดิม / ร้านมีนโยบายจ่ายก่อนและตรวจตัวตนได้ / ถามคนที่ถูกอ้างแล้วยืนยันจริง → ลดเป็น safe ได้; URL เป็นโดเมนไม่ทางการ-shortener-TLD แปลก / ชื่อบัญชีไม่ตรง / คนที่ถูกอ้างไม่รู้เรื่อง → ยกเป็น danger\n\n2) INSERT into the \"analysis\" JSON right after the \"verdict\" line:\n  \"needs_info\": [\"ว่าง [] ถ้า verdict เป็น safe หรือ danger; ถ้า caution เพราะข้อมูลไม่พอ ใส่ค่าจากรายการปิดเท่านั้น: url / sender_identity / seller_identity / platform_policy / verify_with_claimed_person / account_name_match\"],\n\n3) REPLACE the whole \"follow_up\" line with:\n  \"follow_up\": \"1 ประโยค — ถ้า needs_info ไม่ว่าง ต้องเป็นคำถามเจาะจง 1 ข้อที่คำตอบจะเปลี่ยน verdict ได้ เช่น url: 'ลิงก์เต็มที่เขาส่งมาคืออะไรครับ ก๊อปมาให้ดูได้ไหม' / seller_identity+platform_policy: 'ซื้อผ่านแอปที่มีระบบคุ้มครองผู้ซื้อ หรือโอนตรงให้คนขายที่ไม่เคยซื้อด้วยมาก่อนครับ' / verify_with_claimed_person: 'ลองทักรุ่นพี่คนนั้นตรงๆ ผ่านช่องทางเดิมที่เคยคุยกัน ว่าฝากบอกจริงไหม แล้วมาบอกผมได้เลยครับ' / sender_identity: 'ข้อความนี้มาจากเบอร์หรือบัญชีที่คุณรู้จักอยู่แล้วหรือเปล่าครับ' / account_name_match: 'ชื่อบัญชีปลายทางตรงกับชื่อคนขายไหมครับ' — ถามข้อเดียว ห้ามถามสิ่งที่ข้อความบอกไว้แล้ว; ถ้า needs_info ว่าง ใช้ประโยคปิดสั้นๆ เชิญให้ถามต่อ เช่น 'ถ้ามีข้อมูลเพิ่มเติมหรืออยากถามอะไร ส่งมาได้เลยครับ'\""
+    },
+    {
+     "section": "ai_service.py SYSTEM_PROMPT line 54 ('- verdict \"safe\" ไม่ต้องมีหลักฐานยืนยัน ... → อย่างน้อย \"caution\"') | guideline Q2, §1.1 step 2, §3 money_request, edge #9 (A12 rejected)",
+     "issue": "Prompt contradicts binding decision Q2. Line 54 lumps 'บัญชีชื่อไม่ตรง/บัญชีแฟน' together with 'ผู้ขายไม่รู้จัก ขอโอนก่อน' under '→ อย่างน้อย caution'. Guideline v1.1 says a third-party/mule account (บัญชีแฟน-ญาติ-เพื่อน, ชื่อไม่ตรง) is danger without waiting for further pressure, and explicitly rejected proposal A12 ('ชื่อบัญชีไม่ตรงอย่างเดียว → caution'). Combined with the lexicon gap (next item) the current system will most likely answer caution for 'บัญชีนี้ของแฟนเราเอง ปลอดภัยแน่นอน โอนมาเลย'.",
+     "fix": "REPLACE line 54 with these two lines (keeps the test-required phrase 'ไม่ต้องกลัวการตอบ safe'):\n\n- verdict \"safe\" ไม่ต้องมีหลักฐานยืนยันว่าปลอดภัย — แค่ไม่มีสัญญาณการหลอกก็ safe ได้ ไม่ต้องกลัวการตอบ safe — **ยกเว้น** เมื่อมีการขอให้ผู้ใช้โอนเงินให้คนที่ตรวจสอบตัวตนไม่ได้ (ผู้ขายไม่รู้จัก ขอโอนก่อน/โอนเต็มก่อนส่ง/มัดจำ) และไม่มีบริบทยืนยัน → \"caution\" + needs_info: seller_identity, platform_policy แม้ไม่มีสัญญาณหลอกอื่น\n- **บัญชีม้า**: ปลายทางเป็นบัญชีที่ผู้ส่งบอกว่าเป็นของแฟน/เพื่อน/ญาติ/คนอื่น หรือชื่อบัญชีไม่ตรงกับผู้ขาย/ผู้ที่อ้างตัว (\"บัญชีนี้ของแฟนเราเอง ปลอดภัยแน่นอน โอนมาเลย\") → verdict \"danger\" ทันที ไม่ต้องรอสัญญาณอื่นหรือการกดดันเพิ่ม — คำรับรอง \"ปลอดภัยแน่นอน/ไม่โกง\" ไม่มีน้ำหนัก; ถ้าข้อความยังไม่บอกชื่อบัญชีปลายทางเลย → \"caution\" + needs_info: account_name_match"
+    },
+    {
+     "section": "ai_service.py SYSTEM_PROMPT line 47 ('- อ้างหน่วยงาน/บทบาท (แอดมิน/คณะ/เจ้าหน้าที่/HR/รุ่นพี่) **+** ... เส้นตาย/ขู่หมดสิทธิ์ → \"danger\" ... \"ต้องตรวจสอบก่อน\" ไม่ใช่เหตุผลให้ลดเหลือ caution') | guideline Q7, §3 threat row, §3 borrowing_pretext, edge #12 vs #13 (B5 rejected)",
+     "issue": "Prompt contradicts binding decision Q7. The rule names 'รุ่นพี่' and 'ค่าชีท', calls 'หมดสิทธิ์' a threat ('ขู่หมดสิทธิ์'), and forbids using 'ต้องตรวจสอบก่อน' to stay at caution — the exact reasoning A1 used for Q7 ('บางทีเกิดจริง ต้องถามข้อมูลเพิ่มก่อน'). The destination condition ('ไปพร้อมเพย์เบอร์บุคคลหรือบัญชีที่ให้ในแชท') is the only thing separating Q7 (caution) from B4 (danger) and it is buried mid-sentence. Guideline: institutional role + fee + non-official destination → danger (edge #13); unverifiable acquaintance claim + reasonable fee + scarcity with NO destination → caution + needs_info (edge #12); 'หมดสิทธิ์/ของหมด/ไม่ทัน' = scarcity, not threat.",
+     "fix": "REPLACE line 47 with these two lines:\n\n- อ้างบทบาททางการของสถาบัน/องค์กร (แอดมินคณะ/สำนักทะเบียน/เจ้าหน้าที่/HR/สโมสร/หัวหน้าห้อง) **+** ขอโอนค่าธรรมเนียมเพื่อรับสิทธิ์ (ค่าจอง/ค่าสมัคร/ค่ายืนยันสิทธิ์/ค่าชีท) **+** ระบุปลายทางที่ไม่ใช่ช่องทางทางการของสถาบัน (พร้อมเพย์เบอร์บุคคล หรือเลขบัญชีที่ให้ในแชท) → verdict \"danger\" แม้จำนวนเงินน้อย (สถาบันจริงเก็บผ่านระบบทะเบียน/bill payment/QR ในนามสถาบัน ไม่ใช่บัญชีบุคคล — กรณีนี้ \"ต้องตรวจสอบก่อน\" ไม่ใช่เหตุผลให้ลดเหลือ caution)\n- แต่ถ้าเป็นการอ้าง **คนรู้จัก** ที่ตรวจไม่ได้ (\"รุ่นพี่ฝากบอก\", \"เพื่อนฝากบอก\", \"พี่ในกลุ่มบอก\") + ขอเงินจำนวนสมเหตุสมผล (ค่าชีท/ค่ากิจกรรม) + เร่ง/\"ไม่งั้นหมดสิทธิ์\" **โดยไม่มีปลายทางไม่ทางการในข้อความ** → \"caution\" + needs_info: sender_identity, verify_with_claimed_person — เรื่องแบบนี้เกิดจริงได้ ต้องถามก่อน; \"หมดสิทธิ์/ของหมด/ไม่ทัน\" คือความเร่งด่วน (ของมีจำกัด) ไม่ใช่การขู่ (ขู่ = คดี/อายัด/ระงับ/ถูกแฮก); ยกเป็น danger เฉพาะเมื่อเพิ่มพร้อมเพย์บุคคล/บัญชีในแชท, LINE ID ภายนอก, หรือผู้ใช้ถามคนที่ถูกอ้างแล้วไม่รู้เรื่อง"
+    },
+    {
+     "section": "data/lexicon/scam_lexicon.yaml — dimension `threat` lines 236-242 (หมดสิทธิ์/เสียสิทธิ์/ตัดสิทธิ์/ที่นั่งเต็ม + regex consequence_if_not) | guideline §3 threat row ('หมดสิทธิ์/ของหมด/ไม่ทัน = scarcity/urgency ไม่ใช่ threat (Q7)')",
+     "issue": "Lexicon contradicts guideline §3. Verified on the live scanner: Q7 evidence reads 'ขู่/สร้างความกลัว: \"หมดสิทธิ์\" + รูปแบบ: consequence_if_not'. The dimension label 'ขู่/สร้างความกลัว' is an interpretation the guideline rejects for this word — the same hidden-verdict anchoring CLAUDE.md 5.2 warns about ('ด่วน' → 'เร่งให้โอนเงิน'). 'มิฉะนั้น'/'หากไม่ดำเนินการ' are already urgency terms, so the consequence_if_not regex under threat also double-counts them.",
+     "fix": "In `threat`, DELETE:\n      # ขู่เสียสิทธิ์ (kaggle_tu รอบ 2: \"โอนค่าชีทด่วน ไม่งั้นหมดสิทธิ์\")\n      - {term: หมดสิทธิ์, evidence: [kaggle_tu(synthetic)]}\n      - {term: เสียสิทธิ์, evidence: [domain]}\n      - {term: ตัดสิทธิ์, evidence: [domain]}\n      - {term: ที่นั่งเต็ม, evidence: [domain]}\n    regex:\n      - {name: consequence_if_not, pattern: 'ไม่งั้น|ไม่เช่นนั้น|มิฉะนั้น|หากไม่|ถ้าไม่.{0,12}จะ'}\n\nIn `urgency`, APPEND after `- {term: จองก่อนได้ก่อน, ...}`:\n      # scarcity: เสียสิทธิ์/ของหมด — ย้ายจาก threat ตาม guideline v1.1 §3 (\"หมดสิทธิ์/ของหมด/ไม่ทัน\" = ความเร่งด่วน ไม่ใช่การขู่, Q7)\n      - {term: หมดสิทธิ์, evidence: [kaggle_tu(synthetic)]}\n      - {term: เสียสิทธิ์, evidence: [domain]}\n      - {term: ตัดสิทธิ์, evidence: [domain]}\n      - {term: ที่นั่งเต็ม, evidence: [domain]}\n      - {term: ของหมด, evidence: [domain]}\nand REPLACE the urgency `regex:` block with:\n    regex:\n      - {name: deadline_hours, pattern: 'ภายใน\\s*\\d+\\s*(ชั่วโมง|ชม\\.?|นาที|วัน)'}\n      # \"ไม่งั้น/มิฉะนั้น/หากไม่…จะ\" = เงื่อนไขเร่งให้ทำ (มิฉะนั้น/หากไม่ดำเนินการ อยู่ในมิตินี้อยู่แล้ว) — ย้ายจาก threat\n      - {name: consequence_if_not, pattern: 'ไม่งั้น|ไม่เช่นนั้น|มิฉะนั้น|หากไม่|ถ้าไม่.{0,12}จะ'}\n\nAlso update `threat.note` (add): `note: ขู่ = คดี/อายัด/ระงับ/ถูกแฮก ที่ต้อง \"แก้\" — คำว่า หมดสิทธิ์/ของหมด อยู่ใน urgency ไม่ใช่มิตินี้ (guideline v1.1 §3)`. All existing tests still pass (threat keeps ระงับ/ถูกระงับ etc.; every dimension still has terms)."
+    },
+    {
+     "section": "data/lexicon/scam_lexicon.yaml — dimension `borrowing_pretext` lines 374-386 | guideline §3 borrowing_pretext ('\"ฝากบอก\"/อ้างรุ่นพี่/เพื่อน = pretext ชนิดหนึ่ง (B5)'), §0 'คำอ้างในข้อความ ≠ บริบทที่ตรวจได้', Q7",
+     "issue": "Lexicon has no term for the v1.1 pretext words. Verified: Q7 evidence ends with 'ไม่พบ: ... อ้างเป็นคนรู้จัก ขอยืมเงิน/ฉุกเฉิน' — the evidence actively tells Claude the acquaintance-claim dimension is ABSENT in 'รุ่นพี่ฝากบอกให้โอนค่าชีท', the reverse of the guideline. Same for the calibration row 'อ้างว่าเป็นรุ่นพี่คณะ ขอให้โอนเงินช่วยจองสิทธิ์'.",
+     "fix": "In `borrowing_pretext` REPLACE `label_th: อ้างเป็นคนรู้จัก ขอยืมเงิน/ฉุกเฉิน` with `label_th: อ้างเป็นคนรู้จัก/อ้างคนรู้จักฝากบอก (ยืมเงิน/ฉุกเฉิน/ค่าใช้จ่าย)`, ADD below `principle: social_compliance`:\n    caveat: >\n      รุ่นพี่/เพื่อน/ฝากบอก เป็นคำอ้างในข้อความ — ไม่ยืนยันว่ารู้จักจริงหรือไม่ ข้อความจากคนรู้จักจริงก็ใช้คำพวกนี้;\n      บริบทชอบธรรมต้องมาจากสิ่งที่ผู้ใช้ยืนยันเอง\nand APPEND to `terms`:\n      # อ้างคนรู้จัก \"ฝากบอก\" (guideline v1.1 §3 B5/Q7 — คำอ้างไม่ใช่บริบทที่ตรวจได้)\n      - {term: ฝากบอก, evidence: [kaggle_tu(synthetic)]}\n      - {term: ฝากมาบอก, evidence: [domain]}\n      - {term: รุ่นพี่, evidence: [kaggle_tu(synthetic)]}\n      - {term: เพื่อนฝาก, evidence: [domain]}\n      - {term: พี่ในกลุ่ม, evidence: [domain]}"
+    },
+    {
+     "section": "data/lexicon/scam_lexicon.yaml — dimension `money_request` lines 94-98 (บัญชีแฟน/บัญชีเพื่อน/บัญชีญาติ/ชื่อบัญชีไม่ตรง) | guideline Q2, §3 money_request 'บัญชีบุคคลที่สามใน P2P', edge #9",
+     "issue": "The mule-account terms cannot match the binding Q2 sentence. Verified: newmm tokenises 'บัญชีนี้ของแฟนเราเอง' as บัญชี|นี้|ของ|แฟน, so the contiguous-subsequence matcher never hits `บัญชีแฟน`; Q2 evidence shows only 'โอน', 'โอนมาเลย'. The single decisive signal for danger is invisible to Claude. Same problem for 'ชื่อไม่ตรง'/'คนละชื่อ' variants of ชื่อบัญชีไม่ตรง.",
+     "fix": "In `money_request` `regex:` APPEND (regex reports only the name, so no PII leak):\n      # บัญชีบุคคลที่สาม/บัญชีม้า — term \"บัญชีแฟน\" ไม่ match \"บัญชีนี้ของแฟนเราเอง\" (newmm: บัญชี|นี้|ของ|แฟน) จึงใช้ regex (guideline v1.1 Q2, edge #9)\n      - {name: third_party_account, pattern: 'บัญชี(นี้|นั้น)?(ของ|เป็นของ|ชื่อ)?(แฟน|เพื่อน|ญาติ|พี่สาว|พี่ชาย|น้อง|แม่|พ่อ|ลูก|หลาน|คนอื่น|คนรู้จัก)'}\n      - {name: account_name_mismatch, pattern: 'ชื่อ(บัญชี)?\\s*ไม่ตรง|ไม่ตรงกับชื่อ|คนละชื่อ|ชื่อไม่เหมือน'}\nKeep the four existing terms. Add to the lexicon-level comment: bump `version: \"1.1\"` and update guideline §3 heading 'scam_lexicon.yaml v1.0' → v1.1 so the guideline/lexicon versions stay in step."
+    }
+   ],
+   "minor_issues": [
+    {
+     "section": "ai_service.py SYSTEM_PROMPT line 50 ('- ตัดสินจาก **การขอ**: ... ถ้าไม่มีการขอใดๆ เลย ข้อความมักเป็น \"safe\"') | guideline §1.1 step 1 + §1.1.1 closed opener list, edge #4, #15, #16",
+     "issue": "v1.1 formalised that the three openers (เปลี่ยนเบอร์ / ทักผิด-อยากรู้จัก / รายได้เกินจริงไม่มีช่องทาง) are caution even with no request, and that a bare CTA ('สมัคร/ลงทะเบียน/จอง' without channel) and 'ทัก DM/inbox ได้' on the same platform are not requests. The prompt only hedges with 'มัก' and lists no exceptions, so 'หวัดดี เปลี่ยนเบอร์ใหม่นะ เซฟไว้ด้วย' (evidence: borrowing_pretext found, no request) can come back safe, and 'งานออนไลน์วันละ 10,000 สมัครด่วน' (no channel) can come back danger.",
+     "fix": "REPLACE line 50 with:\n- ตัดสินจาก **การขอ**: ข้อความนี้ขอให้ผู้ใช้ โอนเงิน / ให้ข้อมูลหรือรหัส / กดลิงก์หรือติดตั้งแอป / ย้ายไปคุยช่องทางภายนอก / โทรกลับ หรือไม่ — ถ้าไม่มีการขอใดๆ เลย → \"safe\" แม้จะมีคำเร่งด่วน **ยกเว้น 3 แบบนี้เท่านั้น** ที่ยังไม่ขออะไรแต่เป็น turn แรกของ scam หลาย turn → \"caution\": (1) \"เปลี่ยนเบอร์ใหม่/เบอร์ใหม่ เซฟไว้\" (2) ทักผิด/อยากรู้จัก จากคนแปลกหน้า (3) เสนอรายได้/ผลตอบแทนเกินจริงที่ยังไม่มีช่องทางติดต่อ (\"งานออนไลน์วันละ 10,000 สมัครด่วน\" → caution; เพิ่ม inbox/DM/LINE → danger ตามกฎข้างบน) — ไม่นับเป็นการขอ: call-to-action ลอยๆ (\"สมัคร/ลงทะเบียน/จอง\") ที่ไม่ระบุช่องทาง ลิงก์ เบอร์ บัญชี หรือข้อมูล, และ \"ทัก DM/inbox ได้/ส่งในกลุ่มได้\" บนแพลตฟอร์มเดิมเมื่อข้อความไม่มีข้อเสนอ/เงื่อนไขให้ทำตาม"
+    },
+    {
+     "section": "ai_service.py SYSTEM_PROMPT line 46 ('- ให้ย้ายช่องทาง (แอดไลน์/inbox/DM) **มิติเดียว** ... → verdict ไม่เกิน \"caution\"') and line 53 ('→ safe ถ้าไม่มีสัญญาณอื่น') | guideline §3 channel_shift (ก)/(ข), calibration 'ขอเลขบัญชีพร้อมเพย์หน่อยครับ จะโอนค่าชีท line: @id' → caution, edge #17, #18",
+     "issue": "The prompt treats แอดไลน์ and inbox/DM as one thing and only sets a ceiling. v1.1 splits them: same-platform DM = not a signal at all; external LINE/Telegram ID from a stranger (or an order 'ทักไลน์อย่างเดียว' without ID) = at least caution even when money direction is toward the user. Verified: the A5 sentence yields evidence 'ให้ย้ายไปคุยช่องทางอื่น: รูปแบบ: line_id_handle', but line 53 says safe 'ถ้าไม่มีสัญญาณอื่น' — it is unclear whether an external ID counts as 'สัญญาณอื่น'.",
+     "fix": "REPLACE line 46 with:\n- ย้ายช่องทางมี 2 ระดับ: (ก) \"ทัก DM/inbox/ส่งในกลุ่ม\" บนแพลตฟอร์มเดิม = ช่องทางติดต่อ ไม่ใช่สัญญาณหลอก ไม่ยก verdict (แค่ทำให้ข้อเสนอในข้อความ actionable); (ข) ให้ย้ายไป LINE/Telegram ID ภายนอก จากคนที่ผู้ใช้ไม่รู้จัก หรือประโยคสั่ง \"ทักไลน์อย่างเดียว\" แม้ไม่มี ID = การขอที่ทำให้บริบทไม่ชัด → อย่างน้อย \"caution\" แม้ทิศทางเงินเป็นฝ่ายจ่ายให้ผู้ใช้ (\"ขอเลขบัญชี จะโอนค่าชีท line: @id\" → caution); ย้ายช่องทาง **มิติเดียว** โดยไม่มีการขอเงิน/ข้อมูลและไม่มีสัญญาณอื่น → ไม่เกิน \"caution\"; handle ที่ผู้โพสต์ \"หาซื้อ/ประกาศ\" แนบมาเอง (\"มีใครขายชีท SC135 บ้าง line: @id\") ไม่ใช่การให้ผู้ใช้ย้ายช่องทาง → safe\nAnd in line 53 change '→ safe ถ้าไม่มีสัญญาณอื่น' to '→ safe ถ้าไม่มีสัญญาณอื่น (LINE/Telegram ID ภายนอกจากคนไม่รู้จักนับเป็นสัญญาณอื่น → caution)'."
+    },
+    {
+     "section": "ai_service.py SYSTEM_PROMPT line 58 (narrative rule) | guideline §1.4 (hedge has no weight), §3 credential_request ('ไม่ว่าผู้ขออ้างเป็นใคร'), Q4, edge #7",
+     "issue": "Q4 is reproduced today (evidence: ขอข้อมูล 'รหัส' + อ้างหน่วยงาน 'แอดมิน','แอดมินกลุ่ม'; line 58 says evaluate the told request), but two v1.1 clarifications are missing: the narrator's hedge ('ลองเช็คก่อนนะ', 'ระวังนะ') carries no weight, and a request for OTP/รหัส via chat is danger regardless of the claimed role and without needing urgency. Without the latter Claude may downgrade Q4 to caution because 'ไม่มีความเร่งด่วน'.",
+     "fix": "APPEND to line 58 (same bullet):\n — คำกันเหนียวของผู้เล่า (\"ลองเช็คก่อนนะ\", \"ระวังนะ\", \"ไม่แน่ใจ\") ไม่มีน้ำหนักต่อ verdict ตัดสินจากการขอที่ถูกเล่าเท่านั้น; การ **ขอ** OTP/รหัสยืนยัน/รหัสผ่าน/เลขบัตร ผ่านแชท = ขโมย credential → \"danger\" ไม่ว่าผู้ขออ้างเป็นใคร (แอดมินกลุ่ม/เจ้าหน้าที่/เพื่อน) และไม่ต้องมีความเร่งด่วนประกอบ (ต่างจากระบบ **ส่ง** OTP ให้ = safe)"
+    },
+    {
+     "section": "ai_service.py SYSTEM_PROMPT — \"analysis\" JSON schema (no `category` key) | guideline §2 'category ของ caution (เพิ่ม v1.1)', header 'ใช้เป็นเกณฑ์ประเมิน Q&A mode'",
+     "issue": "The guideline is declared the evaluation rubric for Q&A mode and now requires a category for every non-safe verdict (including caution), but the Q&A response has no category field, so category agreement between Claude and annotators cannot be measured. Also note guideline §2 has 9 categories (adds `loan_offer`) while CLAUDE.md 4.5 ScamCategory has 8 — reconcile before wiring it through. qa_engine passes `structured` through, so this is prompt-only.",
+     "fix": "INSERT after the \"needs_info\" line in the \"analysis\" JSON:\n  \"category\": \"ถ้า verdict ≠ safe ใส่หมวดกลไกหลัก 1 ค่า: phishing_link / impersonation_authority / financial_fraud / prize_scam / loan_offer / investment_scam / romance_scam / borrowing_scam / other; ถ้า safe ใส่ null — caution ก็ต้องมีหมวด (หมวดของ pattern ที่ข้อความนี้เป็นขั้นแรก: โอนก่อนส่ง → financial_fraud, เปลี่ยนเบอร์ → borrowing_scam, พูดถึงลิงก์เก็บข้อมูล → phishing_link, ขอ OTP ผ่านแชท → phishing_link, ค่าชีท/ค่าจอง/ค่าสมัครปลอม → financial_fraud); other ใช้ได้เฉพาะ caution ที่ให้ย้ายช่องทางอย่างเดียวและกลไกยังไม่ปรากฏ\",\nand add `loan_offer` to CLAUDE.md 4.5 ScamCategory (or drop it from the guideline) so both lists match."
+    },
+    {
+     "section": "ai_service.py SYSTEM_PROMPT line 57 (wage thresholds) | guideline §3 financial_offer (B8ข)",
+     "issue": "Numbers disagree with the guideline: prompt says 'รายชั่วโมง 40-100 บาท ≈ ค่าแรงขั้นต่ำ' and 'รายได้เกินจริง = วันละหลายพัน'; guideline says 60-80 บาท/ชม. is normal, and excessive = '> ~2 เท่าค่าแรงขั้นต่ำ ต่อชั่วโมง หรือ วันละ ≥ 1,000 โดยไม่ต้องทักษะ/สัมภาษณ์'. The lexicon regex daily_income already fires at ≥ 1,000 ('วันละ\\s*\\d[\\d,]{3,}'), so 'วันละ 1,500 ไม่ต้องสัมภาษณ์' would be flagged by evidence but the prompt tells Claude it is not excessive.",
+     "fix": "In line 57 replace '(รายชั่วโมง 40-100 บาท ≈ ค่าแรงขั้นต่ำ)' with '(รายชั่วโมง 60-100 บาท ≈ ค่าแรงขั้นต่ำ ไม่ใช่ \"สูงผิดปกติ\")' and replace 'วันละหลายพันโดยไม่ต้องทักษะ/สัมภาษณ์' with 'รายชั่วโมงเกิน ~2 เท่าค่าแรงขั้นต่ำ หรือ วันละ 1,000 บาทขึ้นไป โดยไม่ต้องทักษะ/สัมภาษณ์'."
+    },
+    {
+     "section": "data/lexicon/scam_lexicon.yaml — `money_request.label_th: ขอให้โอน/จ่ายเงิน` (line 67) | guideline §0 'ทิศทางของการขอสำคัญ', Q3",
+     "issue": "The dimension label itself asserts a direction ('ขอให้โอน') that Q3 says is false for 'ขอเลขบชพร้อมเพย์หน่อย จะโอนค่าชีท' (verified evidence line: 'ขอให้โอน/จ่ายเงิน: \"โอน\", \"พร้อมเพย์\"'). The caveat mitigates it and prompt line 53 currently rescues Q3, but the label is a mild interpreted-name anchor of the kind CLAUDE.md 5.2 bans. Also 'ค่าชีท/ค่าจอง/ค่าจองสิทธิ์/ค่ายืนยันสิทธิ์/ค่ากิจกรรม' (named in prompt line 47 and guideline §2) are not lexicon terms.",
+     "fix": "Change to `label_th: พูดถึงการโอน/จ่ายเงิน/ช่องทางรับเงิน (ยังไม่บอกว่าใครจ่ายใคร)` (no test asserts this label; only 'เร่งให้โอนเงิน' is forbidden). APPEND terms:\n      # ค่าธรรมเนียมเพื่อ \"รับสิทธิ์\" (guideline v1.1 §2 financial_fraud / B10)\n      - {term: ค่าชีท, evidence: [kaggle_tu(synthetic)]}\n      - {term: ค่าจอง, evidence: [kaggle_tu(synthetic)]}\n      - {term: ค่าจองสิทธิ์, evidence: [kaggle_tu(synthetic)]}\n      - {term: ค่ายืนยันสิทธิ์, evidence: [domain]}\n      - {term: ค่ากิจกรรม, evidence: [domain]}"
+    },
+    {
+     "section": "data/lexicon/scam_lexicon.yaml — `authority_claim` terms (lines 186-195) | guideline §3 authority_claim '(แอดมินคณะ, เจ้าหน้าที่ทะเบียน, HR, สโมสร, หัวหน้าห้อง, พี่รหัส)'",
+     "issue": "Guideline v1.1 widened authority_claim to institutional roles; lexicon has แอดมิน/คณะ/มหาลัย/สำนักทะเบียน/ฝ่ายบุคคล/HR but not สโมสร, หัวหน้าห้อง, พี่รหัส, เจ้าหน้าที่ทะเบียน, so those calibration variants would report 'ไม่พบ: อ้างหน่วยงาน'.",
+     "fix": "APPEND to `authority_claim.terms`:\n      - {term: สโมสร, evidence: [domain]}\n      - {term: หัวหน้าห้อง, evidence: [domain]}\n      - {term: พี่รหัส, evidence: [domain]}\n      - {term: เจ้าหน้าที่ทะเบียน, evidence: [domain]}\n      - {term: งานทะเบียน, evidence: [domain]}"
+    },
+    {
+     "section": "app/services/pattern_service.py tokenize() (line ~93) — matching bug, not a decision rule | guideline calibration variants '(inbox ได้)', '(ทัก DM)'",
+     "issue": "Verified: '(inbox ได้)' tokenises as '(inbox' so `inbox` is NOT matched (Q1 evidence says 'ไม่พบ: ให้ย้ายไปคุยช่องทางอื่น'), while '(ทัก DM)' does match because newmm splits '(' before Thai text. Harmless for Q1's verdict (same-platform inbox is not a signal in v1.1) but it makes evidence inconsistent across the calibration variants that differ only by '(inbox ได้)' vs '(ทัก DM)'. This is a lexical-matching fix permitted by CLAUDE.md 6.8, not an override.",
+     "fix": "In tokenize(), before word_tokenize: `text = re.sub(r\"[()\\[\\]{}\\\"'“”‘’]\", \" \", text)` (strip brackets/quotes so Latin tokens are not glued to punctuation); add a regression test in tests/test_pattern_service.py: `assert \"inbox\" in _found(\"ของดี (inbox ได้)\")[\"channel_shift\"].terms_found`."
+    }
+   ],
+   "trial_annotations": [
+    {
+     "text": "ของอยู่ต่างจังหวัด โอนก่อนส่งเท่านั้น ราคาพิเศษถึงวันนี้ (inbox ได้)",
+     "verdict": "caution / financial_fraud + needs_info: [seller_identity, platform_policy]",
+     "rule_used": "Guideline §1.1 step 4 + edge #8 (Q1). Current system: evidence = urgency 'ถึงวันนี้','ราคาพิเศษถึง' + money_request 'โอน','โอนก่อน','โอนก่อนส่ง' (inbox not matched — punctuation bug); prompt line 55 'เพดาน' → caution reproduced. Gap: follow_up is generic, no question about seller/platform (blocking #1).",
+     "ambiguous": false
+    },
+    {
+     "text": "บัญชีนี้ของแฟนเราเอง ปลอดภัยแน่นอน โอนมาเลย",
+     "verdict": "danger / financial_fraud",
+     "rule_used": "Guideline §1.1 step 2 'บัญชีปลายทางชื่อไม่ตรง / อ้างบัญชีแฟน-ญาติ-เพื่อน' + edge #9 (Q2). Current system: evidence shows only money_request 'โอน','โอนมาเลย' — `บัญชีแฟน` does not match (newmm บัญชี|นี้|ของ|แฟน); prompt line 54 says บัญชีแฟน → 'อย่างน้อย caution'. Predicted current output: caution → MISMATCH (blocking #2, #6).",
+     "ambiguous": true
+    },
+    {
+     "text": "ขอเลขบชพร้อมเพย์หน่อย จะโอนค่าชีท",
+     "verdict": "safe",
+     "rule_used": "Guideline §1.1 step 1 'ไม่นับเป็นการขอ: ขอเลขบัญชีของผู้รับเพื่อโอนให้' + edge #10 (Q3). Current system: evidence money_request 'โอน','พร้อมเพย์' with direction caveat; prompt line 53 (ใครเป็นฝ่ายจ่าย) → safe reproduced. Only cosmetic issue: dimension label 'ขอให้โอน/จ่ายเงิน' asserts a direction (minor #6).",
+     "ambiguous": false
+    },
+    {
+     "text": "มีคนขอรหัสยืนยัน บอกว่าเป็นแอดมินกลุ่ม",
+     "verdict": "danger / phishing_link (input_form: narrative — verdict of the told event)",
+     "rule_used": "Guideline §1.1 step 0 + §1.4 + §3 credential_request 'ไม่ว่าผู้ขออ้างเป็นใคร' + edge #7 (Q4). Current system: evidence credential_request 'รหัส' + authority_claim 'แอดมิน','แอดมินกลุ่ม'; prompt line 58 narrative rule → danger likely reproduced. Missing explicit 'OTP request = danger regardless of role, no urgency needed' and hedge-no-weight (minor #3).",
+     "ambiguous": false
+    },
+    {
+     "text": "มีลิงก์ให้กรอกข้อมูลเพื่อรับสิทธิ์ ลองเช็คก่อนนะ",
+     "verdict": "caution / phishing_link + needs_info: [url]",
+     "rule_used": "Guideline §1.3 'url' + §3 link_action 'พูดถึงลิงก์แต่ไม่มี URL → ประเมินไม่ได้' + edge #11 (Q5). Current system: evidence credential 'กรอกข้อมูล' + link_action 'ลิงก์' (no url regex) + reward 'รับสิทธิ์'; no prompt rule for a missing URL, and reward+credential+link co-occurrence is what line 51 calls 'น่ากังวลกว่า'. Predicted current output: danger → MISMATCH (blocking #1).",
+     "ambiguous": true
+    },
+    {
+     "text": "รีบโอนก่อนนะ เหลือคนเดียวแล้ว (ทัก DM)",
+     "verdict": "caution / financial_fraud + needs_info: [seller_identity, platform_policy]",
+     "rule_used": "Guideline §1 ข้อห้าม 'ห้าม danger เพราะ เร่ง/ของเหลือน้อย + โอนก่อน' + edge #8, #16 (Q6). Current system: evidence urgency 'รีบ','เหลือคนเดียว' + money_request 'โอน','โอนก่อน' + channel_shift 'DM','ทัก DM' (with same-platform caveat); prompt line 55 → caution reproduced. Gap: no follow-up question (blocking #1).",
+     "ambiguous": false
+    },
+    {
+     "text": "รุ่นพี่ฝากบอกให้โอนค่าชีทด่วน ไม่งั้นหมดสิทธิ์",
+     "verdict": "caution / financial_fraud + needs_info: [sender_identity, verify_with_claimed_person]",
+     "rule_used": "Guideline §1 ข้อห้าม 'ห้าม safe เพราะคำอ้างคนรู้จัก' + §1.1 step 4 + §3 threat row ('หมดสิทธิ์ = scarcity ไม่ใช่ threat') + edge #12 (Q7). Current system: evidence = urgency 'ด่วน' + money 'โอน' + **threat 'หมดสิทธิ์' + consequence_if_not** + 'ไม่พบ: อ้างเป็นคนรู้จัก'; prompt line 47 names รุ่นพี่ + ค่าชีท + 'ขู่หมดสิทธิ์' → danger and says 'ต้องตรวจสอบก่อน' is not a reason for caution. Predicted current output: danger → MISMATCH (blocking #3, #4, #5).",
+     "ambiguous": true
+    },
+    {
+     "text": "ระบบแจ้งให้ยืนยันข้อมูลบางอย่างภายในวันนี้",
+     "verdict": "caution / phishing_link + needs_info: [sender_identity, url]",
+     "rule_used": "Guideline edge #14 (B3): vague data request + deadline, no sender/channel → caution + needs_info; 'เร่ง+ขอข้อมูล' is a step-2 signal only when credential/channel is explicit. Current system: evidence urgency 'ภายในวันนี้' + credential_request 'ยืนยันข้อมูล'; prompt has no rule for this case, line 51 (co-occurrence) could push to danger. Predicted: caution or danger — undecidable today.",
+     "ambiguous": true
+    },
+    {
+     "text": "ขอเลขบัญชีพร้อมเพย์หน่อยครับ จะโอนค่าชีท line: @abc123",
+     "verdict": "caution / financial_fraud",
+     "rule_used": "Guideline §3 channel_shift (ข) external LINE ID from a stranger → at least caution even though money flows toward the user; edge #10 '+ line: @id → caution' (A5/A8). Current system: evidence money_request 'โอน','พร้อมเพย์' + channel_shift regex line_id_handle; prompt line 53 says '→ safe ถ้าไม่มีสัญญาณอื่น' and line 46 only caps at caution — whether an external ID counts as 'สัญญาณอื่น' is unspecified. Predicted: safe or caution (minor #2).",
+     "ambiguous": true
+    },
+    {
+     "text": "หวัดดี เปลี่ยนเบอร์ใหม่นะ เซฟไว้ด้วย",
+     "verdict": "caution / borrowing_scam",
+     "rule_used": "Guideline §1.1.1 closed opener list + edge #4: opener wins over 'ไม่มีการขอ → safe'. Current system: evidence borrowing_pretext 'เปลี่ยนเบอร์','เบอร์ใหม่' with everything else 'ไม่พบ'; prompt line 50 says 'ถ้าไม่มีการขอใดๆ เลย ข้อความมักเป็น safe' with no opener exception. Predicted: safe or caution depending on Claude's own judgement (minor #1).",
+     "ambiguous": true
+    }
+   ]
+  }
+ ]
+}

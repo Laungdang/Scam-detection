@@ -1,0 +1,500 @@
+{
+ "judgeItems": [
+  {
+   "id": "kaggle-tu-bd7646b2",
+   "text": "ของถูกมาก แต่ต้องจองภายในวันนี้",
+   "kaggle_verdict": "caution",
+   "our_verdict": "safe",
+   "guideline_verdict": "safe",
+   "guideline_rule": "1.1 ขั้น 1: ไม่มีการขอ (โอน/จ่าย, ให้ข้อมูล/รหัส, กดลิงก์, แอดไลน์, โทรกลับ) → safe; 1.2 calibration 'ด่วน! Flash Sale ลด 50% วันนี้วันเดียว' → safe; 7 edge case #3 'โปรโมชั่นเกินจริงแต่ไม่ขออะไร → safe ถ้าไม่มีลิงก์แปลก'; ข้อ 3 urgency 'ไม่บ่งชี้เมื่อ โปรโมชั่น'",
+   "correct_side": "ours",
+   "reason_group": "urgency_only",
+   "guideline_gap": null,
+   "system_gap": null,
+   "confidence": 5
+  },
+  {
+   "id": "kaggle-tu-ac731ae5",
+   "text": "ของอยู่ต่างจังหวัด โอนก่อนส่งเท่านั้น ราคาพิเศษถึงวันนี้ inbox ได้",
+   "kaggle_verdict": "danger",
+   "our_verdict": "caution",
+   "guideline_verdict": "caution",
+   "guideline_rule": "1.1 ขั้น 1: มีการขอ (โอนก่อนส่ง); ขั้น 2: สัญญาณ 'เร่ง+โอน' ไม่ 'ชัดเจน' — urgency เป็นแบบโปรโมชั่น ซึ่งข้อ 0 ระบุว่าพบในข้อความปกติ (flash sale); ไม่มีขู่/รางวัล/อ้างหน่วยงาน/URL แปลก/ย้ายช่องทางนอกแพลตฟอร์ม; นิยาม caution: 'มีการขอแต่สัญญาณหลอกอ่อน/ก้ำกึ่ง หรือเป็นข้อความที่มิจฉาชีพใช้บ่อยแต่คนจริงก็ใช้' → ขั้น 4 caution",
+   "correct_side": "ours",
+   "reason_group": "marketplace_transfer_first_ambiguous",
+   "guideline_gap": "ควรเพิ่มกฎซื้อขายออนไลน์: ผู้ขายที่ไม่รู้จักขอ 'โอนก่อนส่ง' (+ ข้ออ้างส่งสด/นัดรับไม่ได้ เช่น 'ของอยู่ต่างจังหวัด', + urgency เชิงโปรโมชั่น 'ราคาพิเศษถึงวันนี้') = ข้อความที่มิจฉาชีพใช้บ่อยแต่ผู้ขายจริงก็ใช้ → caution ไม่ใช่ danger เว้นแต่มีสัญญาณหลอกเพิ่ม (บัญชีปลายทางชื่อไม่ตรงผู้ขาย, ไม่รับ COD/นัดรับทั้งที่อยู่ใกล้, ย้ายไปช่องทางตรวจสอบไม่ได้, ราคาต่ำผิดปกติ+ขอมัดจำ) และต้องนิยาม 'เร่ง' ใน 'เร่ง+โอน' (1.1 ขั้น 2) ให้ชัดว่าหมายถึงเร่งให้โอนทันที ไม่ใช่ urgency แบบโปรโมชั่นตามข้อ 0 — ควรเพิ่มใน 1.2 และ 7",
+   "system_gap": null,
+   "confidence": 3
+  },
+  {
+   "id": "kaggle-tu-2803e3fe",
+   "text": "ของอยู่ต่างจังหวัด โอนนก่อนส่งเท่านั้น ราคาพิเศษถึงวันนี้",
+   "kaggle_verdict": "danger",
+   "our_verdict": "caution",
+   "guideline_verdict": "caution",
+   "guideline_rule": "1.1 ขั้น 1: มีการขอ (โอนก่อนส่ง); ขั้น 2: 'เร่ง+โอน' ไม่ชัดเจน — 'ราคาพิเศษถึงวันนี้' เป็น urgency เชิงโปรโมชั่น (ข้อ 0 / ข้อ 3 urgency 'ไม่บ่งชี้เมื่อ โปรโมชั่น'); ไม่มีสัญญาณหลอกอื่นในรายการขั้น 2; นิยาม caution 'ข้อความที่มิจฉาชีพใช้บ่อยแต่คนจริงก็ใช้' → ขั้น 4 caution",
+   "correct_side": "ours",
+   "reason_group": "marketplace_transfer_first_ambiguous",
+   "guideline_gap": "เดียวกับ kaggle-tu-ac731ae5: ต้องมีกฎชัดเจนสำหรับ 'โอนก่อนส่ง' จากผู้ขายไม่รู้จัก + ข้ออ้างส่งสดไม่ได้ → caution เป็นค่าตั้งต้น; ระบุเงื่อนไขที่ยกเป็น danger; และนิยาม 'เร่ง' ใน 'เร่ง+โอน' ให้แยกจาก urgency เชิงโปรโมชั่น",
+   "system_gap": null,
+   "confidence": 3
+  },
+  {
+   "id": "kaggle-tu-8f27b79d",
+   "text": "ขอเลขบชพร้อมเพย์น่อยคับ จะโอนค่าชีท",
+   "kaggle_verdict": "safe",
+   "our_verdict": "caution",
+   "guideline_verdict": "safe",
+   "guideline_rule": "ข้อ 0: 'ถ้าทำตามข้อความนี้ ฉันจะเสียอะไร' → ไม่เสีย (ผู้รับเป็นฝ่ายได้เงิน ผู้ส่งจะโอนให้); ข้อ 3 credential_request บ่งชี้เมื่อ 'ขอ OTP/รหัส/เลขบัตร' — เลขบัญชีรับเงินไม่อยู่ในรายการ; 1.1 ขั้น 2: ไม่มีสัญญาณหลอกใดเลย (ไม่ขู่/ไม่ล่อ/ไม่อ้าง/ไม่เร่ง/ไม่มีลิงก์/ไม่ย้ายช่องทาง); ขั้น 3: บริบทชอบธรรมชัดเจน (ผู้ซื้อจ่ายค่าชีทให้ผู้ขาย) → safe",
+   "correct_side": "kaggle",
+   "reason_group": "inbound_payment_account_request",
+   "guideline_gap": "ควรเพิ่มกฎ: การขอเลขบัญชี/พร้อมเพย์ของผู้รับเพื่อ *โอนเงินให้* ผู้รับ (ผู้รับเป็นฝ่ายได้เงิน เช่น ผู้ซื้อถามผู้ขาย) ไม่นับเป็น 'การขอข้อมูล' ตามข้อ 0/1.1 เพราะผู้รับไม่เสียเงิน/ข้อมูลลับ → safe ถ้าไม่มีสัญญาณอื่น; ให้ caution/danger เฉพาะเมื่อตามมาด้วยอ้างโอนเกิน-ขอคืนส่วนต่าง, ส่งสลิปปลอม, ขอ OTP/รหัส 'เพื่อยืนยันรับเงิน', หรือให้กดลิงก์รับเงิน — ควรเพิ่มใน calibration set (1.2) และ edge cases (7)",
+   "system_gap": "Lexicon มิติ money_request จับคำ 'โอน' โดยไม่แยกทิศทาง (ผู้ส่งจะโอน *ให้* ผู้รับ vs ขอให้ผู้รับโอน) และ system prompt ให้ Claude ตีความ 'ขอเลขบัญชี' เป็นการขอข้อมูลส่วนตัวทันที (summary: 'มีการขอเลขบัญชี...ซึ่งเป็นลักษณะที่มีความเสี่ยง') โดยไม่ใช้เกณฑ์ข้อ 0 'ถ้าทำตาม ฉันจะเสียอะไร' — ควรระบุใน prompt ว่าเลขบัญชีรับเงินไม่ใช่ credential และการขอเพื่อจ่ายให้ผู้รับไม่ใช่การขอที่ทำให้เสียหาย เว้นแต่มีสัญญาณโอนเกิน/สลิปปลอม/ขอ OTP",
+   "confidence": 4
+  },
+  {
+   "id": "kaggle-tu-0764939a",
+   "text": "ขอเลขบชพร้อมเพย์หน่อยครับ จะโอนนค่าชีท ทัก DM",
+   "kaggle_verdict": "safe",
+   "our_verdict": "caution",
+   "guideline_verdict": "safe",
+   "guideline_rule": "ข้อ 0: ทำตามแล้วไม่เสียอะไร (ผู้รับเป็นฝ่ายรับเงิน); ข้อ 3 credential_request บ่งชี้เมื่อ 'ขอ OTP/รหัส/เลขบัตร' — เลขบัญชีรับเงินไม่ใช่; ข้อ 3 channel_shift บ่งชี้เมื่อ 'แอดไลน์/เทเลแกรม ID แปลก' — 'ทัก DM' บนแพลตฟอร์มเดิม (IG) ไม่ใช่การย้ายช่องทางที่ตรวจสอบไม่ได้; 1.1 ขั้น 2 ไม่มีสัญญาณหลอก; ขั้น 3 บริบทชอบธรรม (ผู้ซื้อจ่ายค่าชีท) → safe",
+   "correct_side": "kaggle",
+   "reason_group": "inbound_payment_account_request",
+   "guideline_gap": "เดียวกับ kaggle-tu-8f27b79d: ต้องระบุว่าการขอเลขบัญชี/พร้อมเพย์เพื่อจ่ายให้ผู้รับ = safe โดยตั้งต้น และระบุ escalation (โอนเกิน/สลิปปลอม/ขอ OTP/ลิงก์รับเงิน); เพิ่มเติม: ควรระบุว่า 'ทัก DM / inbox' บนแพลตฟอร์มเดียวกันไม่นับเป็น channel_shift (ต่างจากแอดไลน์/เทเลแกรม ID)",
+   "system_gap": "เดียวกับ kaggle-tu-8f27b79d: money_request ไม่แยกทิศทางการโอน และ prompt ตีความ 'ขอเลขบัญชี' เป็นการดึงข้อมูลส่วนตัว (summary อ้างว่า 'ข้อมูลเหล่านี้อาจถูกนำไปใช้...ลงทะเบียนใช้บริการอื่นในนามคุณ' ซึ่งเกินจากหลักฐานในข้อความ); ควรใส่เกณฑ์ข้อ 0 ('ฉันจะเสียอะไร') ใน system prompt และแยก 'ทัก DM' ออกจาก channel_shift",
+   "confidence": 4
+  },
+  {
+   "id": "kaggle-tu-3935a832",
+   "text": "ขอเลขบชพร้อมเพย์หน่อยคับ จะโอนนค่าชีท",
+   "kaggle_verdict": "safe",
+   "our_verdict": "caution",
+   "guideline_verdict": "safe",
+   "guideline_rule": "§0 'ถ้าทำตามข้อความนี้ ฉันจะเสียอะไร' (ผู้รับเป็นฝ่ายรับเงิน → ไม่เสียอะไร); §1.1 step 2 ไม่มีสัญญาณในรายการ (ขู่/รางวัล/อ้างหน่วยงาน+ลิงก์/เร่ง+โอน/ห้ามบอกใคร/ทักผิด/กู้-ลงทุน/URL) → ไม่ danger; step 3 'มีการขอแต่บริบทชอบธรรมชัดเจน (เพื่อนขอค่าข้าวคืน)' → safe; §3 credential_request บ่งชี้เมื่อ 'ขอ OTP/รหัส/เลขบัตร' — เลขบัญชีสำหรับรับเงินไม่อยู่ในรายการ",
+   "correct_side": "kaggle",
+   "reason_group": "recipient_account_as_credential",
+   "guideline_gap": "เพิ่มกฎใน §3/§7: การขอเลขบัญชี/พร้อมเพย์ 'ของผู้รับ' เพื่อโอนเงิน *ให้* ผู้รับ (ผู้รับเป็นฝ่ายรับเงิน เช่น ผู้ซื้อถามผู้ขาย) ไม่นับเป็น credential_request/money_request → safe ถ้าไม่มีสัญญาณอื่น; ยกเว้นขอเลขบัตรประชาชน/OTP/รูปหน้าบัตร ร่วมด้วย หรือตามมาด้วย slip ปลอม/ขอโอนคืน → caution/danger",
+   "system_gap": "Prompt ไม่แยกทิศทางเงิน — การขอเลขบัญชี/พร้อมเพย์ 'ของผู้รับ' ถูกนับเป็นการขอข้อมูลการเงินที่ต้องระวัง ('ควรตรวจสอบว่าคนนี้เป็นใครก่อนให้ข้อมูล'); lexicon money_request จับ 'โอน/พร้อมเพย์' โดยไม่มีทิศทาง; RAG เคส 'โปรแกรมหลอกหาข้อมูลการจ่ายเงิน' anchor ให้ caution ทั้งที่ผู้รับไม่เสียอะไร — prompt ควรบังคับให้ตอบคำถาม §0 'ถ้าทำตามจะเสียอะไร' ก่อนตัดสิน",
+   "confidence": 4
+  },
+  {
+   "id": "kaggle-tu-90790b7e",
+   "text": "ขอเลขบัญชีพร้อมเพย์น่อยครับ จะโอนนค่าชีท inbox ได้",
+   "kaggle_verdict": "safe",
+   "our_verdict": "caution",
+   "guideline_verdict": "safe",
+   "guideline_rule": "§0 'ถ้าทำตามข้อความนี้ ฉันจะเสียอะไร' → ไม่เสีย (รับเงิน); §1.1 step 2 ไม่มีสัญญาณในรายการ; step 3 บริบทซื้อขาย ผู้ส่งจะจ่ายให้ → safe; §1 ข้อห้าม 'ห้ามให้ safe เพราะภาษาสุภาพ' มีนัยกลับกันว่าภาษาไม่เป็นทางการก็ไม่ใช่สัญญาณ; 'inbox ได้' = DM บนแพลตฟอร์มเดิม ไม่เข้า §3 channel_shift 'ให้แอดไลน์/เทเลแกรม ID แปลก'",
+   "correct_side": "kaggle",
+   "reason_group": "recipient_account_as_credential",
+   "guideline_gap": "เดียวกับ kaggle-tu-3935a832: ระบุชัดว่าการขอบัญชีรับเงินของผู้รับ (ผู้รับได้เงิน) ไม่ใช่ 'การขอ' ตาม §0; และเพิ่มว่า 'inbox/ทักมา' บนแพลตฟอร์มเดิมไม่นับเป็น channel_shift (ต่างจาก LINE/Telegram ID ภายนอก)",
+   "system_gap": "Claude สร้างสัญญาณที่ไม่อยู่ใน guideline ('ไม่แนะนำตัว', 'ไม่มีเอกสารหลักฐาน', 'ภาษาไม่เป็นทางการ ขาดความเป็นมืออาชีพ') แล้วใช้เป็นเหตุ caution — prompt ไม่ห้ามใช้ 'การขาดบริบท/ความไม่เป็นทางการ' เป็นสัญญาณหลอก และไม่มีกฎทิศทางเงิน (ผู้ส่งจะโอนให้ ≠ ขอเงินจากผู้รับ)",
+   "confidence": 4
+  },
+  {
+   "id": "kaggle-tu-50ddc59e",
+   "text": "ขอเลขบัญชีพร้อมเพย์หน่อยครับ จะโอนค่าชีท line: @fakeid",
+   "kaggle_verdict": "safe",
+   "our_verdict": "danger",
+   "guideline_verdict": "caution",
+   "guideline_rule": "§1.1 step 1 มีการขอ ('แอดไลน์/ย้ายช่องทาง' อยู่ในรายการ); step 2 รายการสัญญาณชัดเจนไม่มี channel_shift เดี่ยว และไม่มีการขอเงินจากผู้รับ → ไม่ danger (เทียบ calibration '@job888' ที่ danger เพราะ 'เสนอรายได้เกินจริง + ย้ายช่องทาง' สองอย่าง); §3 channel_shift 'ให้แอดไลน์ ID แปลก เพื่อคุยต่อ' = สัญญาณอ่อน 1 มิติ; step 3 บริบทชอบธรรมไม่ 'ชัดเจน' (ผู้ซื้อไม่รู้จัก); step 4 → caution; §7 #3 analog (โปรโมชั่น + shortener → caution)",
+   "correct_side": "neither",
+   "reason_group": "payment_direction_misread",
+   "guideline_gap": "เพิ่มกฎ: channel_shift เดี่ยว (LINE ID ส่วนตัวที่แนบมาเพื่อประสานงานซื้อขาย) โดยไม่มีการขอเงิน/ข้อมูลจากผู้รับ และไม่มีข้อเสนอ/ขู่ → caution ไม่ใช่ danger; danger ต้องมีสัญญาณจาก step 2 ร่วมด้วยอย่างน้อย 1 (เช่น ข้อเสนอรายได้, ขอเงิน, ขู่)",
+   "system_gap": "Claude อ่านทิศทางเงินผิด — summary บอกว่า 'ขอให้คุณโอนเงินไปยังเลขบัญชี' ทั้งที่ข้อความบอกว่าผู้ส่งจะโอน *ให้*; hallucinate 'สร้างความตื่นตระหนก' ทั้งที่ไม่มีคำเร่ง; RAG เคส 'ขอโอนเงินแล้วชักไปคุยที่ LINE' anchor เป็น danger; prompt ไม่มี hard constraint ว่า channel_shift มิติเดียวไม่พอเป็น danger (§1.1 step 2) และไม่บังคับให้ระบุว่าใครเป็นฝ่ายจ่าย",
+   "confidence": 3
+  },
+  {
+   "id": "kaggle-tu-33a5df50",
+   "text": "ขอโอนนเต็มก่อน เด๋วส่งเลขพัสดุให้",
+   "kaggle_verdict": "caution",
+   "our_verdict": "safe",
+   "guideline_verdict": "caution",
+   "guideline_rule": "§1.1 step 1 มีการขอ (โอน/จ่าย เต็มจำนวนก่อนส่งของ); step 2 ไม่มีสัญญาณชัดเจนในรายการ → ไม่ danger; step 3 บริบทชอบธรรมไม่ 'ชัดเจน' (ผู้ขายไม่รู้จัก annotator verify ไม่ได้); step 4 → caution; §1 caution = 'ข้อความที่มิจฉาชีพใช้บ่อยแต่คนจริงก็ใช้'; §2 financial_fraud รวม 'หลอกซื้อของแล้วไม่ส่ง'; §0 'ถ้าทำตามจะเสียอะไร' → เสียเงินเต็มจำนวนให้คนที่ยังไม่ได้ตรวจสอบ",
+   "correct_side": "kaggle",
+   "reason_group": "marketplace_pay_first_unverified",
+   "guideline_gap": "เพิ่ม calibration row: 'โอนเต็มก่อน เดี๋ยวส่งเลขพัสดุให้' (ผู้ขายไม่รู้จัก ขอจ่ายก่อนส่ง) → caution + financial_fraud; safe เฉพาะเมื่อบริบทระบุว่าเป็นร้าน/คนรู้จักที่ตรวจสอบได้ (ตรงกับ step 3); danger เมื่อมีเร่ง/ราคาถูกผิดปกติ/ย้ายช่องทาง/ขอมัดจำเพื่อ 'จอง' ร่วมด้วย",
+   "system_gap": "Prompt (CLAUDE.md §5.2 'verdict safe ไม่ต้องมีหลักฐานยืนยัน แค่ไม่มีสัญญาณการหลอกก็ safe ได้') over-correct — guideline §1.1 step 4 ให้ caution เมื่อมีการขอเงินแต่บริบทชอบธรรมไม่ชัด; Claude ตีความคำสัญญา 'จะส่งเลขพัสดุให้' เป็นหลักฐานความชอบธรรม ทั้งที่ยังไม่มีอะไรยืนยัน; lexicon money_request ขาด term 'โอนก่อน'/'โอนเต็ม'/'จ่ายเต็ม' (มีแค่ 'จ่ายก่อน' และ 'โอนให้ก่อน' ใน borrowing_pretext) ทำให้ evidence ไม่สะท้อน pattern pay-before-ship",
+   "confidence": 4
+  },
+  {
+   "id": "kaggle-tu-590a29c2",
+   "text": "ขอโอนเต็มก่อน เด๋วส่งเลขพัสดุให้",
+   "kaggle_verdict": "caution",
+   "our_verdict": "safe",
+   "guideline_verdict": "caution",
+   "guideline_rule": "§1.1 step 1 มีการขอ (โอนเงินเต็มก่อน); step 2 ไม่มีสัญญาณชัดเจน → ไม่ danger; step 3 บริบทชอบธรรมไม่ชัด (ผู้ขายไม่รู้จัก) → ไม่ safe; step 4 → caution; §1 caution 'มิจฉาชีพใช้บ่อยแต่คนจริงก็ใช้'; §2 financial_fraud 'หลอกซื้อของแล้วไม่ส่ง'; §3 borrowing_pretext note 'คนรู้จักจริงในบริบท (annotator รู้ไม่ได้ → caution)' ใช้ analog กับผู้ขายที่ verify ไม่ได้",
+   "correct_side": "kaggle",
+   "reason_group": "marketplace_pay_first_unverified",
+   "guideline_gap": "เดียวกับ kaggle-tu-33a5df50: เพิ่ม calibration row สำหรับ pay-before-ship จากผู้ขายที่ไม่รู้จัก → caution + financial_fraud (ข้อความเดียวกันต่าง platform ต้องได้ verdict เดียวกัน — platform ไม่ใช่ปัจจัยตัดสินตาม guideline)",
+   "system_gap": "เหมือน kaggle-tu-33a5df50: prompt ให้ safe ทันทีที่ไม่มีสัญญาณหลอก โดยไม่ตรวจว่า 'มีการขอเงินแล้วบริบทชอบธรรมชัดเจนหรือไม่' (§1.1 step 3-4); Claude เรียกการขอโอนเงินจากคนที่ไม่รู้จักว่า 'ธุรกรรมธรรมดา' โดยไม่มีหลักฐานว่าเป็นร้านจริง; lexicon ขาด term 'โอนก่อน/โอนเต็ม'",
+   "confidence": 4
+  },
+  {
+   "id": "kaggle-tu-d84e1ee6",
+   "text": "งานออนไลน์ได้เงินวันละ 10,000 ไม่ต้องสัมภาษณ์ สมัครด่วนนน",
+   "kaggle_verdict": "danger",
+   "our_verdict": "caution",
+   "guideline_verdict": "caution",
+   "guideline_rule": "1.1 step 1: ไม่มีการขอในรายการ (โอน/ให้ข้อมูล/ลิงก์/แอดไลน์/โทรกลับ) — 'สมัครด่วน' ไม่มีช่องทางให้ทำตาม; 1 danger ต้อง 'มีการขอ และ สัญญาณหลอก'; 1.2 'งานออนไลน์ กดไลค์ได้เงิน... สนใจทัก LINE @job888 → danger: เสนอรายได้เกินจริง + ย้ายช่องทาง' (ที่นี่ไม่มีย้ายช่องทาง); 1.2/7.4 'pattern เปิดของ scam แต่ยังไม่ขออะไร → caution'",
+   "correct_side": "ours",
+   "reason_group": "unrealistic_offer_no_request_channel",
+   "guideline_gap": "1.1 ข้อ 1 บอก 'ไม่มีการขอ → safe' แต่ 1.2/7.4 ให้ scam opener ที่ยังไม่ขอเป็น caution — ขัดกัน ควรเขียนใน 1.1 ให้ชัดว่า 'opener ของ scam pattern (เปลี่ยนเบอร์, ทักผิด, เสนองาน/รายได้เกินจริง) ที่ยังไม่มีการขอ/ช่องทาง → caution' และเพิ่มแถว calibration: 'งานออนไลน์ได้เงินวันละ 10,000 ไม่ต้องสัมภาษณ์ สมัครด่วน' (ไม่มีลิงก์/LINE/inbox/เบอร์) → caution; ถ้ามีช่องทางติดต่อหรือลิงก์ → danger + investment_scam; ระบุด้วยว่า 'สมัคร/ลงทะเบียน' โดยไม่มีช่องทาง ไม่นับเป็น 'การขอ'",
+   "system_gap": null,
+   "confidence": 3
+  },
+  {
+   "id": "kaggle-tu-66cf8b12",
+   "text": "งานออนไลน์ได้เงินวันละ 10,000 ไม่ต้องสัมภาษณ์ สมัครด่วน",
+   "kaggle_verdict": "danger",
+   "our_verdict": "caution",
+   "guideline_verdict": "caution",
+   "guideline_rule": "1.1 step 1: ไม่มีการขอในรายการ — 'สมัครด่วน' ไม่มีลิงก์/LINE/เบอร์ให้ทำตาม; 1 danger ต้อง 'มีการขอ และ สัญญาณหลอก'; 1.2 danger ของงานออนไลน์อาศัย '+ ย้ายช่องทาง (ทัก LINE @job888)'; 1.2/7.4 scam opener ที่ยังไม่ขอ → caution",
+   "correct_side": "ours",
+   "reason_group": "unrealistic_offer_no_request_channel",
+   "guideline_gap": "เหมือน d84e1ee6: ต้องแก้ความขัดแย้งระหว่าง 1.1 ข้อ 1 (ไม่มีการขอ → safe) กับ 1.2/7.4 (opener → caution) และเพิ่ม calibration row สำหรับข้อเสนองาน/รายได้เกินจริงที่ไม่มีช่องทางติดต่อ → caution; มีช่องทาง/ลิงก์ → danger + investment_scam",
+   "system_gap": null,
+   "confidence": 3
+  },
+  {
+   "id": "kaggle-tu-6a0e2a96",
+   "text": "งานออนไลน์ได้เงินวันละ 3000 ไม่ต้องสัมภาษณ์ สมัครด่วน inbox ได้",
+   "kaggle_verdict": "danger",
+   "our_verdict": "caution",
+   "guideline_verdict": "danger",
+   "guideline_rule": "1.1 step 1: มีการขอ 'แอดไลน์/ย้ายช่องทาง' — 'inbox ได้' คือให้ย้ายไปคุยช่องทางส่วนตัว; step 2: สัญญาณ 'เสนอกู้/ลงทุนผลตอบแทนเกินจริง' (3000/วัน ไม่ต้องสัมภาษณ์) ไม่มีบริบทชอบธรรม → danger; 1.2 'งานออนไลน์ กดไลค์ได้เงิน วันละ 500-2,000 บาท สนใจทัก LINE @job888 → danger: เสนอรายได้เกินจริง + ย้ายช่องทาง'; category investment_scam ('ชวนลงทุน/เทรด/งานออนไลน์ ผลตอบแทนเกินจริง')",
+   "correct_side": "kaggle",
+   "reason_group": "channel_shift_inbox_missed",
+   "guideline_gap": "3/channel_shift เขียนแค่ 'ให้แอดไลน์/เทเลแกรม ID แปลก' — ควรระบุชัดว่า 'inbox ได้ / DM / ทักมา / ทักแชท / ทักส่วนตัว' นับเป็น ย้ายช่องทาง เทียบเท่าแอดไลน์แม้ไม่มี ID เฉพาะ (lexicon มี ทักมา/ทักแชท จาก thaicert อยู่แล้ว) และเพิ่ม calibration row นี้",
+   "system_gap": "lexicon channel_shift ไม่มีคำ 'inbox' / 'อินบ็อกซ์' / 'DM' / 'ทักส่วนตัว' (มีแค่ ทักมา/ทักแชท) → pattern evidence รายงาน 'ไม่พบ: ให้ย้ายไปคุยช่องทางอื่น' ทั้งที่ข้อความมี 'inbox ได้' ทำให้ Claude สรุปว่า 'ยังไม่พบการขอ' แล้วลด verdict เหลือ caution (แม้ใน tactics จะเห็น inbox เป็นช่องทางปิด) — ควรเพิ่ม term ใน lexicon และให้ prompt ระบุตาม calibration ว่า ข้อเสนอรายได้เกินจริง + เชิญคุยช่องทางส่วนตัว = danger",
+   "confidence": 3
+  },
+  {
+   "id": "kaggle-tu-9df191cf",
+   "text": "งานออนไลน์ได้เงินวันละ 5000 ไม่ต้องสัมภาษณ์ สมักด่วน",
+   "kaggle_verdict": "danger",
+   "our_verdict": "caution",
+   "guideline_verdict": "caution",
+   "guideline_rule": "1.1 step 1: ไม่มีการขอในรายการ — 'สมักด่วน' ไม่มีลิงก์/LINE/inbox/เบอร์; 1 danger ต้อง 'มีการขอ และ สัญญาณหลอก'; 1.2 danger ของงานออนไลน์อาศัย '+ ย้ายช่องทาง'; 1.2/7.4 scam opener ที่ยังไม่ขอ → caution",
+   "correct_side": "ours",
+   "reason_group": "unrealistic_offer_no_request_channel",
+   "guideline_gap": "เหมือน d84e1ee6: ทำให้ชัดว่า opener ของ scam pattern ที่ยังไม่มีการขอ/ช่องทาง → caution (ไม่ใช่ safe ตาม 1.1 ข้อ 1 ตามตัวอักษร) และเพิ่ม calibration row ข้อเสนองาน/รายได้เกินจริงไม่มีช่องทาง → caution; มีช่องทาง/ลิงก์ → danger",
+   "system_gap": null,
+   "confidence": 3
+  },
+  {
+   "id": "kaggle-tu-74fa9101",
+   "text": "งานออนไลน์ได้เงินวันละ 8000 ไม่ต้องสัมภาษณ์ สมักด่วน",
+   "kaggle_verdict": "danger",
+   "our_verdict": "caution",
+   "guideline_verdict": "caution",
+   "guideline_rule": "1.1 step 1: ไม่มีการขอในรายการ — 'สมักด่วน' ไม่มีลิงก์/LINE/inbox/เบอร์; 1 danger ต้อง 'มีการขอ และ สัญญาณหลอก'; 1.2 danger ของงานออนไลน์อาศัย '+ ย้ายช่องทาง'; 1.2/7.4 scam opener ที่ยังไม่ขอ → caution",
+   "correct_side": "ours",
+   "reason_group": "unrealistic_offer_no_request_channel",
+   "guideline_gap": "เหมือน d84e1ee6: ทำให้ชัดว่า opener ของ scam pattern ที่ยังไม่มีการขอ/ช่องทาง → caution และเพิ่ม calibration row ข้อเสนองาน/รายได้เกินจริงไม่มีช่องทาง → caution; มีช่องทาง/ลิงก์ → danger + investment_scam",
+   "system_gap": null,
+   "confidence": 3
+  },
+  {
+   "id": "kaggle-tu-a97bbac9",
+   "text": "งานออนไลน์ได้เงินวันละ 5000 ไม่ต้องสัมภาษณ์ สมัครด่วน inbox ได้",
+   "kaggle_verdict": "danger",
+   "our_verdict": "caution",
+   "guideline_verdict": "danger",
+   "guideline_rule": "1.1 ขั้น 1: 'inbox ได้' = แอดไลน์/ย้ายช่องทาง → มีการขอ; ขั้น 2: 'เสนอกู้/ลงทุนผลตอบแทนเกินจริง' (วันละ 5,000 ไม่ต้องสัมภาษณ์) ≥ 1 สัญญาณ ไม่มีบริบทชอบธรรม → danger; calibration 1.2: 'งานออนไลน์ กดไลค์ได้เงิน วันละ 500-2,000 บาท สนใจทัก LINE @job888 → danger (เสนอรายได้เกินจริง + ย้ายช่องทาง)'",
+   "correct_side": "kaggle",
+   "reason_group": "income_offer_plus_channel_shift",
+   "guideline_gap": null,
+   "system_gap": "lexicon channel_shift ไม่มี 'inbox', 'DM', 'ทัก DM' → evidence บอก Claude ว่า 'ไม่พบ: ให้ย้ายช่องทาง'; financial_offer ไม่มี regex จับรายได้ต่อวัน (วันละ \\d+) และคำ 'ไม่ต้องสัมภาษณ์'; system prompt นิยาม 'การขอ' เน้นเงิน/ข้อมูล/ลิงก์ จน Claude สรุปว่า 'ยังไม่มีการขอโอนเงินหรือข้อมูล' ทั้งที่การย้ายช่องทางเป็นการขอตาม 1.1 และกฎ calibration 'รายได้เกินจริง + ย้ายช่องทาง = danger' ไม่ได้อยู่ใน prompt",
+   "confidence": 4
+  },
+  {
+   "id": "kaggle-tu-983ae243",
+   "text": "งานออนไลน์ได้เงินวันละ 8000 ไม่ต้องสัมภาษณ์ สมัครด่วน ทัก DM",
+   "kaggle_verdict": "danger",
+   "our_verdict": "caution",
+   "guideline_verdict": "danger",
+   "guideline_rule": "1.1 ขั้น 1: 'ทัก DM' = ย้ายช่องทาง → มีการขอ; ขั้น 2: เสนอรายได้เกินจริง (วันละ 8,000 ไม่ต้องสัมภาษณ์) + ไม่มีบริบทชอบธรรม → danger; calibration 1.2 'งานออนไลน์ ... วันละ 500-2,000 บาท สนใจทัก LINE → danger'",
+   "correct_side": "kaggle",
+   "reason_group": "income_offer_plus_channel_shift",
+   "guideline_gap": null,
+   "system_gap": "เหมือน a97bbac9: lexicon channel_shift ไม่มี 'DM'/'ทัก DM'/'inbox' → รายงาน 'ไม่พบ: ให้ย้ายช่องทาง'; ไม่มี regex รายได้ต่อวันใน financial_offer; prompt ไม่มีกฎ calibration 'รายได้เกินจริง + ย้ายช่องทาง = danger' ทำให้ Claude หยุดที่ caution แม้เห็น tactic ย้ายช่องทางเอง",
+   "confidence": 4
+  },
+  {
+   "id": "kaggle-tu-2e13f99c",
+   "text": "ทักไลน์อย่างเดียวคับ ไม่ค่อยตอบในกลุ่ม",
+   "kaggle_verdict": "caution",
+   "our_verdict": "safe",
+   "guideline_verdict": "caution",
+   "guideline_rule": "1.1 ขั้น 1: 'ทักไลน์อย่างเดียวคับ' เป็นประโยคคำสั่งถึงผู้รับ = แอดไลน์/ย้ายช่องทาง → มีการขอ; ขั้น 2: ไม่มี ID แปลก/เงิน/ข้อมูล → สัญญาณอ่อน; ขั้น 3: ไม่รู้ว่าผู้ส่งเป็นใคร → ไม่มีบริบทชอบธรรมชัด; ขั้น 4: ก้ำกึ่ง → caution (นิยาม caution: 'ข้อความที่มิจฉาชีพใช้บ่อยแต่คนจริงก็ใช้'; เทียบ edge case #4 'เปลี่ยนเบอร์ใหม่' อย่างเดียว → caution)",
+   "correct_side": "kaggle",
+   "reason_group": "channel_shift_only_directive_misread",
+   "guideline_gap": "ควรเพิ่ม edge case: ข้อความที่ให้ย้ายไปคุยช่องทางส่วนตัว (ทักไลน์/inbox/DM) อย่างเดียว โดยไม่ให้ ID แปลก และยังไม่ขอเงิน/ข้อมูล → caution (เทียบเท่า #4 'เปลี่ยนเบอร์ใหม่' อย่างเดียว) และระบุว่าประโยคลงท้าย 'คับ/ค่ะ/นะ' ที่สั่งให้ผู้รับทำ ถือเป็น 'การขอ' ไม่ใช่การเล่าถึงบุคคลที่สาม",
+   "system_gap": "lexicon channel_shift ไม่มี 'ทักไลน์'/'ไลน์'/'ทัก LINE' (newmm ตัด 'ทักไลน์' เป็น 'ทัก'+'ไลน์' จึงไม่ match 'ทักแชท'/'ทักมา') → lexicon_dims ว่าง, RAG ไม่ถูกใช้ → Claude อ่านประโยคคำสั่งเป็นการเล่าเรื่องบุคคลที่สาม ('คนๆ หนึ่งชอบทักไลน์') แล้วให้ safe; prompt ควรย้ำว่า 'ไม่พบคำสัญญาณ' ≠ 'ไม่มีการขอ' และให้ Claude ตรวจ 'การขอ' จากตัวข้อความเองเสมอ",
+   "confidence": 3
+  },
+  {
+   "id": "kaggle-tu-547e76f4",
+   "text": "งานออนไลน์ได้เงินวันละ 8000 ไม่ต้องสัมภาษณ์ สมัครด่วนนน",
+   "kaggle_verdict": "danger",
+   "our_verdict": "caution",
+   "guideline_verdict": "caution",
+   "guideline_rule": "1.1 ขั้น 1: มี call-to-action 'สมัครด่วน' แต่ไม่ใช่ประเภทการขอที่ระบุ (ไม่มีโอน/ข้อมูล/ลิงก์/ช่องทาง/เบอร์) → ไม่ใช่ 'ไม่มีเลย' แต่ก็ไม่ครบขั้น 2; ขั้น 2 ต้องมี 'การขอ' + สัญญาณ — สัญญาณ financial_offer มี (ข้อ 3: ผลตอบแทนเกินจริง) แต่การขอไม่ชัด; calibration 'กดไลค์ได้เงิน' เป็น danger เพราะมี '+ ย้ายช่องทาง' ซึ่งข้อความนี้ไม่มี → ขั้น 4 ก้ำกึ่ง → caution",
+   "correct_side": "ours",
+   "reason_group": "income_offer_without_contact_channel",
+   "guideline_gap": "ควรระบุว่า 'สมัคร/ลงทะเบียน' นับเป็น 'การขอ' ในขั้น 1 หรือไม่ และเพิ่มกฎ: ข้อเสนอรายได้/งานเกินจริง (วันละหลายพัน ไม่ต้องสัมภาษณ์) ที่มี call-to-action แต่ไม่ระบุช่องทางติดต่อ/ลิงก์/ข้อมูลที่ต้องให้ → caution; ถ้ามีช่องทาง (LINE/inbox/DM/ลิงก์) หรือขอข้อมูล/ค่าสมัคร → danger ตาม calibration 'กดไลค์ได้เงิน + ทัก LINE'",
+   "system_gap": null,
+   "confidence": 3
+  },
+  {
+   "id": "kaggle-tu-60bcbc67",
+   "text": "บัญชีนี้ของแฟนเราเอง ปลอดภัยแน่นอน โอนมาเลย inbox ได้",
+   "kaggle_verdict": "danger",
+   "our_verdict": "caution",
+   "guideline_verdict": "caution",
+   "guideline_rule": "1.1 ขั้น 1: 'โอนมาเลย' = ขอโอน → มีการขอ; ขั้น 2: สัญญาณในรายการ (ขู่, ล่อรางวัล, อ้างหน่วยงาน+ลิงก์, เร่ง+โอน, ห้ามบอกใคร, ทักผิด, เสนอกู้/ลงทุน, URL แปลก) ไม่มีชัดเจน — 'เลย' ไม่ถึงระดับ 'เร่ง' และ ข้อ 3 money_request พูดถึง 'บัญชีที่ไม่ใช่ช่องทางทางการ' ซึ่งไม่ครอบคลุมบัญชีบุคคลที่สามใน P2P; ขั้น 3: ไม่มีบริบทชอบธรรมชัด; ขั้น 4: ก้ำกึ่ง → caution (นิยาม caution: 'มีการขอ แต่สัญญาณหลอกอ่อน/ก้ำกึ่ง')",
+   "correct_side": "ours",
+   "reason_group": "marketplace_third_party_account_ambiguous",
+   "guideline_gap": "ควรเพิ่ม edge case สำหรับซื้อขายออนไลน์: ผู้ขายให้โอนเข้าบัญชีที่ชื่อไม่ตรงกับผู้ขาย (อ้างว่าเป็นของแฟน/ญาติ/เพื่อน) + ยืนยันเองว่า 'ปลอดภัยแน่นอน' โดยไม่มีหลักฐาน + เร่งโอน → เสนอ danger (financial_fraud, รูปแบบบัญชีม้า); ชื่อบัญชีไม่ตรงอย่างเดียวโดยไม่กดดัน → caution; และขยาย ข้อ 3 money_request 'ไม่ใช่ช่องทางทางการ' ให้ครอบคลุม 'บัญชีบุคคลที่สาม' ใน P2P marketplace",
+   "system_gap": null,
+   "confidence": 3
+  }
+ ],
+ "refuteItems": [
+  {
+   "id": "kaggle-tu-bd7646b2",
+   "our_verdict_refuted": false,
+   "strongest_argument_against_ours": "In Thai marketplace slang \"จอง\" is not a free reservation — it means \"โอนมัดจำ\" (pay a deposit to hold the item). So this text is the standard opener of the deposit-and-block scam (ยึดมัดจำ): \"very cheap\" + \"must reserve today\" from an unknown account with no item name, no price, no photo, no shop. Our summary's \"ไม่มีการขอให้โอนเงิน\" under-reads \"จอง\", and the title \"โปรโมชั่นสินค้าธรรมดา\" hands the student a green light one message before the deposit ask arrives. The counter is stronger though: the text itself contains no account number, no amount, no link, no channel — under the guideline's step 1 there is no concrete request, and edge-case 3 (over-the-top promo that asks for nothing → safe) applies. A careful annotator lands on safe, or at most caution with low confidence; not a confident flip. The real fork is the next message, which is separately checkable.",
+   "what_a_real_thai_student_would_experience": "They see a content-free post in a FB/LINE group (no item, no price). Most scroll past. If they bite, they DM and get the real hook: \"โอนมัดจำ 300–500 ก่อนนะ เหลือชิ้นเดียว พร้อมเพย์ 08x-xxx-xxxx\" — personal PromptPay, urgency, no shop identity. That follow-up is where money leaves, and it is a separate message they can (and should) run through the tool again. Trusting \"safe\" on this opener costs them nothing directly; the only harm is psychological — having been told \"ordinary promo\", they are a bit less likely to re-check the deposit request that follows."
+  },
+  {
+   "id": "kaggle-tu-ac731ae5",
+   "our_verdict_refuted": true,
+   "strongest_argument_against_ours": "This is, word for word, the skeleton of the \"ซื้อของไม่ได้ของ\" scam — consistently the single largest category of complaints on ThaiPoliceOnline / AOC 1441. Each clause strips one buyer safeguard: \"ของอยู่ต่างจังหวัด\" = pre-emptive excuse for no meet-up / no COD / no inspection; \"โอนก่อนส่งเท่านั้น\" = transfer to a personal account only, escrow and COD refused; \"ราคาพิเศษถึงวันนี้\" = deadline so you don't look the account name up on Blacklistseller / ฉลาดโกง; \"inbox ได้\" = move into a private channel. There is no item, no price, no shop, no ID — only the pressure structure, so the \"legitimate small seller\" reading has nothing to stand on. Guideline step 2 explicitly lists \"เร่ง+โอน\" as a deceptive signal; request + signal + no legitimizing context = danger. Two compounding defects on our side: (1) the lexicon fired only money_request and missed urgency (\"ถึงวันนี้\") and channel_shift (\"inbox\"), so Claude was told those dimensions were absent and judged on incomplete evidence; (2) our summary tells the student \"ความเสี่ยงนี้ไม่ได้มาจากการโจมตีแบบมิจฉาชีพโดยตรง แต่มาจากรูปแบบการจ่ายเงินเอง\" — that sentence is exactly the reassurance a scammer would want. Counter-argument: real Twitter/IG sellers do post \"โอนก่อนส่ง\" — but they name the product, price and shop; the asymmetry (false alarm = skip a stranger with no product vs. miss = lose the money) favours danger.",
+   "what_a_real_thai_student_would_experience": "A student hunting a concert ticket, used iPad or K-pop merch sees this in a group, reads our \"caution — normal online sale, just a payment-method risk\", DMs, gets a price and a personal PromptPay, transfers 1,500–8,000 baht \"to lock today's price\", receives \"รอส่งพรุ่งนี้นะ\" and is then blocked. Only afterwards do they find the account name on Blacklistseller with a string of earlier reports. Filing with 1441 / asking the bank to freeze rarely recovers small amounts. A \"danger\" verdict with the standard advice — demand ID card + face photo, search the name, insist on COD or escrow, never pay a deadline — is what would have stopped the transfer."
+  },
+  {
+   "id": "kaggle-tu-2803e3fe",
+   "our_verdict_refuted": true,
+   "strongest_argument_against_ours": "Same trio as item 2 — verification-avoidance excuse (\"ต่างจังหวัด\"), transfer-only (\"โอนนก่อนส่งเท่านั้น\"), same-day deadline (\"ราคาพิเศษถึงวันนี้\") — with no item, price or seller identity. Only \"inbox ได้\" is missing, and that was never the load-bearing signal. Our own summary concedes \"เป็นวิธีที่มิจฉาชีพใช้หลอกบ่อยมาก\" and lists the scam tactics, then stops at caution — internally inconsistent with guideline step 2 (request + เร่ง+โอน + no legitimizing context → danger). A careful annotator who marks item 2 danger will not split the pair over the word \"inbox\". Honest caveat: this is the marginally weaker of the two (no channel shift), but the loss path is identical. The lexicon again missed urgency, so Claude saw only money_request.",
+   "what_a_real_thai_student_would_experience": "Same path as item 2: they transfer to a personal account for an item they have been told in advance they cannot see or collect, then silence and a block. To a motivated buyer, \"caution\" reads as \"risky but doable\"; the tactic list in our summary is the kind of thing they read after the money is gone. (The Email platform tag is odd for this text but does not change what the words ask them to do.)"
+  },
+  {
+   "id": "kaggle-tu-8f27b79d",
+   "our_verdict_refuted": true,
+   "strongest_argument_against_ours": "The only \"ask\" is for a payment-RECEIVING identifier so the sender can PAY the recipient for a lecture sheet. A PromptPay number is your phone or ID number and is designed to be handed out — it cannot withdraw money, log in anywhere or register anything. Apply the guideline's own test \"ถ้าทำตามข้อความนี้ ฉันจะเสียอะไร\": nothing. No urgency, threat, link, reward, secrecy or channel shift; \"ค่าชีท\" is a routine TU peer-to-peer transaction and gives clear legitimizing context (step 3 → safe; cf. the guideline's \"เพื่อนขอค่าข้าวคืน\" = safe, and that one even asks the recipient for money — this one offers it). Our listed tactics are read into register (\"ใช้ภาษาเป็นกันเองเพื่อสร้างความไว้วางใจ\" — \"น่อยคับ\" is simply how students type), i.e. the anchoring the project was rebuilt to remove. The real risks to a student seller — a doctored slip (สลิปปลอม), or the overpayment / \"โอนผิด ช่วยโอนคืนบัญชีนี้\" trap that turns their account into a บัญชีม้า — arrive in a LATER message and are not in this text. Cost of caution here is alert fatigue: a sheet seller receives this exact message dozens of times a term; flag every one and the tool is muted by the time the dangerous follow-up lands. Counter: \"unknown sender asking for PII → caution\" — but the PII asked for is the one item a seller must give out to be paid, so that rule would flag every sale ever made.",
+   "what_a_real_thai_student_would_experience": "They posted a sheet in a TU group; a classmate-looking account asks for their PromptPay. They send their phone number, 80–150 baht arrives, they send the PDF. That is the whole, normal transaction. If they never sold a sheet they reply \"ไม่ได้ขายชีทครับ\" and nothing happens. The one scenario with real damage — an unexpectedly large transfer followed by \"โอนเกินไป ช่วยโอนคืนบัญชีนี้\" (money from another victim; refunding it makes them the mule and their account gets frozen under the 2023 decree) — is triggered by a subsequent message, which is what a warning should be saved for. Right guidance under a safe verdict: confirm the credit in your own banking app (not the buyer's slip) before sending the sheet; never \"refund\" an overpayment to a different account — tell them to reverse it via their bank."
+  },
+  {
+   "id": "kaggle-tu-0764939a",
+   "our_verdict_refuted": true,
+   "strongest_argument_against_ours": "Identical to item 4, and \"ทัก DM\" does not qualify as channel_shift in the guideline's sense (luring you to a stranger-controlled LINE/Telegram ID): it is same-platform IG DM, and exchanging a PromptPay number privately rather than in public comments is the safer behaviour, not a red flag. Our summary rests on a factual error that is itself harmful: \"ลงทะเบียนใช้บริการอื่นในนามคุณ\" — a PromptPay number cannot register anything; it is the number a seller prints on the sale post. When the verdict depends on a misconception about what is being requested, a careful annotator discards it. No other signal is present and the legitimizing context (\"ค่าชีท\") is clear → safe. Counter: kaggle's risk score is slightly higher (0.27) because of the DM move, but that still lands on normal, and treating every \"DM me your PromptPay\" as caution would flag every IG sale.",
+   "what_a_real_thai_student_would_experience": "A buyer comments or DMs on their IG sheet post asking for PromptPay. They DM their phone number, get paid, send the sheet. If they trusted our caution and its \"could register services in your name\" claim, they either turn away a normal buyer and lose the sale, or — after the third false alarm — stop trusting the tool, which is exactly when the genuinely dangerous follow-ups (fake slip, overpayment refund mule trap) would need to be caught. Those later messages, not this one, are where the warning belongs."
+  },
+  {
+   "id": "kaggle-tu-3935a832",
+   "our_verdict_refuted": false,
+   "strongest_argument_against_ours": "The recipient is the PAYEE. 'ขอเลขบชพร้อมเพย์หน่อยคับ จะโอนค่าชีท' is the opening line of essentially every sheet sale on TU Marketplace; a seller cannot get paid without giving a PromptPay number, and a PromptPay number is receive-only (nobody can pull money with it). The guideline's 'ask' list targets the recipient paying, handing over OTP/codes, clicking, or moving channel; none applies. Our own summary admits 'ไม่มีสัญญาณเร่งด่วน ขู่ หรือความไม่ปกติอื่นๆ' and the caution rests on RAG similarity to an unrelated 'โปรแกรมหลอกหาข้อมูลการจ่ายเงิน' case plus speculative tactics, i.e. anchoring, not evidence. Flagging 100% of ordinary buyer messages as caution breeds alarm fatigue. Why I still do not flip: the sender is an unknown account, and 'give me your account number' IS the first step of three real seller-side scams (fake transfer slip, 'โอนเกิน ช่วยโอนคืน' overpayment refund, and the 'โอนผิดบัญชี' unwitting-mule setup). Guideline caution clause 'ข้อความที่มิจฉาชีพใช้บ่อยแต่คนจริงก็ใช้' fits exactly; a careful annotator lands on caution with low confidence, not safe.",
+   "what_a_real_thai_student_would_experience": "A student who posted lecture sheets for 30-60 baht gets this from an unknown buyer. Trusting 'caution': they pause, give the PromptPay anyway (there is no other way to be paid), and the useful part of the warning is 'confirm the money actually landed in your banking app before sending the PDF/handing over the sheet' - which is exactly what protects them from the fake-slip and overpayment-refund tricks. Cost of caution: ~30 seconds and a slightly paranoid tool. Trusting 'safe' instead: same PromptPay handed over, but they may ship on a screenshot slip and lose a sheet, or in the rarer overpayment variant refund real money for a transfer that never arrived. Net: caution causes no concrete harm; it is over-explained, not wrong."
+  },
+  {
+   "id": "kaggle-tu-90790b7e",
+   "our_verdict_refuted": false,
+   "strongest_argument_against_ours": "Identical situation to 3935a832 (buyer asks the seller for PromptPay to pay for sheets, plus 'inbox ได้' = 'you can DM me', which in a Facebook group marketplace is the normal way to close a sale, not a channel-shift red flag). Our stated tactics are worse than the verdict: 'ใช้ภาษาไม่เป็นทางการและสั้นๆ ขาดความเป็นมืออาชีพ' penalises the way every Thai student writes, the mirror image of the guideline's own prohibition on judging by politeness; 'ไม่มีการแนะนำตัว' is meaningless for an anonymous marketplace buyer; 'ไม่มีรายละเอียดของงานหรือข้อตกลง' ignores that the ad the seller posted IS the agreement. Every signal we cite is a non-signal, so the verdict is reached by bad reasoning. But the bottom line still matches the guideline: an unknown account asking for your financial identifier is a message scammers (fake slip / โอนเกิน / โอนผิด mule setup) and real buyers both send, which is the definition of caution. Not strong enough to flip to safe.",
+   "what_a_real_thai_student_would_experience": "Seller of sheets sees a LINE message from an unknown buyer. With 'caution' they give the PromptPay number anyway and, if they read the advice, wait for the deposit to show in-app before sending the sheet; if they take the tool's tactics literally ('no self-introduction, unprofessional language') they might ghost a perfectly normal classmate and lose a 40-baht sale, and they will start to see the tool as paranoid. With 'safe' they act identically but without the 'verify the money landed' nudge; the downside is a lost sheet or, rarely, refunding a fake overpayment. No student is materially harmed by trusting caution here; the harm is credibility erosion from the nonsense tactics list, not the label."
+  },
+  {
+   "id": "kaggle-tu-50ddc59e",
+   "our_verdict_refuted": true,
+   "strongest_argument_against_ours": "Our 'danger' is built on a misreading. The summary says 'ข้อความนี้ขอให้คุณโอนเงิน' - false: the sender offers to PAY the recipient ('จะโอนค่าชีท'); the recipient is not asked to transfer anything. It says the message 'สร้างความตื่นตระหนก' - there is no urgency, threat, reward, authority claim, or link. It says 'ชีท ที่ไม่ชัดว่าคืออะไร' - every Thai student knows ชีท = lecture notes. Under the guideline, danger requires an ask AND at least one clear scam signal from section 3 AND no legitimate context; here the only 'signals' are a PromptPay request (payee side) and a LINE ID, which the calibration set treats as caution-level on its own ('เปลี่ยนเบอร์ใหม่' alone = caution; channel shift reaches danger only when paired with 'เสนอรายได้เกินจริง'). Moving to LINE to coordinate a marketplace handover is the norm in Thailand, not a laundering step. A careful annotator flips danger to caution (worst case), and the RAG line 'เคสที่คล้ายกันหลายรายการใช้กลวิธีเดียวกัน' is classic anchoring on unrelated money-request cases.",
+   "what_a_real_thai_student_would_experience": "A student selling sheets gets the most routine buyer message on TU Marketplace and the tool shouts DANGER, tells them the sender is trying to make them transfer money (they are not), and implies they should refuse and report. If they trust it: they block a genuine classmate, lose the sale, maybe post a warning about an innocent buyer. Worse, they learn the tool cannot tell a buyer from a scammer, so two weeks later when the real seller-side attack arrives ('โอนเกินไป 2,000 ช่วยโอนคืนด่วน' with a doctored slip) they no longer consult it. The genuine residual risk (fake slip / overpayment refund after moving to LINE) is real but is exactly caution-level: 'give the PromptPay, but only release the sheet after the balance shows in your own app'."
+  },
+  {
+   "id": "kaggle-tu-33a5df50",
+   "our_verdict_refuted": true,
+   "strongest_argument_against_ours": "This is the precondition of the single most common Thai student scam: unknown seller says 'pay in full first, then I'll send you the tracking number'. Guideline decision procedure: step 1, is the recipient asked to do something? Yes, transfer money (full amount, up front, to a stranger). Step 3, is the legitimate context CLEAR? No: unknown account, no shop identity, no order details, no platform escrow, no tracking number - only a promise of one after payment. That lands on step 4, caution, and the guideline's financial_fraud category explicitly lists 'หลอกซื้อของแล้วไม่ส่ง'. Our summary also contains a factual hallucination that inverts the risk: 'ผู้ส่งข้อความบอกชื่อเลขพัสดุให้อีกด้วย' - no tracking number was given; the promise of one AFTER the transfer is the hook. 'Safe' here also yields an empty tactics list and no advice, so the one protective step (check the account on Blacklistseller / เช็คก่อนโอน, or insist on COD / platform payment) never appears. Yes, honest Thai sellers say the same sentence every day, which is exactly why this is caution, not danger - but never safe. A careful annotator flips.",
+   "what_a_real_thai_student_would_experience": "A student in a Facebook buy-sell group finds a cheap iPad / concert ticket / calculator from an unknown account; the seller replies 'ขอโอนเต็มก่อน เด๋วส่งเลขพัสดุให้'. They paste it into the tool, see SAFE with 'ข้อความขอโอนเงินธรรมดา' and no warnings, and transfer 2,000-8,000 baht of allowance money. Then: a fabricated Kerry/Flash tracking number that never updates, or silence, then the account is blocked. Because the tool said safe they skipped the 20-second habit every Thai student is taught - search the account number on Blacklistseller.com / ฉลาดโอน / เช็คก่อน, ask for COD or pay through the platform - and afterwards they must file at 1441 / thaipoliceonline, where they will learn the mule account was emptied within minutes. 'Caution' would have cost them nothing on an honest seller and saved them here."
+  },
+  {
+   "id": "kaggle-tu-590a29c2",
+   "our_verdict_refuted": true,
+   "strongest_argument_against_ours": "Same sentence as 33a5df50 with a spelling variant, arriving over LINE from an unknown account: a stranger demands full prepayment before any proof of goods or shipping. Under the guideline this is an explicit money ask (step 1) with no clearly legitimate context (step 3 fails: unknown seller, no order/shop identity, tracking number only promised), so step 4 = caution; 'หลอกซื้อของแล้วไม่ส่ง' is a named financial_fraud pattern. Our own summary describes it as 'การสั่งการให้โอนเงิน' - an instruction to transfer - and then labels it safe, which contradicts the design principle that the verdict is driven by 'the ask' (money) rather than by the absence of shouting. The checklist we cite ('no OTP request, no link, no threat') is the danger checklist; passing it means 'not danger', not 'safe'. Empty tactics and no advice mean the student receives zero protective guidance. A careful annotator flips safe to caution.",
+   "what_a_real_thai_student_would_experience": "Student negotiating on LINE with a seller they found in a group; the seller refuses deposit or COD and sends 'ขอโอนเต็มก่อน เด๋วส่งเลขพัสดุให้'. The tool says SAFE, 'ข้อความสั่งการธรรมดา ไม่มีสัญญาณการหลอก', and shows nothing to check. Reassured, they transfer the full price to a personal account. Possible outcomes from real cases: no parcel and a blocked LINE; a fake tracking number; or a box of rubbish for a 'proof of delivery'. Money is gone because Thai bank transfers are instant and the receiving account is a rented mule. Had the verdict been caution the advice 'check the seller's account/PromptPay on Blacklistseller / เช็คก่อน, prefer COD or platform escrow, never full prepay to a personal account you cannot verify' costs an honest transaction nothing and blocks the scam."
+  },
+  {
+   "id": "kaggle-tu-d84e1ee6",
+   "our_verdict_refuted": false,
+   "strongest_argument_against_ours": "10,000 บาท/วัน (~300,000/เดือน) โดย 'ไม่ต้องสัมภาษณ์' ไม่มี reading ที่ชอบธรรมเลย — 'ไม่ต้องสัมภาษณ์' คือ analog ของ 'ไม่ต้องค้ำ/อนุมัติทันที' ที่ guideline ข้อ 3 ระบุเป็นสัญญาณหลอกใน financial_offer และ 'สมัคร' โดยเนื้อแท้คือการขอให้ส่งชื่อ/เลขบัตร/เลขบัญชี ถ้าใช้คำถามของ guideline เอง ('ถ้าทำตามข้อความนี้ ฉันจะเสียอะไร') คำตอบคือเข้า funnel งานกดออเดอร์/บัญชีม้าทันที นักศึกษาที่อ่าน caution เป็น 'อาจจะจริง ลองถามดูก่อน' จะตอบกลับ — และตัวอย่าง calibration บรรทัด 67 ของ guideline ให้ danger กับข้อความโครงสร้างเดียวกัน. ทำไมยังไม่ flip: ข้อความนี้ไม่มีช่องทางให้ทำอะไรเลย (ไม่มีลิงก์/LINE/เบอร์/บัญชี) จึงเป็น opener-without-ask แบบเดียวกับ 'เปลี่ยนเบอร์ใหม่นะ' (บรรทัด 64) ที่ guideline ให้ caution; ตัวอย่างบรรทัด 67 ได้ danger เพราะมี 'ทัก LINE @job888' ซึ่งข้อความนี้ไม่มี; ความเสียหายเกิดที่ข้อความถัดไป ('เติมเงินรับ task', 'แอดไลน์') ซึ่งระบบจะประเมินใหม่; และ summary ของเราระบุชัดว่าเป็น pattern หลอกสมัครงาน ไม่ใช่ caution แบบเงียบๆ",
+   "what_a_real_thai_student_would_experience": "เห็นโพสต์/SMS นี้จากบัญชีแปลกหน้า ระบบบอก 'ระวัง — โครงสร้างงานปลอม ยังไม่ขอเงิน/ข้อมูล' ถ้าหยุดตรงนี้ไม่เสียอะไร ถ้าฝืนตอบกลับ (reply SMS = ยืนยันว่าเบอร์ใช้งานจริง → SMS/โทรหลอกเพิ่ม) จะถูกส่งไป LINE/Telegram 'ฝ่ายบุคคล' ให้ทำ task ทดลอง (กดไลค์/รีวิวสินค้า/กดออเดอร์) ได้เงินจริง 50-150 บาทเพื่อสร้างความเชื่อ แล้วเจอ 'ต้องเติมเงิน 500 → 2,000 → 10,000 เพื่อปลดล็อก task VIP' ถอนไม่ได้เพราะ 'ระบบขัดข้อง ต้องเติมเพิ่ม' เสียเงินค่าเทอม/เงินพ่อแม่ อีก variant คือ 'งาน' นั้นคือรับเปิดบัญชี/ส่งเลขบัญชี+OTP ให้ 'จ่ายเงินเดือน' → กลายเป็นบัญชีม้า โดนอายัดทุกบัญชี+คดีอาญา แต่ทุกขั้นเหล่านี้ต้องมีข้อความใหม่ที่มีการขอชัดเจน ซึ่งควรได้ danger ตอนนั้น"
+  },
+  {
+   "id": "kaggle-tu-66cf8b12",
+   "our_verdict_refuted": false,
+   "strongest_argument_against_ours": "ข้อความเดียวกับ d84e1ee6 (ต่างแค่ตัด 'นน' — augmentation ของ template) ข้อโต้แย้งเหมือนกันทุกประการ: รายได้ 10,000/วัน + ไม่ต้องสัมภาษณ์ + ด่วน คือสูตร job/task scam ครบ ไม่มีนายจ้างจริงคนไหนส่งแบบนี้ 'สมัคร' = ขอข้อมูลส่วนตัวโดยปริยาย และ kaggle risk_score 0.97 (สูงสุดในชุด 5 ข้อความนี้) สะท้อนว่าแม้ rule-based ก็เห็นเป็น scam ชัด. ทำไมยังไม่ flip: ไม่มีช่องทางให้ทำตาม (platform=Web Form ในโน้ต kaggle แต่ตัวข้อความไม่มี URL/LINE/เบอร์) → ตาม decision procedure ข้อ 1 ไม่มี ask ที่ชัด → เข้า bucket ก้ำกึ่ง = caution; ถ้าให้ danger กับข้อความที่ไม่มีการขอเลย จะขัดหลักข้อ 0 ('ไม่มีการขอ แทบไม่มีทางเป็น danger') และเปิดทางให้ระบบ flag โฆษณา 'งานพาร์ทไทม์ วันละ 500 สมัครด่วน' ของร้านจริงเป็น danger; ผลตัดสินของเราสอดคล้องกันทั้ง 5 ข้อความ = reproducible ตามเจตนา",
+   "what_a_real_thai_student_would_experience": "เหมือน d84e1ee6: ระบบเตือนว่าเป็นโครงสร้างงานปลอม ถ้านักศึกษาเชื่อ caution แล้วหยุด ไม่เสียอะไร ถ้าตีความ caution เป็น 'ลองถามดูก่อน' แล้วกรอกฟอร์ม/ทัก จะถูกขอ ชื่อ-เลขบัตร-เลขบัญชี-เบอร์ ตั้งแต่ 'ใบสมัคร' (ข้อมูลไปขายต่อ/ใช้เปิดบัญชีม้า) ตามด้วย funnel เติมเงินรับ task หรือ 'ค่าอบรม/ค่าประกันอุปกรณ์ 1,500 บาท คืนให้หลังทำงาน' ซึ่งไม่มีวันคืน แต่ทุกขั้นเป็นข้อความใหม่ที่มีการขอชัดเจนและควรถูกระบบตัดสิน danger ณ จุดนั้น"
+  },
+  {
+   "id": "kaggle-tu-6a0e2a96",
+   "our_verdict_refuted": true,
+   "strongest_argument_against_ours": "ข้อความนี้ต่างจากอีก 4 ข้อ ตรงที่มี 'inbox ได้' = คำเชิญให้ย้ายเข้า DM ส่วนตัวกับบัญชีแปลกหน้าในกลุ่ม Facebook — นี่คือ 'การขอ' ตาม decision procedure ข้อ 1 (แอดไลน์/ย้ายช่องทาง) และตรงกับ lexicon ของโปรเจคเอง ที่จัด 'ทักมา'/'ทักแชท' เป็น channel_shift (evidence thaicert); 'inbox ได้' ≡ 'ทักมาได้' แค่ lexicon ไม่มีคำนี้ (gap: ควรเพิ่ม inbox/อินบ็อกซ์/ib/dm/ทักได้) เมื่อรวมกับรายได้เกินจริง (financial_offer: 3,000/วัน ไม่ต้องสัมภาษณ์) จึงเป็นสูตรเดียวกับ calibration บรรทัด 67 'งานออนไลน์ กดไลค์ได้เงิน วันละ 500-2,000 สนใจทัก LINE @job888' ที่ guideline ให้ danger — ข้อความนี้จ่ายหนักกว่าตัวอย่างนั้นด้วยซ้ำ. ที่แย่คือ summary ของเราเองระบุแล้วว่า inbox คือ 'การเปิดช่องทางคุยแบบปิด เตรียมสำหรับขั้นตอนถัดไป' แต่ยังให้ caution — ขัดกับ guideline ที่ว่า ask + สัญญาณหลอก ≥1 + ไม่มีบริบทชอบธรรม = danger. 3,000/วันยังเป็นตัวเลขที่ 'พอเชื่อได้' ที่สุดใน 5 ข้อความ ทำให้อันตรายกว่า ไม่ใช่น้อยกว่า ไม่มีนายจ้างจริงรับสมัครผ่าน inbox โดยไม่บอกชื่อบริษัท/ตำแหน่ง/ลักษณะงาน",
+   "what_a_real_thai_student_would_experience": "นักศึกษาเห็นโพสต์ในกลุ่ม 'หางานพาร์ทไทม์ มธ.' ระบบบอกแค่ 'ระวัง' และตัวข้อความบอกวิธีทำต่อไว้ชัด (inbox) → กด inbox ได้ทันทีโดยไม่ต้องหาช่องทางเอง แอดมินตอบเร็ว ส่งรูป 'สลิปรายได้' ของ 'พนักงาน' คนอื่น ให้เพิ่ม LINE/Telegram 'หัวหน้างาน' ทำ task รีวิวสินค้า/กดออเดอร์ 3 รอบแรกได้เงินจริงโอนเข้าบัญชี 100-300 บาท (ระบบเราจะไม่เห็นข้อความเหล่านี้เพราะย้ายไป Telegram แล้ว) จากนั้น 'ออเดอร์รวม' ต้องเติมเงินก่อน 500 → 2,000 → 8,000 → 30,000 พร้อมกลุ่มที่มีสมาชิกปลอมโพสต์ถอนเงินได้ ถอนจริงไม่ได้ 'ยอดผิดพลาด ต้องเติมอีก 20%' นักศึกษาเสียเงินกู้ กยศ./เงินค่าเทอม บางรายถูกชวนให้ 'ส่งเลขบัญชี+ OTP รับเงินเดือน' กลายเป็นบัญชีม้า มีหมายเรียกตามมา — ถ้าระบบให้ danger ตั้งแต่โพสต์นี้ นักศึกษาจะไม่กด inbox ตั้งแต่แรก"
+  },
+  {
+   "id": "kaggle-tu-9df191cf",
+   "our_verdict_refuted": false,
+   "strongest_argument_against_ours": "5,000 บาท/วัน ไม่ต้องสัมภาษณ์ 'สมักด่วน' (สะกดผิดแบบ scam SMS จริง) — ไม่มีนายจ้างจริงจ่ายวันละ 5,000 โดยไม่คัดคน โน้ต kaggle ระบุ platform=IG DM คือมาจากบัญชีแปลกหน้าทัก DM ตรง ซึ่งตัวมันเองเป็นการเปิดช่องทางปิดแล้ว นักศึกษาแค่ตอบกลับก็เข้า funnel ทันที และ 'สมัคร' คือการขอข้อมูลส่วนตัวโดยปริยาย title ของเราเอง 'งานออนไลน์ลำพังไม่ปลอดภัย' ยังบอกว่าไม่ปลอดภัย แต่ verdict กลับไม่ใช่ danger. ทำไมยังไม่ flip: บริบท IG DM อยู่ใน metadata ของ kaggle ไม่ได้อยู่ในตัวข้อความ และโจทย์ให้ประเมินจากข้อความ (ถ้าถือว่ามาจากโพสต์ในกลุ่ม ตัวข้อความไม่มี ask/ช่องทางใดเลย) → ตาม guideline เป็น opener-without-ask = caution เหมือนบรรทัด 64/66; ความเสียหายต้องผ่านข้อความถัดไปที่มีการขอชัด; ให้ danger โดยไม่มี ask จะเป็น precedent ว่า 'ตัวเลขรายได้สูง' อย่างเดียวพอ ซึ่งคือ keyword rule แบบที่ CLAUDE.md ห้าม",
+   "what_a_real_thai_student_would_experience": "ได้ DM/โพสต์นี้ ระบบบอก 'ระวัง โฆษณางานปลอม มักขอเงิน/ข้อมูลหลังติดต่อ' ถ้าหยุด ไม่เสียอะไร ถ้าตอบว่า 'สนใจค่ะ' จะถูกขอชื่อ อายุ เลขบัญชี 'เพื่อทำสัญญา' แล้วให้แอดไลน์ 'ฝ่าย HR' ต่อด้วย task ทดลอง → เติมเงิน หรือ 'ค่าเปิดระบบ 590 บาท' / 'ค่ามัดจำสินค้าตัวอย่าง' ที่อ้างว่าคืนพร้อมค่าจ้าง ไม่เคยได้คืน บล็อกทิ้งเมื่อเริ่มถามหาเงิน ข้อมูลเลขบัญชี/บัตรที่ส่งไปถูกใช้เปิดบัญชีม้าหรือสมัครสินเชื่อออนไลน์ในชื่อนักศึกษา"
+  },
+  {
+   "id": "kaggle-tu-74fa9101",
+   "our_verdict_refuted": false,
+   "strongest_argument_against_ours": "8,000 บาท/วัน ไม่ต้องสัมภาษณ์ สมักด่วน ทาง SMS จากเบอร์ไม่รู้จัก — สูตร task/job scam ที่ บช.สอท. จัดเป็นภัยอันดับต้นของนักศึกษา ไม่มี false-alarm cost เพราะไม่มีข้อความจริงแบบนี้ที่ชอบธรรม; 'ไม่ต้องสัมภาษณ์' = ตัดขั้นตอนคัดกรองเดียวที่งานจริงต้องมี = สัญญาณ financial_offer ตาม guideline ข้อ 3; และการที่ระบบเราให้แค่ caution กับ textbook job scam แล้วให้ danger เฉพาะเมื่อมี LINE ID จะสอนผู้ใช้ว่า caution = 'น่าจะโอเค แค่ระวัง' ทำให้ระดับ caution เสื่อมค่า. ทำไมยังไม่ flip: ตัวข้อความไม่มี ask ที่ทำตามได้ (ไม่มีลิงก์/เบอร์/LINE/บัญชี) → ตาม decision procedure ข้อ 1 ไม่ผ่านไปข้อ 2; guideline ข้อ 0 ระบุชัดว่าข้อความไม่มีการขอ 'แทบไม่มีทางเป็น danger'; ตัวอย่าง danger บรรทัด 67 ต้องมี 'ทัก LINE @…'; summary ของเราตั้งชื่อ pattern ถูกและบอกว่าความเสี่ยงอยู่ขั้นถัดไป ซึ่งขั้นถัดไปเป็นข้อความใหม่ที่ระบบจะเห็นการขอชัดเจน",
+   "what_a_real_thai_student_would_experience": "SMS เข้ามือถือจากเบอร์ 06x/0-2 ไม่รู้จัก ระบบบอก 'ระวัง โครงสร้างเหมือนมิจฉาชีพ ยังไม่ขอเงิน/ข้อมูล' ถ้าลบทิ้ง ไม่เสียอะไร ถ้าตอบกลับ SMS เบอร์จะถูกยืนยันว่าใช้งานจริง → ถูกโทร/ส่ง SMS หลอกเพิ่มหลายเท่า และมิจฉาชีพจะโทรมา 'สัมภาษณ์สั้นๆ' ขอชื่อ-เลขบัตร-เลขบัญชี แล้วส่งลิงก์แอป 'ระบบงาน' (APK นอก store ที่ควบคุมเครื่องได้) หรือพาเข้ากลุ่ม Telegram ทำ task เติมเงิน สุดท้ายเสียเงินหลักหมื่นถึงหลักแสน หรือถูกใช้เป็นบัญชีม้า — แต่ทุกขั้นนั้นคือข้อความ/ลิงก์ใหม่ที่มีการขอชัดเจนซึ่งควรได้ danger เมื่อส่งเข้าระบบ"
+  },
+  {
+   "id": "kaggle-tu-a97bbac9",
+   "our_verdict_refuted": true,
+   "strongest_argument_against_ours": "The project's own ANNOTATION_GUIDELINE.md row 67 labels 'งานออนไลน์ กดไลค์ได้เงิน วันละ 500-2,000 บาท สนใจทัก LINE @job888' as DANGER with the justification 'เสนอรายได้เกินจริง + ย้ายช่องทาง'. This message is the same pattern with a bigger lure (5,000/day = ~150k/month for unnamed work, no interview) and an explicit channel shift ('inbox ได้'). Decision tree: step 1 (is there a request?) = yes, 'inbox ได้' is the 'ย้ายไปคุยช่องทางที่ควบคุมได้' request type; step 2 (deceptive signal?) = yes, financial_offer far beyond any legitimate part-time rate; step 3 (legit context?) = none, unknown account in a group. That lands on danger, not caution. Our system reasoned 'ยังไม่มีการขอโอนเงินหรือข้อมูล' because the lexicon channel_shift dimension has no term for 'inbox'/'DM', so the pattern evidence told Claude 'ไม่พบ: ให้ย้ายช่องทาง' and it treated the ad as request-free. The whole point of a job-scam opener is that the money request never appears in the first message; if our rule only fires when the request is already in the text, this entire class is systematically under-warned. Our own summary admits it is 'รูปแบบที่มิจฉาชีพมักใช้' yet still softens to caution.",
+   "what_a_real_thai_student_would_experience": "A first-year with no income sees the post in a TU group, sees 'caution' ('be careful, may be a scammer') and thinks 'I'll just inbox and ask, I won't send money'. In inbox an admin sends a Google Form asking for ID-card photo, bank book, and LINE ID 'for payroll' (identity theft / SIM+account takeover). Then the work: 'กดออเดอร์/รีวิวสินค้า' – tasks 1-3 pay a real 50-150 baht to build trust, then 'ภารกิจ VIP' requires topping up 500 → 3,000 → 20,000 baht to 'unlock' accumulated earnings shown on a fake dashboard; the student borrows from friends or a student loan to 'get the money out' and loses 5-50k. The alternative funnel is the mule recruitment: 'เปิดบัญชี+ซิม ให้เรา รับ 2,000' – the student becomes a บัญชีม้า and faces criminal liability under พ.ร.ก. ไซเบอร์ 2566 (up to 3 years) plus a frozen bank account when the police trace victims' money. 'Danger' would have said 'do not contact'; 'caution' invited the contact."
+  },
+  {
+   "id": "kaggle-tu-983ae243",
+   "our_verdict_refuted": true,
+   "strongest_argument_against_ours": "Identical structure to the guideline's danger example (row 67) but even more absurd: 8,000 baht/day (~240k/month) for unspecified online work, no interview, urgency, and an explicit channel-shift request 'ทัก DM'. Under the decision procedure this is request present (ย้ายช่องทาง) + unrealistic financial_offer + no legitimizing context → danger. There is no honest reading of this ad: no real employer pays 240k/month to strangers who need no interview, and it comes from an unknown account. Our system again only saw 'urgency + financial_offer' because 'DM'/'ทัก DM' is not in the channel_shift lexicon, so the evidence text told Claude no channel shift was found and Claude concluded the message 'has not asked for anything yet'. Kaggle's platform tag is LINE, which is exactly where these 'แอดมินรับสมัคร' accounts operate.",
+   "what_a_real_thai_student_would_experience": "Student DMs the LINE account, gets a friendly 'พี่แอดมิน' who sends job details: 'งานรีวิวสินค้าใน Shopee/Lazada ทำที่บ้าน'. First payout of 100-200 baht arrives via PromptPay within an hour (real money, to hook). Then the 'ยอดเงินติดอยู่ในระบบ' script: to withdraw 8,000 the student must first deposit 1,500 'ค่าเปิดระบบ', then a 'ภารกิจรวมกลุ่ม' needing 9,900, then 'ภาษี 20%'. Each step is shown on a convincing fake web dashboard; typical TU-age victims lose 10-80k, often borrowed. Or the admin offers 'ไม่ต้องทำงาน แค่ให้ยืมบัญชี 3,000/เดือน' and the student becomes a mule with a police case number. With 'caution' the student reads 'be careful' and proceeds to 'just ask'; with 'danger' plus the system's advice they would not add the account at all."
+  },
+  {
+   "id": "kaggle-tu-2e13f99c",
+   "our_verdict_refuted": true,
+   "strongest_argument_against_ours": "Two problems. (1) The system invented a legitimizing context that is not in the text: the summary calls it 'ข้อความสนทนาธรรมดาระหว่างเพื่อน', but nothing says friend; from an unknown account in a Facebook/LINE group this is the standard marketplace-seller line ('DM me on LINE only, I don't answer in the group'), whose function is to pull the deal out of the group where admins and other members can post 'ระวังคนนี้โกง', and to leave no public trace. Guideline step 3 only allows 'safe' when legitimate context is CLEAR; an annotator cannot know the sender is a friend, so step 3 fails. (2) Guideline step 1 lists 'แอดไลน์/ย้ายช่องทาง' as a request type; 'ทักไลน์' IS that request. With a request present, no clear deception signal, and no knowable legitimate context, step 4 says caution, and row 64 sets the precedent: 'เปลี่ยนเบอร์ใหม่นะ' alone (a common opener real people also use) = caution, not safe. The verdict definition of caution literally reads 'ข้อความที่มิจฉาชีพใช้บ่อยแต่คนจริงก็ใช้'. The lexicon has 'ทักมา', 'ทักแชท', 'แอดไลน์' but not 'ทักไลน์', so zero dimensions matched and Claude defaulted to safe with a fabricated friend story. Counter-argument: 'ทักไลน์' is so ubiquitous among legitimate Thai sellers that flagging it risks alert fatigue, but caution (verify before you act) is precisely the right level for that ambiguity; safe + 'between friends' is the wrong level with a false explanation.",
+   "what_a_real_thai_student_would_experience": "Student posts 'สนใจ' under a cheap iPhone/concert-ticket/textbook listing in a TU ซื้อขาย group; the seller replies only with this line. Student checks it, reads 'safe – ordinary chat between friends', adds LINE. On LINE the seller is warm, sends stock photos, then 'มัดจำ 500 ก่อนนะ คนจองเยอะ' or full payment 3,000-12,000 to a PromptPay number. After transfer: blocked; the group post is deleted so other members never see the pattern; no admin ever saw the deal. When the student searches the account on Blacklistseller/ฉลาดโอน afterwards they find 20 prior reports, which the group would have surfaced had the conversation stayed public. Because the system also called the stranger a 'friend', the student did not think to run the later deposit request through the checker."
+  },
+  {
+   "id": "kaggle-tu-547e76f4",
+   "our_verdict_refuted": false,
+   "strongest_argument_against_ours": "The strongest case for danger: 8,000 baht/day with no interview has no legitimate reading whatsoever, 'สมัครด่วน' is itself a call to action (applying to an anonymous post can only mean DMing the poster and handing over ID/bank details), and the guideline's own danger example (row 67) is a weaker lure. A student is not protected by the semantic distinction that the ask is implicit. However, the guideline's step 1 request list (โอน/จ่าย, ข้อมูล/OTP, ลิงก์/ติดตั้ง, แอดไลน์/ย้ายช่องทาง, โทรกลับ) does not name a channel, there is no 'inbox'/'DM'/LINE here, and row 64 sets the precedent that a well-known scam opener with no concrete ask is caution. Two careful annotators would plausibly split (danger vs caution) and go to an adjudicator; that is not strong enough to flip. Practically, our caution output already states 'ลักษณะของโปรโมชั่นมิจฉาชีพที่พบบ่อย', so a student who trusts it is warned, and the marginal harm of caution versus danger is small. Verdict stands, but I would record it as low-confidence caution and note that it becomes danger the moment any contact channel is added.",
+   "what_a_real_thai_student_would_experience": "The student sees the ad in a group (kaggle tags it as email/mass-blast). With 'caution' and the explanation that this is a common scam promotion, most students would scroll past or, if they reply 'สนใจ', would do so already suspicious. Those who reply get the same funnel as the other job posts: Google Form collecting ID card + bank book, then task/top-up scam (losses typically 5-50k) or mule-account recruitment with criminal exposure under พ.ร.ก. ไซเบอร์ 2566. The difference between caution and danger here is whether the UI says 'be careful' or 'do not contact'; since no contact channel is in the message, the student must actively hunt for one, which is a natural checkpoint where the caution warning does its job."
+  },
+  {
+   "id": "kaggle-tu-60bcbc67",
+   "our_verdict_refuted": true,
+   "strongest_argument_against_ours": "Our system misread the Thai pronoun and softened the verdict on that basis. The summary says the message 'บอกว่าเป็นบัญชีแฟนของผู้ใช้เอง' (the USER's partner), but 'แฟนเรา' in casual Thai chat is the SENDER's first person: 'this account is MY girlfriend's/boyfriend's, totally safe, transfer now, inbox me'. That is the textbook excuse for the number-one marketplace red flag Thai police, สอท. and ThaiCERT warn about: ชื่อบัญชีปลายทางไม่ตรงกับผู้ขาย, explained away as 'บัญชีแฟน/แม่/เพื่อน' – the signature of a rented mule account (บัญชีม้า). Run the guideline tree: step 1 request = 'โอนมาเลย' (money) plus 'inbox ได้' (channel shift), both present. Step 2 deceptive signals: 'เร่ง+โอน' is literally in the step-2 list; unsolicited reassurance 'ปลอดภัยแน่นอน' from a stranger; third-party account justification; channel shift. Step 3 legitimate context: none, unknown account in a group. → danger. Caution ('ต้องตรวจสอบตัวตน') is actively harmful here because the scammer's script already anticipates verification: ask and they send a photoshopped ID card of the 'girlfriend'. The lexicon matched only 'โอน' (missed 'inbox' and has no term for third-party-account excuses like 'บัญชีแฟน/บัญชีเพื่อน'), and the LLM's pronoun error supplied a legitimizing context that does not exist.",
+   "what_a_real_thai_student_would_experience": "Student is buying something in a TU group (tickets, iPhone, a used laptop). The seller's Facebook shows a girl named 'Ploy' but the PromptPay account is 'นาย สมชาย ...'; when the student hesitates, this exact message arrives. The checker says caution, 'verify identity first'; the student asks, the seller sends a photo of an ID card and a screenshot of a 'previous happy customer', student transfers 2,000-15,000 baht. Blocked within minutes. The receiving account is a mule bought for 1,000-3,000 baht; the money is moved out through 2-3 hops before the student finishes filing at thaipoliceonline.go.th, and the bank freeze under พ.ร.ก. 2566 catches an empty account. The account holder turns out to be another student or a villager who sold their book and cannot refund. 'Danger' would have told the student flatly not to transfer to any account whose name does not match the seller; 'caution' told them to do a verification step the scammer had already scripted."
+  }
+ ],
+ "synth": {
+  "summary_th": "จาก 20 เคสที่ label ของเราไม่ตรงกับ Kaggle ผู้ตัดสินตาม guideline ให้ฝั่งเราถูก 9 เคส Kaggle ถูก 10 เคส และผิดทั้งคู่ 1 เคส — แปลว่า keyword-rule ของ Kaggle ไม่ได้แย่กว่าระบบเราอย่างเป็นระบบ และเคสที่เราแพ้ส่วนใหญ่เป็นข้อบกพร่องของระบบเอง ไม่ใช่ของ guideline หรือของ Kaggle. 20 เคสนี้มาจาก template ที่ augment กันเพียง 7 แบบ (ชุด \"งานออนไลน์\" 8 เคส, ชุด \"ขอพร้อมเพย์ค่าชีท\" 5 เคส) จึงควรรายงานใน thesis เป็น 7 กรณี ไม่ใช่ 20 จุดข้อมูลอิสระ. สาเหตุที่เราผิดแบ่งเป็น 3 กลุ่มชัด: (1) lexicon ไม่มีคำ channel_shift ที่นักศึกษาใช้จริง (inbox, DM, ทักไลน์) และไม่มี regex รายได้ต่อวัน ทำให้หลักฐานบอก Claude ว่า \"ไม่พบการย้ายช่องทาง\" และ should_use_rag ปิด RAG ไปด้วย Claude จึงตัดสินต่ำไป 1 ระดับใน 4 เคส; (2) ระบบไม่แยกทิศทางเงิน — ผู้ซื้อขอเลขพร้อมเพย์ของผู้ขายเพื่อ *จ่ายให้* ถูกอ่านเป็นการขอข้อมูล/ขอเงิน จึงเตือนเกินใน 5 เคส และ 1 เคส Claude อ่านกลับด้านจนให้ danger; (3) prompt บรรทัด \"safe ไม่ต้องมีหลักฐานยืนยัน\" over-correct จน \"ขอโอนเต็มก่อน เดี๋ยวส่งเลขพัสดุ\" จากผู้ขายไม่รู้จักได้ safe ทั้งที่ guideline §1.1 ขั้น 3-4 ให้ caution. ฝั่งที่เราถูก 6 ใน 9 เคสเป็นกรณี Kaggle over-flag ข้อความที่ไม่มีการขอ (urgency เชิงโปรโมชั่น, opener งานออนไลน์ที่ไม่มีช่องทางติดต่อ) ซึ่งสนับสนุนหลัก \"ตัดสินจากการขอ ไม่ใช่คำ\" แต่ skeptic ชี้ว่าเป็นชัยชนะแบบ low-confidence และเผยความขัดแย้งภายใน guideline เอง (§1.1 ขั้น 1 บอก ไม่มีการขอ→safe แต่ §1.2/§7 ให้ opener→caution). ประเด็นเชิงระบบที่สำคัญที่สุดคือกลไก \"รายงานมิติที่ไม่พบ\" ที่ออกแบบมากัน anchoring ไปทาง danger กำลังกลายเป็น anchoring ไปทาง safe — ต้องแก้ทั้ง lexicon และเพิ่มบรรทัดใน prompt ว่า \"ไม่พบคำสัญญาณ ≠ ไม่มีการขอ\". มี 5 เคสที่ judge กับ skeptic เห็นต่างและต้องให้คน 2 คนตัดสินตาม protocol §10.4 (โอนก่อนส่ง+ของอยู่ต่างจังหวัด 2, บัญชีแฟน 1, ขอพร้อมเพย์จากคนไม่รู้จัก 2) โดยสังเกตว่า skeptic เองตัดสิน 4 ข้อความพร้อมเพย์ที่เกือบเหมือนกันไม่สอดคล้องกัน (refute 2, ไม่ refute 2) ซึ่งเป็นหลักฐานตรงว่า guideline ต้องมีกฎเรื่องทิศทางเงินอย่างชัดเจน. ย้ำว่า judge และ skeptic เป็น LLM ทั้งคู่ ผลนี้ใช้ได้เป็น stress test ของ guideline และ error analysis ของระบบ ไม่ใช่ ground truth — แถว calibration ใหม่ทุกแถวต้องผ่าน annotator มนุษย์ก่อน bump guideline เป็น v1.1 และห้ามนับผลนี้เป็น label ของ tier A/S.",
+  "tally": {
+   "ours_correct": 9,
+   "kaggle_correct": 10,
+   "neither": 1,
+   "refuted_by_skeptic_but_judge_says_ours": 3
+  },
+  "reason_taxonomy": [
+   {
+    "group": "promo_urgency_no_request",
+    "count": 1,
+    "example_ids": [
+     "kaggle-tu-bd7646b2"
+    ],
+    "explanation_th": "Kaggle ให้ caution เพราะมีคำเร่ง (\"ต้องจองภายในวันนี้\") ทั้งที่ไม่มีการขอเงิน/ข้อมูล/ลิงก์/ช่องทาง — เราให้ safe ตรงกับ §1.2 flash sale และ §7 #3; judge+skeptic เห็นตรงกัน (confidence 5) แต่ skeptic เตือนว่า \"จอง\" ในตลาดออนไลน์ไทยมักหมายถึงโอนมัดจำ ความเสี่ยงจริงอยู่ที่ข้อความถัดไป"
+   },
+   {
+    "group": "marketplace_pay_before_ship_plus_promo_urgency",
+    "count": 2,
+    "example_ids": [
+     "kaggle-tu-ac731ae5",
+     "kaggle-tu-2803e3fe"
+    ],
+    "explanation_th": "\"ของอยู่ต่างจังหวัด โอนก่อนส่งเท่านั้น ราคาพิเศษถึงวันนี้ (inbox ได้)\" — เราให้ caution, Kaggle ให้ danger; judge เห็นด้วยกับเรา (urgency เป็นเชิงโปรโมชั่นตาม §3 ไม่ใช่ \"เร่ง+โอน\") แต่ skeptic refute ว่าเป็นโครง \"ซื้อของไม่ได้ของ\" ครบสูตร (ตัดทุกทางตรวจสอบ+โอนบัญชีส่วนตัว+เส้นตาย+ย้ายช่องทาง โดยไม่มีสินค้า/ราคา/ร้าน) และ lexicon พลาด urgency+channel_shift; ต้องให้คนตัดสิน"
+   },
+   {
+    "group": "marketplace_pay_first_unknown_seller_we_said_safe",
+    "count": 2,
+    "example_ids": [
+     "kaggle-tu-33a5df50",
+     "kaggle-tu-590a29c2"
+    ],
+    "explanation_th": "\"ขอโอนเต็มก่อน เดี๋ยวส่งเลขพัสดุให้\" — เราให้ safe, Kaggle ให้ caution; judge+skeptic เห็นตรงกันว่าเราผิด: มีการขอเงินจากคนที่ตรวจสอบไม่ได้ และบริบทชอบธรรมไม่ชัด → §1.1 ขั้น 4 caution + financial_fraud (\"หลอกซื้อของแล้วไม่ส่ง\"); สาเหตุคือ prompt บรรทัด \"safe ไม่ต้องมีหลักฐาน\" over-correct และ lexicon ไม่มี \"โอนก่อน/โอนเต็ม\" ทำให้ Claude เรียกว่า \"ธุรกรรมธรรมดา\" และ hallucinate ว่ามีเลขพัสดุให้แล้ว"
+   },
+   {
+    "group": "payment_direction_misread_recipient_is_payee",
+    "count": 5,
+    "example_ids": [
+     "kaggle-tu-8f27b79d",
+     "kaggle-tu-0764939a",
+     "kaggle-tu-3935a832",
+     "kaggle-tu-90790b7e",
+     "kaggle-tu-50ddc59e"
+    ],
+    "explanation_th": "\"ขอเลขบชพร้อมเพย์หน่อย จะโอนค่าชีท\" — ผู้ส่งจะโอน *ให้* ผู้ใช้ (ผู้ใช้เป็นฝ่ายรับเงิน) แต่ระบบอ่านเป็นการขอข้อมูลส่วนตัว/ขอเงิน ให้ caution 4 เคส และเคสที่มี LINE ID ให้ danger โดย Claude เขียนกลับด้านว่า \"ขอให้คุณโอนเงิน\"; judge ให้ safe ตาม §0 \"ทำตามแล้วเสียอะไร\" (ไม่เสีย) 4 เคส และ caution สำหรับเคส LINE ID; skeptic แตกเป็น 2 ฝั่ง (refute 3, คง caution 2 เพราะผู้ส่งไม่รู้จัก = โอกาสสลิปปลอม/โอนเกิน) — root cause: lexicon money_request/credential ไม่แยกทิศทาง, prompt ไม่บังคับให้ระบุว่าใครจ่ายใคร, และ Claude ใช้ \"ไม่แนะนำตัว/ภาษาไม่เป็นทางการ\" เป็นสัญญาณหลอก"
+   },
+   {
+    "group": "income_offer_opener_no_contact_channel",
+    "count": 5,
+    "example_ids": [
+     "kaggle-tu-d84e1ee6",
+     "kaggle-tu-66cf8b12",
+     "kaggle-tu-9df191cf",
+     "kaggle-tu-74fa9101",
+     "kaggle-tu-547e76f4"
+    ],
+    "explanation_th": "\"งานออนไลน์ได้เงินวันละ N,000 ไม่ต้องสัมภาษณ์ สมัครด่วน\" โดยไม่มีลิงก์/LINE/inbox/เบอร์ — เราให้ caution, Kaggle ให้ danger; judge+skeptic เห็นตรงกันว่า caution ถูกตาม guideline (opener ที่ยังไม่มีการขอ/ช่องทาง เทียบ §1.2 แถว \"เปลี่ยนเบอร์ใหม่\"; แถว @job888 ได้ danger เพราะมี \"+ ย้ายช่องทาง\") แต่ทั้งคู่ confidence 3 และชี้ว่า §1.1 ขั้น 1 (ไม่มีการขอ→safe) ขัดกับ §1.2/§7 (opener→caution) ต้องแก้ guideline ให้ชัด"
+   },
+   {
+    "group": "lexicon_channel_shift_gap_inbox_dm_line",
+    "count": 4,
+    "example_ids": [
+     "kaggle-tu-6a0e2a96",
+     "kaggle-tu-a97bbac9",
+     "kaggle-tu-983ae243",
+     "kaggle-tu-2e13f99c"
+    ],
+    "explanation_th": "lexicon channel_shift มีแค่ ทักมา/ทักแชท/แอดไลน์ ไม่มี inbox/DM/ทัก DM/ทักไลน์ → pattern evidence รายงาน \"ไม่พบ: ให้ย้ายช่องทาง\" และ should_use_rag ปิด RAG → Claude สรุปว่า \"ยังไม่มีการขอ\" แล้วตัดสินต่ำไป 1 ระดับ: 3 เคส \"งานออนไลน์ + inbox ได้/ทัก DM\" ควร danger (รายได้เกินจริง + ย้ายช่องทาง = สูตร §1.2 แถว @job888) เราให้ caution; 1 เคส \"ทักไลน์อย่างเดียวคับ\" ควร caution (ย้ายช่องทางอย่างเดียว เทียบ §7 #4) เราให้ safe โดย Claude อ่านประโยคคำสั่งเป็นการเล่าเรื่องเพื่อน; judge+skeptic เห็นตรงกันทั้ง 4"
+   },
+   {
+    "group": "third_party_account_pronoun_misread",
+    "count": 1,
+    "example_ids": [
+     "kaggle-tu-60bcbc67"
+    ],
+    "explanation_th": "\"บัญชีนี้ของแฟนเราเอง ปลอดภัยแน่นอน โอนมาเลย inbox ได้\" — เราให้ caution, Kaggle ให้ danger; judge เห็นด้วยกับเรา (สัญญาณในรายการขั้น 2 ไม่ชัด) แต่ skeptic refute ว่า Claude อ่านสรรพนามผิด (\"แฟนเรา\" = แฟนของผู้ส่ง ไม่ใช่ของผู้ใช้) จึงสร้างบริบทชอบธรรมที่ไม่มีจริง และนี่คือ pattern บัญชีม้า (ชื่อบัญชีไม่ตรงผู้ขาย + ยืนยันเองว่าปลอดภัย + เร่งโอน + ย้ายช่องทาง) ที่ตำรวจ/ThaiCERT เตือน; lexicon ไม่มีคำ \"บัญชีแฟน/บัญชีเพื่อน\" และพลาด inbox; ต้องให้คนตัดสิน"
+   }
+  ],
+  "guideline_edits": [
+   "§1.1 ขั้น 1: เพิ่มบรรทัดใต้ \"→ ไม่มีเลย → safe\" ว่า \"ยกเว้น opener ของ scam pattern ที่รู้จัก (เปลี่ยนเบอร์ใหม่, ทักผิด/อยากรู้จัก, เสนองาน/รายได้/ผลตอบแทนเกินจริง) ที่ยังไม่มีการขอหรือช่องทาง → caution\" เพื่อแก้ความขัดแย้งกับ §1.2 แถว 64/66 และ §7 #4 (จาก d84e1ee6, 66cf8b12, 9df191cf, 74fa9101, 547e76f4)",
+   "§1.1 ขั้น 1: ระบุว่า call-to-action ลอย ๆ (\"สมัคร/ลงทะเบียน/จอง\") ที่ไม่ระบุช่องทาง ลิงก์ เบอร์ บัญชี หรือข้อมูลที่ต้องให้ ไม่นับเป็น \"การขอ\" (จาก 547e76f4, bd7646b2)",
+   "§1.1 ขั้น 2: นิยาม \"เร่ง+โอน\" ให้ชัดว่าหมายถึงเร่งให้โอนทันที/ภายในเวลาสั้น (\"โอนตอนนี้เลย\", \"ภายใน 1 ชม.\") ไม่รวม urgency เชิงโปรโมชั่นตาม §3 (\"ราคาพิเศษถึงวันนี้\") — ข้อนี้ยังโต้แย้งอยู่ (skeptic เห็นว่า ถึงวันนี้+โอนก่อนส่ง ควรนับ) ให้ adjudicator ตัดสินพร้อม ac731ae5/2803e3fe ก่อนเขียนลง",
+   "§1.2 calibration: เพิ่ม 2 แถวชุด \"งานออนไลน์\": (ก) \"งานออนไลน์ได้เงินวันละ 10,000 ไม่ต้องสัมภาษณ์ สมัครด่วน\" → caution (opener ไม่มีช่องทาง); (ข) ข้อความเดียวกัน + \"inbox ได้\" หรือ \"ทัก DM\" → danger + investment_scam (รายได้เกินจริง + ย้ายช่องทาง = สูตรเดียวกับแถว @job888) (จาก 6a0e2a96, a97bbac9, 983ae243)",
+   "§1.2 calibration: เพิ่มแถว \"ขอเลขบชพร้อมเพย์หน่อยคับ จะโอนค่าชีท\" → safe (ผู้รับเป็นฝ่ายได้เงิน ทำตามแล้วไม่เสียอะไรตาม §0) และแถวเดียวกัน + \"line: @id\" → caution (ID ภายนอกจากคนไม่รู้จัก) — verdict safe ของแถวแรกยังโต้แย้ง (skeptic คง caution สำหรับ 3935a832/90790b7e) ให้ adjudicator ยืนยันก่อน",
+   "§1.2 calibration: เพิ่มแถว \"ขอโอนเต็มก่อน เดี๋ยวส่งเลขพัสดุให้\" (ผู้ขายไม่รู้จัก) → caution + financial_fraud; safe เฉพาะเมื่อบริบทระบุร้าน/คนรู้จักที่ตรวจสอบได้ (จาก 33a5df50, 590a29c2 — judge และ skeptic เห็นตรงกัน)",
+   "§1.2 calibration: เพิ่มแถว \"ของอยู่ต่างจังหวัด โอนก่อนส่งเท่านั้น ราคาพิเศษถึงวันนี้ inbox ได้\" โดยเว้น verdict ให้ adjudicator (judge: caution ตามนิยาม \"มิจฉาชีพใช้บ่อยแต่คนจริงก็ใช้\"; skeptic: danger เพราะตัดทุกทางตรวจสอบ+โอนบัญชีส่วนตัว+เส้นตาย+ย้ายช่องทาง โดยไม่มีสินค้า/ราคา/ร้าน) และระบุเงื่อนไขยกเป็น danger (ชื่อบัญชีไม่ตรงผู้ขาย, ปฏิเสธ COD/นัดรับ, ราคาต่ำผิดปกติ+มัดจำ)",
+   "§3 แถว credential_request และ money_request คอลัมน์ \"ไม่บ่งชี้เมื่อ\": เพิ่ม \"ขอเลขบัญชี/พร้อมเพย์ *ของผู้รับ* เพื่อโอนเงิน *ให้* ผู้รับ (ผู้ซื้อถามผู้ขาย) — ผู้รับไม่เสียอะไรตาม §0\" และเพิ่มหมายเหตุ escalation: ตามมาด้วยสลิปปลอม / \"โอนเกิน ช่วยโอนคืน\" / ขอ OTP \"เพื่อยืนยันรับเงิน\" / ลิงก์รับเงิน → caution/danger (จาก 8f27b79d, 0764939a, 3935a832, 90790b7e)",
+   "§3 แถว channel_shift: แยก 2 ระดับ — (ก) \"inbox/DM/ทักแชท\" บนแพลตฟอร์มเดิม = การขอในขั้น 1 แต่ไม่ใช่สัญญาณหลอกขั้น 2 โดยลำพัง และไม่ลบล้างบริบทชอบธรรม (ผู้ซื้อจะจ่ายให้); (ข) \"แอดไลน์/ทักไลน์/Telegram ID\" ภายนอกจากคนไม่รู้จัก = การขอที่ทำให้บริบทชอบธรรมไม่ชัด → อย่างน้อย caution เทียบ §7 #4 (จาก 6a0e2a96, a97bbac9, 983ae243, 2e13f99c, 0764939a, 50ddc59e)",
+   "§3 แถว money_request: ขยาย \"บัญชีที่ไม่ใช่ช่องทางทางการ\" ให้รวม \"บัญชีบุคคลที่สามใน P2P (อ้างว่าเป็นของแฟน/ญาติ/เพื่อน ชื่อไม่ตรงผู้ขาย)\" (จาก 60bcbc67)",
+   "§7 edge case ใหม่: \"ทักไลน์อย่างเดียว / inbox ได้\" ที่ให้ย้ายช่องทางส่วนตัวโดยไม่มี ID แปลกและยังไม่ขอเงิน/ข้อมูล → caution (เทียบ #4) และระบุว่าประโยคที่สั่งผู้รับ (\"ทักไลน์อย่างเดียวคับ\") = การขอ ไม่ใช่การเล่าเรื่องบุคคลที่สาม (จาก 2e13f99c)",
+   "§7 edge case ใหม่: ผู้ขายให้โอนเข้าบัญชีชื่อไม่ตรง + อ้าง \"บัญชีแฟน/ญาติ ปลอดภัยแน่นอน\" + \"โอนมาเลย\" — เว้น verdict ให้ adjudicator (judge: caution; skeptic: danger รูปแบบบัญชีม้า) แต่ระบุไว้ก่อนว่า ชื่อบัญชีไม่ตรงอย่างเดียวโดยไม่กดดัน → caution (จาก 60bcbc67)"
+  ],
+  "prompt_or_lexicon_edits": [
+   "app/services/ai_service.py SYSTEM_PROMPT บรรทัด 46 (\"ตัดสินจากการขอ\"): บังคับให้ Claude ระบุก่อนตัดสินว่า \"ใครเป็นฝ่ายจ่าย/ให้\" — ถ้าผู้ส่งจะโอน *ให้* ผู้ใช้ และขอแค่เลขบัญชี/พร้อมเพย์สำหรับรับเงิน ไม่นับเป็นการขอเงินหรือขอข้อมูลลับ (พร้อมเพย์รับเงินได้อย่างเดียว ถอนเงิน/สมัครบริการอะไรไม่ได้) และให้ตอบคำถาม §0 \"ถ้าผู้ใช้ทำตาม จะเสียอะไร\" ใน summary เสมอ (จาก 8f27b79d, 0764939a, 3935a832, 90790b7e, 50ddc59e)",
+   "SYSTEM_PROMPT บรรทัด 48 (\"safe ไม่ต้องมีหลักฐานยืนยัน\"): เพิ่มเงื่อนไขต่อท้าย — แต่ถ้ามีการขอให้ผู้ใช้โอนเงินให้คนที่ตรวจสอบตัวตนไม่ได้ (ผู้ขายไม่รู้จัก ขอโอนก่อน/โอนเต็มก่อนส่ง) และไม่มีบริบทชอบธรรมชัดเจน → อย่างน้อย caution แม้ไม่มีสัญญาณหลอกอื่น (guideline §1.1 ขั้น 3-4) (จาก 33a5df50, 590a29c2)",
+   "SYSTEM_PROMPT Hard Constraints (บรรทัด 39-48): เพิ่ม 2 กฎ calibration — \"เสนอรายได้/งาน/ผลตอบแทนเกินจริง + เชิญคุยช่องทางส่วนตัว (LINE/Telegram/inbox/DM) = danger\" และ \"ย้ายช่องทางมิติเดียว โดยไม่มีการขอเงิน/ข้อมูลและไม่มีสัญญาณอื่น → ไม่เกิน caution\" (จาก a97bbac9, 983ae243, 6a0e2a96, 50ddc59e)",
+   "SYSTEM_PROMPT บรรทัด 45 (\"คำสัญญาณที่พบคือข้อเท็จจริง\"): เพิ่มว่า \"ไม่พบคำสัญญาณ\" ในหลักฐาน ≠ \"ไม่มีการขอ\" — Claude ต้องอ่านข้อความเองว่ามีคำสั่งให้ผู้ใช้ทำอะไร (\"ทักไลน์อย่างเดียวคับ\" คือสั่งผู้ใช้ ไม่ใช่เล่าเรื่องคนอื่น) และสรรพนาม \"เรา/ผม/หนู\" ในแชทหมายถึงผู้ส่ง ไม่ใช่ผู้ใช้ (จาก 2e13f99c, 60bcbc67)",
+   "SYSTEM_PROMPT: เพิ่มข้อห้าม — ห้ามใช้ \"ไม่แนะนำตัว\", \"ภาษาไม่เป็นทางการ/สั้น\", \"ไม่มีเอกสาร/ไม่มีรายละเอียด\" เป็นเหตุผลใน tactics หรือใช้ยกระดับ verdict (คู่กับข้อห้าม \"ห้าม safe เพราะภาษาสุภาพ\" ของ guideline) และห้ามอ้างผลกระทบที่ไม่เป็นจริง เช่น \"เลขพร้อมเพย์ถูกใช้ลงทะเบียนบริการในนามคุณ\" (จาก 90790b7e, 0764939a)",
+   "SYSTEM_PROMPT บรรทัด 26 (กฎ RAG): ขยายว่า เคสคล้ายจะนับเป็นหลักฐานสนับสนุนได้ต่อเมื่อ \"ชนิดการขอและทิศทางเงินตรงกัน\" — เคส \"ถูกขอให้โอนเงินไปบัญชีคนแปลกหน้า\" ไม่ใช่ analog ของ \"ผู้ซื้อขอเลขบัญชีเพื่อจ่ายให้ผู้ใช้\" (จาก 3935a832, 50ddc59e)",
+   "data/lexicon/scam_lexicon.yaml มิติ channel_shift: เพิ่ม terms inbox, อินบ็อกซ์, ib, DM, ทัก DM, ทักส่วนตัว, ทักไลน์, ทัก LINE, ไลน์มา (evidence: kaggle-tu corpus / domain) — newmm ตัด \"ทักไลน์\" เป็น ทัก+ไลน์ ซึ่ง scan_text ตัด term แบบเดียวกันจึง match ได้; ผลข้างเคียงที่ต้องการคือ should_use_rag (qa_engine.py:328) จะเปิด RAG ให้ข้อความกลุ่มนี้ (จาก 6a0e2a96, a97bbac9, 983ae243, 2e13f99c)",
+   "scam_lexicon.yaml มิติ money_request: เพิ่ม terms โอนก่อน, โอนก่อนส่ง, โอนเต็ม, จ่ายเต็ม, เต็มจำนวน, โอนมาเลย และเพิ่ม note ว่ามิตินี้ไม่ระบุทิศทางเงิน — ให้ pattern_service.format_evidence() พิมพ์กำกับท้ายมิติว่า \"(คำว่า โอน/พร้อมเพย์ ไม่บอกว่าใครจ่ายใคร — ดูจากข้อความ)\" (จาก 33a5df50, 590a29c2, 8f27b79d)",
+   "scam_lexicon.yaml มิติ money_request: เพิ่ม terms บัญชีบุคคลที่สาม บัญชีแฟน, บัญชีเพื่อน, บัญชีญาติ, บัญชีแม่, ชื่อบัญชีไม่ตรง (evidence: police9/thaicert คำเตือนบัญชีม้า) (จาก 60bcbc67)",
+   "scam_lexicon.yaml มิติ financial_offer: เพิ่ม regex daily_income: 'วันละ\\s*\\d[\\d,]*' และ terms ไม่ต้องสัมภาษณ์, ไม่ต้องมีประสบการณ์, รับสมัครด่วน (evidence: kaggle-tu / thaicert job-scam) (จาก a97bbac9, 983ae243)",
+   "scam_lexicon.yaml มิติ urgency: เพิ่ม terms ถึงวันนี้, วันนี้วันเดียว, ราคาพิเศษถึง — skeptic ชี้ว่า evidence รายงาน urgency \"ไม่พบ\" ทั้งที่ข้อความมี \"ราคาพิเศษถึงวันนี้\" (จาก ac731ae5, 2803e3fe)"
+  ],
+  "items_needing_human": [
+   "kaggle-tu-ac731ae5",
+   "kaggle-tu-2803e3fe",
+   "kaggle-tu-60bcbc67",
+   "kaggle-tu-3935a832",
+   "kaggle-tu-90790b7e"
+  ]
+ }
+}

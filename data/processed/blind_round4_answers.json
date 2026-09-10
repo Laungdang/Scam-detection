@@ -1,0 +1,925 @@
+{
+ "A1": {
+  "C01": {
+   "id": "C01",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C02": {
+   "id": "C02",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C03": {
+   "id": "C03",
+   "verdict": "caution",
+   "needs_info": [
+    "seller_identity",
+    "platform_policy",
+    "seller_reputation",
+    "account_name_match"
+   ],
+   "notes": ""
+  },
+  "C04": {
+   "id": "C04",
+   "verdict": "caution",
+   "needs_info": [
+    "verify_with_claimed_person",
+    "seller_identity",
+    "account_name_match"
+   ],
+   "notes": ""
+  },
+  "C06": {
+   "id": "C06",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C07": {
+   "id": "C07",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C08": {
+   "id": "C08",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C09": {
+   "id": "C09",
+   "verdict": "caution",
+   "needs_info": [
+    "url"
+   ],
+   "notes": ""
+  },
+  "C10": {
+   "id": "C10",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C11": {
+   "id": "C11",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C12": {
+   "id": "C12",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C13": {
+   "id": "C13",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C14": {
+   "id": "C14",
+   "verdict": "caution",
+   "needs_info": [
+    "verify_with_claimed_person",
+    "seller_identity",
+    "account_name_match"
+   ],
+   "notes": ""
+  },
+  "C15": {
+   "id": "C15",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C16": {
+   "id": "C16",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C17": {
+   "id": "C17",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C18": {
+   "id": "C18",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C19": {
+   "id": "C19",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C20": {
+   "id": "C20",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C21": {
+   "id": "C21",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C22": {
+   "id": "C22",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C23": {
+   "id": "C23",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C24": {
+   "id": "C24",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C25": {
+   "id": "C25",
+   "verdict": "caution",
+   "needs_info": [
+    "seller_identity",
+    "platform_policy"
+   ],
+   "notes": ""
+  },
+  "C26": {
+   "id": "C26",
+   "verdict": "caution",
+   "needs_info": [
+    "seller_identity",
+    "platform_policy",
+    "seller_reputation",
+    "account_name_match"
+   ],
+   "notes": ""
+  },
+  "C27": {
+   "id": "C27",
+   "verdict": "caution",
+   "needs_info": [
+    "seller_identity",
+    "seller_reputation",
+    "account_name_match"
+   ],
+   "notes": ""
+  },
+  "C28": {
+   "id": "C28",
+   "verdict": "caution",
+   "needs_info": [
+    "sender_identity",
+    "seller_identity"
+   ],
+   "notes": "อยู่ที่บริบทนั้นๆ บางอย่างก็มีเหตุการณ์นี้เกิดขึ้นจริงๆอย่างเช่นการจองห้องคอนโด"
+  },
+  "C29": {
+   "id": "C29",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C30": {
+   "id": "C30",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C31": {
+   "id": "C31",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C32": {
+   "id": "C32",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C33": {
+   "id": "C33",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C34": {
+   "id": "C34",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C35": {
+   "id": "C35",
+   "verdict": "caution",
+   "needs_info": [
+    "verify_with_claimed_person"
+   ],
+   "notes": ""
+  },
+  "C36": {
+   "id": "C36",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C37": {
+   "id": "C37",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C38": {
+   "id": "C38",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C38b": {
+   "id": "C38b",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C39": {
+   "id": "C39",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  }
+ },
+ "A2": {
+  "C01": {
+   "id": "C01",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C02": {
+   "id": "C02",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C03": {
+   "id": "C03",
+   "verdict": "caution",
+   "needs_info": [
+    "sender_identity",
+    "seller_identity",
+    "platform_policy",
+    "seller_reputation"
+   ],
+   "notes": ""
+  },
+  "C04": {
+   "id": "C04",
+   "verdict": "caution",
+   "needs_info": [
+    "sender_identity",
+    "verify_with_claimed_person"
+   ],
+   "notes": "ขอใบแจ้งหนี้เพิ่ม"
+  },
+  "C06": {
+   "id": "C06",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C07": {
+   "id": "C07",
+   "verdict": "caution",
+   "needs_info": [
+    "sender_identity"
+   ],
+   "notes": "เช็คก่อนว่ามีเงินหายจากบัญชีมั้ย อย่าเพิ่งกดอะไร"
+  },
+  "C08": {
+   "id": "C08",
+   "verdict": "caution",
+   "needs_info": [
+    "sender_identity"
+   ],
+   "notes": "โทรเช็คที่ธนาคาร ไม่กด link"
+  },
+  "C09": {
+   "id": "C09",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C10": {
+   "id": "C10",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C11": {
+   "id": "C11",
+   "verdict": "caution",
+   "needs_info": [
+    "sender_identity",
+    "platform_policy",
+    "seller_reputation"
+   ],
+   "notes": ""
+  },
+  "C12": {
+   "id": "C12",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C13": {
+   "id": "C13",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C14": {
+   "id": "C14",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C15": {
+   "id": "C15",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C16": {
+   "id": "C16",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C17": {
+   "id": "C17",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C18": {
+   "id": "C18",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C19": {
+   "id": "C19",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C20": {
+   "id": "C20",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C21": {
+   "id": "C21",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C22": {
+   "id": "C22",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C23": {
+   "id": "C23",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C24": {
+   "id": "C24",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C25": {
+   "id": "C25",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C26": {
+   "id": "C26",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C27": {
+   "id": "C27",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C28": {
+   "id": "C28",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C29": {
+   "id": "C29",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C30": {
+   "id": "C30",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C31": {
+   "id": "C31",
+   "verdict": "caution",
+   "needs_info": [
+    "sender_identity"
+   ],
+   "notes": "ยังไม่ต้องทัก ถ้าเค้ารู้จักเรา เค้าต้องทักมา"
+  },
+  "C32": {
+   "id": "C32",
+   "verdict": "caution",
+   "needs_info": [
+    "sender_identity"
+   ],
+   "notes": "ยังไม่ต้องทัก ถ้าเค้ารู้จักเรา เค้าต้องทักมา"
+  },
+  "C33": {
+   "id": "C33",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C34": {
+   "id": "C34",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C35": {
+   "id": "C35",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C36": {
+   "id": "C36",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C37": {
+   "id": "C37",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C38": {
+   "id": "C38",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C38b": {
+   "id": "C38b",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C39": {
+   "id": "C39",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  }
+ },
+ "A3": {
+  "C01": {
+   "id": "C01",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C02": {
+   "id": "C02",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C03": {
+   "id": "C03",
+   "verdict": "caution",
+   "needs_info": [
+    "seller_identity",
+    "account_name_match"
+   ],
+   "notes": "จองเสียตังมัดจำก่อนหรือต้องจ่ายเต็มจำนวน เช็คเครดิตผู้ขาย"
+  },
+  "C04": {
+   "id": "C04",
+   "verdict": "caution",
+   "needs_info": [
+    "verify_with_claimed_person"
+   ],
+   "notes": "หรือวีดีโอคอลเพื่อความแน่ใจ"
+  },
+  "C06": {
+   "id": "C06",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C07": {
+   "id": "C07",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C08": {
+   "id": "C08",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C09": {
+   "id": "C09",
+   "verdict": "caution",
+   "needs_info": [
+    "url",
+    "sender_identity"
+   ],
+   "notes": "เป็นการยืนยันข้อมูลจากการไปทำอะไรมา"
+  },
+  "C10": {
+   "id": "C10",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C11": {
+   "id": "C11",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": "โทรถามเจ้าหน้าที่ก่อน"
+  },
+  "C12": {
+   "id": "C12",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C13": {
+   "id": "C13",
+   "verdict": "caution",
+   "needs_info": [
+    "verify_with_claimed_person"
+   ],
+   "notes": "อาจจะถูกสวมรอยเป็นเพื่อน ทำตามได้แต่อย่าพึ่งลบเบอร์เก่า"
+  },
+  "C14": {
+   "id": "C14",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C15": {
+   "id": "C15",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C16": {
+   "id": "C16",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C17": {
+   "id": "C17",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": "รายได้เกินจริง"
+  },
+  "C18": {
+   "id": "C18",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": "รายได้เกินจริง"
+  },
+  "C19": {
+   "id": "C19",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C20": {
+   "id": "C20",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C21": {
+   "id": "C21",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C22": {
+   "id": "C22",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C23": {
+   "id": "C23",
+   "verdict": "safe",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C24": {
+   "id": "C24",
+   "verdict": "caution",
+   "needs_info": [
+    "seller_identity",
+    "seller_reputation",
+    "account_name_match"
+   ],
+   "notes": "ซื้อผ่านช่องทางไหน ถ้าไม่ใช่แพลตฟอร์มก็ต้องเช็คให้ละเอียด"
+  },
+  "C25": {
+   "id": "C25",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": "คำพูดเร่งรัด อาจได้ของปลอมหรือโดนโกง"
+  },
+  "C26": {
+   "id": "C26",
+   "verdict": "caution",
+   "needs_info": [
+    "seller_identity",
+    "seller_reputation"
+   ],
+   "notes": "คำพูดเร่งรัด เช็คให้ละเอียดว่าซื้ออะไรจากใคร"
+  },
+  "C27": {
+   "id": "C27",
+   "verdict": "caution",
+   "needs_info": [
+    "seller_identity",
+    "seller_reputation",
+    "account_name_match"
+   ],
+   "notes": "ทักไปได้ แต่อย่าเพิ่งโอน ขอชื่อบัญชีเต็ม นัดรับ"
+  },
+  "C28": {
+   "id": "C28",
+   "verdict": "caution",
+   "needs_info": [
+    "seller_identity",
+    "seller_reputation",
+    "account_name_match"
+   ],
+   "notes": "มัดจำเป็นวิธีปกติ ขอชื่อบัญชีตรงกับบัตร"
+  },
+  "C29": {
+   "id": "C29",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C30": {
+   "id": "C30",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": "ชื่อบัญชีไม่ตรงกับผู้รับ"
+  },
+  "C31": {
+   "id": "C31",
+   "verdict": "caution",
+   "needs_info": [
+    "seller_identity",
+    "seller_reputation",
+    "account_name_match"
+   ],
+   "notes": "แค่ย้ายออกจากที่สาธารณะ ควรเช็คเครดิตในกลุ่ม"
+  },
+  "C32": {
+   "id": "C32",
+   "verdict": "caution",
+   "needs_info": [
+    "seller_identity",
+    "seller_reputation",
+    "account_name_match"
+   ],
+   "notes": "แค่ย้ายออกจากที่สาธารณะ ควรเช็คเครดิตในกลุ่ม"
+  },
+  "C33": {
+   "id": "C33",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C34": {
+   "id": "C34",
+   "verdict": "caution",
+   "needs_info": [
+    "verify_with_claimed_person",
+    "account_name_match"
+   ],
+   "notes": "ถามทางคณะ/อาจารย์ที่ปรึกษา"
+  },
+  "C35": {
+   "id": "C35",
+   "verdict": "caution",
+   "needs_info": [
+    "verify_with_claimed_person",
+    "account_name_match"
+   ],
+   "notes": "ทักถามรุ่นพี่ให้แน่ชัด"
+  },
+  "C36": {
+   "id": "C36",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": "ต้องเป็นบัญชีหน่วยงานเท่านั้น"
+  },
+  "C37": {
+   "id": "C37",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": "เช็คเลขบัญชีว่าเป็นของหน่วยงานไหม"
+  },
+  "C38": {
+   "id": "C38",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  },
+  "C38b": {
+   "id": "C38b",
+   "verdict": "caution",
+   "needs_info": [
+    "url",
+    "sender_identity"
+   ],
+   "notes": "เช็คว่าส่งมาจากอาจารย์ไหม อาจเป็นกิจกรรมจริง"
+  },
+  "C39": {
+   "id": "C39",
+   "verdict": "danger",
+   "needs_info": [],
+   "notes": ""
+  }
+ },
+ "guideline": {
+  "C01": "safe",
+  "C02": "safe",
+  "C03": "safe",
+  "C04": "caution",
+  "C06": "safe",
+  "C07": "safe",
+  "C08": "danger",
+  "C09": "caution",
+  "C10": "safe",
+  "C11": "danger",
+  "C12": "danger",
+  "C13": "safe",
+  "C14": "caution",
+  "C15": "safe",
+  "C16": "danger",
+  "C17": "danger",
+  "C18": "danger",
+  "C19": "safe",
+  "C20": "danger",
+  "C21": "danger",
+  "C22": "danger",
+  "C23": "safe",
+  "C24": "caution",
+  "C25": "caution",
+  "C26": "caution",
+  "C27": "caution",
+  "C28": "caution",
+  "C29": "danger",
+  "C30": "danger",
+  "C31": "safe",
+  "C32": "safe",
+  "C33": "danger",
+  "C34": "danger",
+  "C35": "caution",
+  "C36": "danger",
+  "C37": "danger",
+  "C38": "danger",
+  "C38b": "caution",
+  "C39": "danger"
+ },
+ "texts": {
+  "C01": "ส่งงานด่วนนะครับ พรุ่งนี้เช้าอาจารย์จะตรวจ",
+  "C02": "ด่วน! Flash Sale ลด 50% วันนี้วันเดียว ที่ Shopee",
+  "C03": "ของถูกมาก แต่ต้องจองภายในวันนี้",
+  "C04": "แม่โอนเงินค่าเทอมให้ด่วนหน่อย พรุ่งนี้วันสุดท้าย",
+  "C06": "รหัส OTP ของคุณคือ 482913 ห้ามบอกรหัสนี้กับผู้อื่น",
+  "C07": "SCB: รายการโอนเงิน 500.00 บาท ไปยัง xxx-x-x1234 เวลา 10:15 น.",
+  "C08": "บัญชีของคุณถูกระงับ กรุณายืนยันตัวตนด่วนที่ลิงก์นี้ http://scb-verify.xyz",
+  "C09": "ระบบแจ้งให้ยืนยันข้อมูลบางอย่างภายในวันนี้",
+  "C10": "กสิกรไทย ยกเลิกส่ง SMS แบบลิงก์ เพิ่มความปลอดภัย มีผลตั้งแต่วันนี้",
+  "C11": "คุณเป็นผู้โชคดีได้รับวงเงินกู้จาก ธปท. 200,000 บาท",
+  "C12": "คุณเป็นผู้โชคดีได้รับวงเงินกู้จาก ธปท. 200,000 บาท กดรับสิทธิ์ที่ <URL>",
+  "C13": "หวัดดี เปลี่ยนเบอร์ใหม่นะ เซฟไว้ด้วย",
+  "C14": "หวัดดี เปลี่ยนเบอร์ใหม่นะ ขอยืมเงิน 5,000 ด่วน เดี๋ยวคืนพรุ่งนี้",
+  "C15": "ขอโทษที่รบกวน ฉันอ่านโปรไฟล์คุณบน LinkedIn อยากเรียนรู้จากคุณ",
+  "C16": "งานออนไลน์ กดไลค์ได้เงิน วันละ 500-2,000 บาท สนใจทัก LINE @job888",
+  "C17": "งานออนไลน์ได้เงินวันละ 10,000 ไม่ต้องสัมภาษณ์ สมัครด่วน",
+  "C18": "งานออนไลน์ได้เงินวันละ 10,000 ไม่ต้องสัมภาษณ์ สมัครด่วน inbox ได้",
+  "C19": "ร้านกาแฟแถวรังสิตรับพาร์ทไทม์ ชั่วโมงละ 70 บาท มีสัมภาษณ์หน้าร้าน ทัก DM",
+  "C20": "สมัครงานง่ายๆ ได้เงินเร็ว แต่ต้องจ่ายค่าสมัครก่อน ทัก DM",
+  "C21": "ขอเลขบชพร้อมเพย์หน่อยคับ จะโอนค่าชีท",
+  "C22": "ขอเลขบัญชีพร้อมเพย์หน่อยครับ จะโอนค่าชีท line: @id",
+  "C23": "มีใครขายชีท SC135 บ้างครับ line: @id",
+  "C24": "ขอโอนเต็มก่อน เดี๋ยวส่งเลขพัสดุให้",
+  "C25": "ของอยู่ต่างจังหวัด โอนก่อนส่งเท่านั้น ราคาพิเศษถึงวันนี้",
+  "C26": "รีบโอนก่อนนะ เหลือคนเดียวแล้ว",
+  "C27": "รีบโอนก่อนนะ เหลือคนเดียวแล้ว line: @id",
+  "C28": "มีคนจองหลายคน ถ้าเอาโอนมัดจำมาก่อนได้เลย ทัก DM",
+  "C29": "โอนเต็มก่อนเท่านั้น ไม่รับนัด ไม่รับวิดีโอคอล inbox ได้",
+  "C30": "บัญชีนี้ของแฟนเราเอง ปลอดภัยแน่นอน โอนมาเลย",
+  "C31": "ทักไลน์อย่างเดียวคับ ไม่ค่อยตอบในกลุ่ม",
+  "C32": "ทักไลน์อย่างเดียวคับ ไม่ค่อยตอบในกลุ่ม line: @id",
+  "C33": "มีคนขอรหัสยืนยัน บอกว่าเป็นแอดมินกลุ่ม",
+  "C34": "อ้างว่าเป็นรุ่นพี่คณะ ขอให้โอนเงินช่วยจองสิทธิ์",
+  "C35": "รุ่นพี่ฝากบอกให้โอนค่าชีทด่วน ไม่งั้นหมดสิทธิ์",
+  "C36": "แอดมินคณะขอค่าจองสิทธิ์สอบ โอนมาที่ พร้อมเพย์ 08x-xxx-xxxx ภายในวันนี้",
+  "C37": "แอดมินคณะขอค่าจองสิทธิ์สอบ โอนมาที่ บัญชี xxx123 ภายในวันนี้",
+  "C38": "มีลิงก์ให้กรอกข้อมูลเพื่อรับสิทธิ์ ลองเช็คก่อนนะ",
+  "C38b": "มีลิงก์รายละเอียดกิจกรรมส่งมาในกลุ่ม ลองดูนะ",
+  "C39": "ลด 90% วันนี้เท่านั้น bit.ly/xxxx"
+ },
+ "majority": {
+  "C01": "safe",
+  "C02": "safe",
+  "C03": "caution",
+  "C04": "caution",
+  "C06": "safe",
+  "C07": "safe",
+  "C08": "danger",
+  "C09": "caution",
+  "C10": "safe",
+  "C11": "danger",
+  "C12": "danger",
+  "C14": "danger",
+  "C15": "safe",
+  "C16": "danger",
+  "C17": "danger",
+  "C18": "danger",
+  "C19": "safe",
+  "C20": "danger",
+  "C21": "danger",
+  "C22": "danger",
+  "C23": "safe",
+  "C24": "danger",
+  "C25": "danger",
+  "C26": "caution",
+  "C27": "caution",
+  "C28": "caution",
+  "C29": "danger",
+  "C30": "danger",
+  "C31": "caution",
+  "C32": "caution",
+  "C33": "danger",
+  "C34": "danger",
+  "C35": "caution",
+  "C36": "danger",
+  "C37": "danger",
+  "C38": "danger",
+  "C39": "danger"
+ }
+}

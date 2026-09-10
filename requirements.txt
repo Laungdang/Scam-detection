@@ -1,0 +1,17 @@
+streamlit
+anthropic
+fastapi
+uvicorn
+sentence-transformers
+pgvector
+openpyxl
+requests
+python-dotenv
+sqlalchemy
+psycopg2-binary
+pydantic
+huggingface_hub
+langchain
+langchain-community
+pandas
+pytest

@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HI-Scammer — Scam Detector</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f0f2f8;--white:#ffffff;--surface:#f7f8fc;--border:#e4e7f0;--border2:#d8dceb;
+  --ink:#1a1d2e;--ink2:#6b7280;--ink3:#9ca3af;
+  --blue:#2f54eb;--blue-bg:#eef2ff;--blue-border:#c5d0fa;
+  --red:#e03131;--red-bg:#fff5f5;--red-border:#ffc9c9;
+  --amber:#e67700;--amber-bg:#fff9db;--amber-border:#ffe066;
+  --green:#2f9e44;--green-bg:#ebfbee;--green-border:#b2f2bb;
+  --sans:'Plus Jakarta Sans',sans-serif;--body:'Inter',sans-serif;
+  --shadow:0 1px 4px rgba(47,84,235,.07),0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:0 4px 16px rgba(47,84,235,.10),0 2px 4px rgba(0,0,0,.05);
+  --shadow-lg:0 8px 32px rgba(47,84,235,.13),0 2px 8px rgba(0,0,0,.06);
+}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--body)}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(47,84,235,.04) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0}
+.shell{display:flex;height:100vh;position:relative;z-index:1}
+.sb{width:264px;flex-shrink:0;background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;box-shadow:2px 0 12px rgba(47,84,235,.06)}
+.sb-head{padding:22px 18px 16px;border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:11px;margin-bottom:18px;text-decoration:none}
+.logo-mark{width:36px;height:36px;border-radius:10px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.logo-mark img{width:100%;height:100%;object-fit:contain}
+.logo-text{display:flex;flex-direction:column;line-height:1}
+.logo-name{font-family:var(--sans);font-size:15px;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+.logo-tag{font-size:10px;color:var(--ink3);margin-top:3px}
+.btn-new{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:9px 14px;background:var(--ink);color:#fff;border:none;border-radius:9px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s}
+.btn-new:hover{opacity:.82}
+.sb-body{flex:1;overflow-y:auto;padding:14px 10px}
+.sec-lbl{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);padding:0 8px;margin-bottom:5px;margin-top:14px;font-family:var(--sans)}
+.sec-lbl:first-child{margin-top:0}
+.h-item-wrap{display:flex;align-items:center;gap:2px;border-radius:8px;transition:background .12s}
+.h-item-wrap:hover{background:var(--bg)}
+.h-item-wrap.active{background:var(--blue-bg)}
+.h-item-wrap.active .h-item-btn{color:var(--blue)}
+.h-item-btn{display:flex;align-items:center;gap:8px;flex:1;min-width:0;padding:8px 6px 8px 10px;background:none;border:none;font-family:var(--body);font-size:12.5px;color:var(--ink2);cursor:pointer;text-align:left}
+.h-item-wrap:hover .h-item-btn{color:var(--ink)}
+.h-item-text{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h-del-btn{display:none;align-items:center;justify-content:center;flex-shrink:0;width:26px;height:26px;margin-right:4px;background:none;border:none;border-radius:6px;color:var(--ink3);cursor:pointer;transition:background .12s,color .12s}
+.h-item-wrap:hover .h-del-btn{display:flex}
+.h-del-btn:hover{background:#ffe0e0;color:var(--red)}
+.sb-foot{padding:14px 16px 18px;border-top:1px solid var(--border)}
+.u-row{display:flex;align-items:center;gap:10px}
+.av{width:34px;height:34px;border-radius:50%;background:var(--blue-bg);color:var(--blue);display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:12px;font-weight:700;flex-shrink:0;border:1.5px solid var(--blue-border)}
+.u-name{font-size:13px;font-weight:600;color:var(--ink);font-family:var(--sans)}
+.u-plan{font-size:11px;color:var(--ink3);margin-top:1px}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:58px;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);flex-shrink:0}
+.tb-left{display:flex;align-items:center;gap:10px}
+.topbar-logo{width:26px;height:26px;border-radius:7px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.topbar-logo img{width:100%;height:100%;object-fit:contain}
+.tb-title{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--ink)}
+.live{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--green);font-weight:500;font-family:var(--sans)}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
+.tb-right{display:flex;gap:6px}
+.icon-btn{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;border:1px solid var(--border2);background:var(--white);color:var(--ink2);cursor:pointer;transition:background .12s,color .12s;box-shadow:var(--shadow)}
+.icon-btn:hover{background:var(--bg);color:var(--ink)}
+.msgs{flex:1;overflow-y:auto;padding:36px 64px;display:flex;flex-direction:column}
+.welcome{margin:auto;text-align:center;max-width:500px;animation:fadeUp .5s ease both}
+.welcome-logo{width:72px;height:72px;border-radius:20px;overflow:hidden;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:0 8px 28px rgba(26,29,46,.18)}
+.welcome-logo img{width:100%;height:100%;object-fit:contain}
+.welcome h1{font-family:var(--sans);font-size:28px;font-weight:700;letter-spacing:-.03em;color:var(--ink);margin-bottom:10px;line-height:1.25}
+.welcome h1 span{color:var(--blue)}
+.welcome-sub{font-size:14px;color:var(--ink2);line-height:1.75;margin-bottom:12px}
+.warn-bar{display:flex;align-items:flex-start;gap:9px;background:var(--red-bg);border:1px solid var(--red-border);border-radius:10px;padding:11px 14px;margin:16px 0 28px;font-size:12.5px;color:var(--red);text-align:left;line-height:1.55}
+.warn-bar svg{flex-shrink:0;margin-top:1px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chip{display:flex;align-items:center;gap:7px;padding:9px 16px;border:1.5px solid var(--border2);border-radius:99px;background:var(--white);font-family:var(--body);font-size:12.5px;color:var(--ink2);cursor:pointer;transition:all .16s ease;box-shadow:var(--shadow)}
+.chip:hover{background:var(--blue-bg);border-color:var(--blue-border);color:var(--blue);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.divider{display:flex;align-items:center;gap:12px;color:var(--ink3);font-size:11px;font-weight:500;font-family:var(--sans);margin:4px 0 20px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.msg-row{display:flex;align-items:flex-end;gap:9px;margin-bottom:14px;animation:fadeUp .2s ease both}
+.msg-row.user{justify-content:flex-end}
+.msg-row.bot{justify-content:flex-start}
+.bot-av{width:30px;height:30px;border-radius:9px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.bot-av img{width:100%;height:100%;object-fit:contain}
+.bubble{max-width:62%;padding:12px 16px;border-radius:16px;font-size:13.5px;line-height:1.7}
+.bubble.bot{background:var(--white);border:1px solid var(--border);border-bottom-left-radius:4px;color:var(--ink);box-shadow:var(--shadow)}
+.bubble.user{background:var(--ink);border-bottom-right-radius:4px;color:#fff;box-shadow:0 3px 12px rgba(26,29,46,.2)}
+.bubble time{display:block;font-size:10.5px;margin-top:6px;opacity:.4}
+.result-card{border-radius:14px;overflow:hidden;box-shadow:var(--shadow-md)}
+.result-header{display:flex;align-items:center;gap:12px;padding:14px 16px}
+.result-icon-box{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.result-title{font-family:var(--sans);font-size:14px;font-weight:700}
+.result-sub{font-size:11.5px;color:var(--ink2);margin-top:2px}
+.result-body{padding:14px 16px 16px;background:var(--surface);border-top:1px solid var(--border)}
+.result-summary{font-size:13px;color:var(--ink);line-height:1.7;margin-bottom:14px}
+.ai-summary{font-size:13px;color:var(--ink);line-height:1.7;margin-bottom:14px;padding:10px 14px;background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:10px;white-space:pre-wrap}
+.ai-block{margin-bottom:14px}
+.ai-section-title{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-family:var(--sans);margin-bottom:4px;color:var(--ink3)}
+.p-urgent-title{color:var(--red)}
+.p-should-title{color:var(--blue)}
+.p-warn-title{color:var(--amber)}
+.tactic-tag{display:inline-flex;padding:3px 10px;border-radius:6px;font-size:11.5px;background:var(--bg);border:1px solid var(--border2);color:var(--ink2);margin:2px}
+.action-item{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-top:1px solid var(--border)}
+.action-item:first-of-type{border-top:none;padding-top:0}
+.action-priority{flex-shrink:0;padding:2px 8px;border-radius:5px;font-size:10.5px;font-weight:600;font-family:var(--sans)}
+.p-urgent{background:#ffe0e0;color:var(--red)}
+.p-should{background:var(--blue-bg);color:var(--blue)}
+.p-warn{background:#fff0b0;color:var(--amber)}
+.action-text{font-size:12.5px;color:var(--ink);line-height:1.55}
+.follow-up{font-size:12px;color:var(--ink);font-style:italic;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.bl-hits{margin:12px 0;padding:12px 14px;background:#fff5f5;border:1.5px solid var(--red-border);border-radius:10px}
+.bl-hits-title{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--red);font-family:var(--sans);margin-bottom:8px}
+.bl-hit-row{padding:7px 0;border-top:1px solid var(--red-border)}
+.bl-hit-row:first-of-type{border-top:none;padding-top:0}
+.bl-hit-value{font-size:13.5px;font-weight:600;color:var(--ink);font-family:var(--sans)}
+.bl-hit-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px;font-size:12px;color:var(--ink)}
+.bl-hit-count{font-weight:600;color:var(--red)}
+.signals-title{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);font-family:var(--sans);margin-bottom:8px}
+.signal-item{display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-top:1px solid var(--border)}
+.signal-item:first-of-type{border-top:none;padding-top:0}
+.signal-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.signal-text{font-size:12.5px;color:var(--ink);line-height:1.55}
+.v-danger .result-header{background:var(--red-bg)}.v-danger .result-icon-box{background:#ffe0e0}.v-danger .result-title{color:var(--red)}.v-danger .result-card{border:1.5px solid var(--red-border)}
+.v-caution .result-header{background:var(--amber-bg)}.v-caution .result-icon-box{background:#fff0b0}.v-caution .result-title{color:var(--amber)}.v-caution .result-card{border:1.5px solid var(--amber-border)}
+.v-safe .result-header{background:var(--green-bg)}.v-safe .result-icon-box{background:#c3f7cc}.v-safe .result-title{color:var(--green)}.v-safe .result-card{border:1.5px solid var(--green-border)}
+.t-bub{display:flex;align-items:center;gap:5px;padding:14px 16px!important}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--border2);animation:pulse 1s infinite ease-in-out}
+.dot:nth-child(2){animation-delay:.18s}.dot:nth-child(3){animation-delay:.36s}
+.inp-area{padding:14px 64px 24px;border-top:1px solid var(--border);background:rgba(255,255,255,.88);backdrop-filter:blur(14px);flex-shrink:0}
+.inp-wrap{display:flex;align-items:flex-end;gap:8px;background:var(--white);border:1.5px solid var(--border2);border-radius:14px;padding:10px 10px 10px 16px;transition:border-color .18s,box-shadow .18s;box-shadow:var(--shadow)}
+.inp-wrap:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px rgba(47,84,235,.1),var(--shadow)}
+textarea{flex:1;border:none;background:none;outline:none;resize:none;font-family:var(--body);font-size:13.5px;color:var(--ink);line-height:1.6;min-height:22px;max-height:120px;overflow-y:auto}
+textarea::placeholder{color:var(--ink3)}
+.inp-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.send-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:9px;border:none;background:var(--border);color:var(--ink3);cursor:not-allowed;transition:all .15s;flex-shrink:0}
+.send-btn.on{background:var(--ink);color:#fff;cursor:pointer;box-shadow:0 3px 10px rgba(26,29,46,.22)}
+.send-btn.on:hover{opacity:.85}
+.inp-hint{font-size:11px;color:var(--ink3);margin-top:8px;padding:0 2px}
+.mic-btn{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;border:none;background:none;color:var(--ink3);cursor:pointer;transition:all .15s;flex-shrink:0}
+.mic-btn:hover{background:var(--bg);color:var(--ink)}
+.mic-btn.recording{color:var(--red);animation:micPulse 1s infinite}
+.mic-btn.processing{color:var(--blue);cursor:wait}
+@keyframes micPulse{0%,100%{opacity:1}50%{opacity:.4}}
+.img-preview-wrap{position:relative;display:inline-block;margin-bottom:8px}
+.img-preview{max-height:120px;max-width:240px;border-radius:10px;border:1.5px solid var(--border2);display:block;cursor:zoom-in;transition:opacity .15s}
+.img-preview:hover{opacity:.85}
+.img-remove{position:absolute;top:-7px;right:-7px;width:20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;border:none;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;line-height:1}
+.img-bubble{max-height:180px;max-width:260px;border-radius:10px;margin-bottom:6px;display:block;border:1px solid rgba(255,255,255,.2);cursor:zoom-in;transition:opacity .15s}
+.img-bubble:hover{opacity:.82}
+.lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.78);backdrop-filter:blur(6px);align-items:center;justify-content:center;animation:fadeIn .18s ease}
+.lightbox.open{display:flex}
+.lightbox-img{max-width:90vw;max-height:88vh;border-radius:14px;box-shadow:0 24px 80px rgba(0,0,0,.6);object-fit:contain;animation:zoomIn .2s ease}
+.lightbox-close{position:fixed;top:18px;right:22px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;backdrop-filter:blur(4px)}
+.lightbox-close:hover{background:rgba(255,255,255,.28)}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes zoomIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+a.chat-link{color:var(--blue);text-decoration:underline;text-underline-offset:2px;word-break:break-all}
+a.chat-link:hover{opacity:.75}
+.bubble.user a.chat-link{color:#93b4ff}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.35;transform:scale(.85)}50%{opacity:1;transform:scale(1)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.confirm-overlay{display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);align-items:center;justify-content:center;animation:fadeIn .15s ease}
+.confirm-overlay.open{display:flex}
+.confirm-box{background:var(--white);border-radius:16px;padding:28px 28px 22px;width:340px;max-width:90vw;box-shadow:0 24px 60px rgba(0,0,0,.22);animation:zoomIn .18s ease;border:1px solid var(--border)}
+.confirm-icon{width:44px;height:44px;border-radius:12px;background:#fff5f5;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.confirm-title{font-family:var(--sans);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:7px}
+.confirm-desc{font-size:13px;color:var(--ink2);line-height:1.65;margin-bottom:22px}
+.confirm-actions{display:flex;gap:8px;justify-content:flex-end}
+.confirm-btn{padding:9px 18px;border-radius:9px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;border:none;transition:opacity .15s,background .15s}
+.confirm-btn-cancel{background:var(--bg);color:var(--ink);border:1px solid var(--border2)}
+.confirm-btn-cancel:hover{background:var(--border)}
+.confirm-btn-delete{background:var(--red);color:#fff;box-shadow:0 3px 10px rgba(224,49,49,.28)}
+.confirm-btn-delete:hover{opacity:.88}
+@media(max-width:700px){
+  .sb{position:fixed;inset:0 auto 0 0;z-index:100;transform:translateX(-100%)}
+  .sb.open{transform:translateX(0);box-shadow:8px 0 32px rgba(0,0,0,.12)}
+  .msgs{padding:24px 16px}.inp-area{padding:12px 16px 20px}.bubble{max-width:86%}
+}
+
+/* === Mode tabs (Q&A | ML) === */
+.mode-tabs{display:flex;gap:0;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:3px;margin-left:8px}
+.mode-tab{display:flex;align-items:center;gap:6px;padding:6px 14px;background:transparent;border:none;border-radius:7px;font-family:var(--sans);font-size:12px;font-weight:600;color:var(--ink2);cursor:pointer;transition:background .15s,color .15s}
+.mode-tab:hover{color:var(--ink)}
+.mode-tab.active{background:var(--white);color:var(--blue);box-shadow:var(--shadow)}
+
+/* === ML result card === */
+.ml-result{background:var(--white);border:1px solid var(--border2);border-radius:14px;padding:22px;margin:18px auto;max-width:760px;box-shadow:var(--shadow-md);animation:fadeIn .2s ease}
+.ml-result.danger{border-left:4px solid var(--red)}
+.ml-result.caution{border-left:4px solid var(--amber)}
+.ml-result.safe{border-left:4px solid var(--green)}
+.ml-result.uncertain{border-left:4px solid var(--ink3)}
+.ml-verdict-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.ml-verdict-badge{display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:20px;font-family:var(--sans);font-size:13px;font-weight:700}
+.ml-verdict-badge.danger{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+.ml-verdict-badge.caution{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)}
+.ml-verdict-badge.safe{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.ml-verdict-badge.uncertain{background:var(--bg);color:var(--ink2);border:1px solid var(--border2)}
+.ml-conf{font-family:var(--sans);font-size:12px;font-weight:600;color:var(--ink2)}
+.ml-conf-bar{width:100%;height:6px;background:var(--bg);border-radius:3px;overflow:hidden;margin:8px 0 16px}
+.ml-conf-bar-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue));transition:width .4s ease}
+.ml-conf-bar-fill.danger{background:var(--red)}
+.ml-conf-bar-fill.caution{background:var(--amber)}
+.ml-conf-bar-fill.safe{background:var(--green)}
+.ml-input-row{display:flex;align-items:flex-start;gap:8px;background:var(--bg);border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:13px;color:var(--ink);font-family:var(--body)}
+.ml-input-row .ml-input-lbl{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:.05em;margin-right:4px;flex-shrink:0;padding-top:1px}
+.ml-input-text{flex:1;word-break:break-all}
+.ml-advice{background:#fff8e7;border-left:3px solid var(--amber);padding:11px 14px;border-radius:6px;font-size:13.5px;color:var(--ink);line-height:1.6;margin-bottom:14px}
+.ml-features{margin-bottom:12px}
+.ml-features-title{font-family:var(--sans);font-size:11.5px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.ml-feat-list{display:flex;flex-direction:column;gap:4px}
+.ml-feat-row{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--ink2);font-family:var(--body)}
+.ml-feat-name{flex:1;font-family:'SF Mono','Consolas',monospace;font-size:11.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ml-feat-weight{font-family:'SF Mono','Consolas',monospace;font-size:11.5px;font-weight:600;min-width:55px;text-align:right}
+.ml-feat-weight.neg{color:var(--red)}
+.ml-feat-weight.pos{color:var(--green)}
+.ml-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+.ml-action-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-family:var(--sans);font-size:12.5px;font-weight:600;cursor:pointer;transition:opacity .15s}
+.ml-action-btn:hover{opacity:.88}
+.ml-action-btn.secondary{background:var(--bg);color:var(--ink);border:1px solid var(--border2)}
+.ml-action-btn.secondary:hover{background:var(--border)}
+.ml-meta{font-size:11px;color:var(--ink3);font-family:var(--body);margin-top:10px;display:flex;gap:14px}
+.ml-meta-item{display:inline-flex;align-items:center;gap:4px}
+
+/* === Help modal (H10 fix) === */
+.help-overlay{display:none;position:fixed;inset:0;z-index:9100;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);align-items:center;justify-content:center;animation:fadeIn .15s ease}
+.help-overlay.open{display:flex}
+.help-box{background:var(--white);border-radius:16px;padding:28px 30px 24px;width:560px;max-width:92vw;max-height:90vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.22);animation:zoomIn .18s ease;border:1px solid var(--border)}
+.help-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.help-title{font-family:var(--sans);font-size:18px;font-weight:700;color:var(--ink)}
+.help-close{background:none;border:none;color:var(--ink3);cursor:pointer;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.help-close:hover{background:var(--bg);color:var(--ink)}
+.help-section{margin-bottom:22px}
+.help-section h3{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--ink);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.help-section p,.help-section li{font-size:13px;color:var(--ink2);line-height:1.7}
+.help-section ul,.help-section ol{padding-left:20px;margin-top:4px}
+.help-mode-row{display:flex;gap:10px;margin-top:6px}
+.help-mode-card{flex:1;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--bg)}
+.help-mode-card .nm{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.help-mode-card .dc{font-size:11.5px;color:var(--ink2);line-height:1.55}
+.help-footer{padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--ink3);text-align:center}
+
+/* === PII Reveal toggle === */
+.pii-cell{display:inline-flex;align-items:center;gap:4px}
+.pii-value{font-family:'SF Mono','Consolas',monospace;font-size:12.5px;background:rgba(47,84,235,.07);padding:1px 6px;border-radius:4px;color:var(--ink)}
+.pii-reveal{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:none;border:none;border-radius:4px;color:var(--ink3);cursor:pointer;transition:background .15s,color .15s}
+.pii-reveal:hover{background:var(--bg);color:var(--blue)}
+.pii-reveal.revealed{color:var(--blue)}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sb" id="sb">
+    <div class="sb-head">
+      <a class="logo" href="#">
+        <div class="logo-mark">
+          <img src="/static/logo.png" alt="HI-Scammer logo">
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">HI-Scammer</span>
+          <span class="logo-tag">Scam Detector AI</span>
+        </div>
+      </a>
+      <button class="btn-new" id="newBtn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+        New Chat
+      </button>
+    </div>
+    <div class="sb-body">
+      <p class="sec-lbl">Recent</p>
+    </div>
+    <div class="sb-foot">
+      <div class="u-row">
+        <div class="av">U</div>
+        <div>
+          <div class="u-name">User</div>
+          <div class="u-plan">Scam Detector · Active</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="tb-left">
+        <button class="icon-btn" id="menuBtn" style="display:none">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="topbar-logo">
+          <img src="/static/logo.png" alt="HI-Scammer logo">
+        </div>
+        <span class="tb-title">HI-Scammer</span>
+        <div class="mode-tabs" role="tablist" aria-label="Detection mode">
+          <button class="mode-tab active" data-mode="qa" role="tab" aria-selected="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            ปรึกษา AI
+          </button>
+          <button class="mode-tab" data-mode="ml" role="tab" aria-selected="false">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M16.5 16.5l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            ตรวจเร็ว (ML)
+          </button>
+        </div>
+      </div>
+      <div class="tb-right">
+        <button class="icon-btn" id="helpBtn" title="ช่วยเหลือ / เกี่ยวกับระบบ">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.9"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="msgs" id="msgs">
+      <div class="welcome" id="welcome">
+        <div class="welcome-logo">
+          <img src="/static/logo.png" alt="HI-Scammer logo">
+        </div>
+        <h1>ตรวจสอบมิจฉาชีพ<br><span>ก่อนที่จะสายเกินไป</span></h1>
+        <p class="welcome-sub">วางข้อความ เบอร์โทร เลขบัญชี หรือลิงก์ที่น่าสงสัย — ระบบจะวิเคราะห์ทันทีด้วย AI + Blacklist API</p>
+        <div class="warn-bar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="9" x2="12" y2="13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          ห้ามแชร์รหัสผ่าน OTP หรือข้อมูลทางการเงินกับระบบนี้
+        </div>
+        <div class="chips">
+          <button class="chip" data-msg="มีคนโทรมาบอกว่าผมค้างชำระภาษี ถ้าไม่โอนเงินภายใน 2 ชั่วโมงจะถูกจับ">📞 โทรข่มขู่</button>
+          <button class="chip" data-msg="มีคนชักชวนลงทุน crypto บอกได้กำไร 300% ใน 7 วัน">₿ ลงทุน crypto</button>
+          <button class="chip" data-msg="ได้รับ SMS ว่าพัสดุถูกระงับ ให้กดลิงก์ยืนยันตัวตน">📦 SMS พัสดุ</button>
+          <button class="chip" data-msg="มีคนรู้จักกันใน Facebook บอกรักแล้วขอให้โอนเงินไปช่วย">💔 Romance scam</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="inp-area">
+      <div id="imgPreviewArea" style="display:none;padding:0 2px 6px"></div>
+      <div class="inp-wrap">
+        <textarea id="txt" placeholder="วางข้อความ เบอร์โทร เลขบัญชี ลิงก์ หรือวางภาพ (Ctrl+V)…" rows="1"></textarea>
+        <div class="inp-actions">
+          <label class="icon-btn" title="แนบรูปภาพ" style="cursor:pointer;margin:0">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <input type="file" id="imgInput" accept="image/*" style="display:none">
+          </label>
+          <button class="mic-btn" id="micBtn" title="อัดเสียง">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="9" y="2" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M5 10a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="12" y1="19" x2="12" y2="22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </button>
+          <button class="send-btn" id="sendBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="inp-hint">Enter เพื่อส่ง · Shift+Enter ขึ้นบรรทัดใหม่ · Ctrl+V วางภาพได้เลย</div>
+    </div>
+  </main>
+</div>
+
+<!-- Delete Confirm Dialog -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box" onclick="event.stopPropagation()">
+    <div class="confirm-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="color:var(--red)"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="confirm-title">ลบการสนทนา?</div>
+    <div class="confirm-desc">การสนทนานี้จะถูกลบอย่างถาวร<br>และไม่สามารถกู้คืนได้</div>
+    <div class="confirm-actions">
+      <button class="confirm-btn confirm-btn-cancel" id="confirmCancel">ยกเลิก</button>
+      <button class="confirm-btn confirm-btn-delete" id="confirmDelete">ลบ</button>
+    </div>
+  </div>
+</div>
+
+<!-- Help / About modal (Heuristic Eval H10 fix) -->
+<div class="help-overlay" id="helpOverlay">
+  <div class="help-box" onclick="event.stopPropagation()">
+    <div class="help-head">
+      <span class="help-title">🛡️ HI-Scammer — ระบบตรวจสอบมิจฉาชีพ</span>
+      <button class="help-close" id="helpClose" title="ปิด">✕</button>
+    </div>
+
+    <div class="help-section">
+      <h3>📌 ระบบนี้คืออะไร</h3>
+      <p>HI-Scammer ช่วยตรวจสอบว่าข้อความ SMS / โทรศัพท์ / ลิงก์ / เลขบัญชี ที่คุณได้รับ มีลักษณะเป็นมิจฉาชีพหรือไม่ พัฒนาโดยใช้ Machine Learning + AI ภาษาไทย</p>
+    </div>
+
+    <div class="help-section">
+      <h3>🎯 มี 2 mode ใช้ต่างกัน</h3>
+      <div class="help-mode-row">
+        <div class="help-mode-card">
+          <div class="nm">🔍 ตรวจเร็ว (ML)</div>
+          <div class="dc">วาง SMS ที่ได้รับ → ตรวจทันที (3ms) แสดง verdict + features ที่ใช้ตัดสิน เหมาะกับ "ตรวจเร็วเป็น batch"</div>
+        </div>
+        <div class="help-mode-card">
+          <div class="nm">💬 ปรึกษา AI (Q&A)</div>
+          <div class="dc">คุยกับ AI ถามต่อได้ AI เข้าใจ context — เหมาะกับ "เล่าเหตุการณ์ + ขอคำแนะนำ"</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="help-section">
+      <h3>🚀 ใช้ยังไง — 3 ขั้นตอน</h3>
+      <ol>
+        <li>เลือก mode ที่เหมาะกับสิ่งที่ต้องตรวจ</li>
+        <li>วาง/พิมพ์ข้อความ (เบอร์โทร, เลขบัญชี, ลิงก์, SMS เต็ม) → กด Enter</li>
+        <li>อ่านผลลัพธ์ + คำแนะนำ ถ้าระบบบอก "อันตราย" — อย่าทำตามที่ scam บอก, โทร <strong>1441</strong> (ตำรวจไซเบอร์)</li>
+      </ol>
+    </div>
+
+    <div class="help-section">
+      <h3>🔒 ข้อมูลของคุณ (PDPA)</h3>
+      <ul>
+        <li><strong>เบอร์โทร/เลขบัญชี/เลขบัตร</strong> ถูกมาส์กก่อนเก็บลง DB และก่อนส่ง AI</li>
+        <li>ไม่เก็บ raw PII ลง log file</li>
+        <li>คลิก 👁 บนผลลัพธ์ = เปิดดูค่าเต็มได้เฉพาะตัวคุณเอง (local-only)</li>
+        <li>ข้อมูล chat เก็บแบบ anonymous (ไม่มี user account)</li>
+      </ul>
+    </div>
+
+    <div class="help-section">
+      <h3>📞 ต้องการความช่วยเหลือเร่งด่วน</h3>
+      <ul>
+        <li><strong>ตำรวจไซเบอร์:</strong> โทร 1441 หรือ <a href="https://thaipoliceonline.com" target="_blank" rel="noopener" style="color:var(--blue)">thaipoliceonline.com</a></li>
+        <li><strong>กรมสรรพากร:</strong> โทร 1566</li>
+        <li><strong>ธปท. (ธนาคารแห่งประเทศไทย):</strong> โทร 1213</li>
+        <li><strong>DSI:</strong> สายด่วน 1202</li>
+      </ul>
+    </div>
+
+    <div class="help-section">
+      <h3>⚠️ ข้อจำกัด</h3>
+      <p>ระบบนี้เป็น demo สำหรับงานวิจัย — <strong>ไม่ควรพึ่งพา 100%</strong> ถ้าสงสัยมาก ให้โทรถามหน่วยงานตรง</p>
+    </div>
+
+    <div class="help-footer">
+      โครงการวิจัย — Thai Scam Detection (ML + LLM hybrid) · v1.0
+    </div>
+  </div>
+</div>
+
+<!-- Suggest Q&A modal (Heuristic Eval H5 fix) -->
+<div class="confirm-overlay" id="suggestQaOverlay">
+  <div class="confirm-box" onclick="event.stopPropagation()">
+    <div class="confirm-icon" style="background:var(--blue-bg)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="confirm-title">ข้อความนี้ดูเหมือนคำถาม/บรรยาย</div>
+    <div class="confirm-desc">
+      ML mode เหมาะกับ "SMS scam ดิบ" — ถ้าคุณเล่าเรื่องหรือถามคำถาม<br>
+      <strong>Q&amp;A mode</strong> จะวิเคราะห์ context ได้ดีกว่า<br>
+      <span style="color:var(--ink3);font-size:11px">เปลี่ยน mode + วิเคราะห์ข้อความนี้ทันที</span>
+    </div>
+    <div class="confirm-actions">
+      <button class="confirm-btn confirm-btn-cancel" id="qaSuggestCancel">ใช้ ML ต่อ</button>
+      <button class="confirm-btn" id="qaSuggestAccept" style="background:var(--blue);color:#fff">เปลี่ยนเป็น Q&amp;A</button>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()" title="ปิด">✕</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
+<script>
+// === Pilot gate: access code + server-driven mode visibility (/api/config) ===
+// รหัสเก็บใน localStorage ฝั่งผู้ใช้เท่านั้น — แนบเป็น header ทุก call ไป /api/*
+const ACCESS_CODE_KEY='hiscammer_access_code';
+const _origFetch=window.fetch.bind(window);
+window.fetch=function(url,opts={}){
+  if(typeof url==='string'&&url.startsWith('/api/')){
+    const code=localStorage.getItem(ACCESS_CODE_KEY);
+    if(code){opts.headers=Object.assign({},opts.headers,{'X-Access-Code':code});}
+  }
+  return _origFetch(url,opts).then(res=>{
+    if(res.status===401&&typeof url==='string'&&url.startsWith('/api/')){
+      localStorage.removeItem(ACCESS_CODE_KEY);
+      askAccessCode(true);
+    }
+    return res;
+  });
+};
+function askAccessCode(isRetry){
+  const code=prompt(isRetry
+    ?'รหัสไม่ถูกต้อง — กรุณาใส่รหัสเข้าใช้งานอีกครั้ง'
+    :'ใส่รหัสเข้าใช้งาน (ได้รับจากผู้ทำวิจัย)');
+  if(code&&code.trim()){localStorage.setItem(ACCESS_CODE_KEY,code.trim());}
+}
+(async()=>{
+  try{
+    const cfg=await _origFetch('/api/config').then(r=>r.json());
+    if(!cfg.ml_enabled){
+      // Q&A-only deploy: ซ่อนตัวสลับ mode ทั้งแถบ (โค้ด ML ยังอยู่ เปิดกลับด้วย ENABLE_ML_MODE)
+      const tabs=document.querySelector('.mode-tabs');
+      if(tabs){tabs.style.display='none';}
+    }
+    if(cfg.access_code_required&&!localStorage.getItem(ACCESS_CODE_KEY)){askAccessCode(false);}
+  }catch(e){/* dev/offline — ไม่บล็อกหน้า */}
+})();
+
+const msgsEl=document.getElementById('msgs'),welcome=document.getElementById('welcome'),
+      txt=document.getElementById('txt'),sendBtn=document.getElementById('sendBtn'),
+      newBtn=document.getElementById('newBtn'),menuBtn=document.getElementById('menuBtn'),sb=document.getElementById('sb'),
+      imgInput=document.getElementById('imgInput'),imgPreviewArea=document.getElementById('imgPreviewArea'),
+      confirmOverlay=document.getElementById('confirmOverlay'),
+      confirmCancel=document.getElementById('confirmCancel'),
+      confirmDeleteBtn=document.getElementById('confirmDelete');
+let started=false,pendingImage=null,_confirmResolve=null,_qaSuggestResolve=null;
+
+// === Help / About modal (Heuristic Eval H10 fix) ===
+const helpOverlay=document.getElementById('helpOverlay'),
+      helpBtn=document.getElementById('helpBtn'),
+      helpClose=document.getElementById('helpClose');
+function openHelp(){helpOverlay.classList.add('open')}
+function closeHelp(){helpOverlay.classList.remove('open')}
+helpBtn?.addEventListener('click',openHelp);
+helpClose?.addEventListener('click',closeHelp);
+helpOverlay?.addEventListener('click',(e)=>{ if(e.target===helpOverlay) closeHelp(); });
+document.addEventListener('keydown',(e)=>{ if(e.key==='Escape'&&helpOverlay.classList.contains('open')) closeHelp(); });
+// First-visit auto-open
+if(!localStorage.getItem('hiscammer_help_seen')){
+  setTimeout(()=>{openHelp(); localStorage.setItem('hiscammer_help_seen','1');}, 800);
+}
+
+// === Suggest Q&A modal (Heuristic Eval H5 fix) ===
+const qaSuggestOverlay=document.getElementById('suggestQaOverlay'),
+      qaSuggestCancel=document.getElementById('qaSuggestCancel'),
+      qaSuggestAccept=document.getElementById('qaSuggestAccept');
+function showSuggestQaModal(){
+  return new Promise(res=>{
+    _qaSuggestResolve=res;
+    qaSuggestOverlay.classList.add('open');
+  });
+}
+qaSuggestCancel?.addEventListener('click',()=>{
+  qaSuggestOverlay.classList.remove('open');
+  _qaSuggestResolve?.(false);
+});
+qaSuggestAccept?.addEventListener('click',()=>{
+  qaSuggestOverlay.classList.remove('open');
+  _qaSuggestResolve?.(true);
+});
+
+function showConfirm(){
+  return new Promise(res=>{
+    _confirmResolve=res;
+    confirmOverlay.classList.add('open');
+    confirmDeleteBtn.focus();
+  });
+}
+function closeConfirm(val){
+  confirmOverlay.classList.remove('open');
+  if(_confirmResolve){_confirmResolve(val);_confirmResolve=null;}
+}
+confirmCancel.addEventListener('click',()=>closeConfirm(false));
+confirmDeleteBtn.addEventListener('click',()=>closeConfirm(true));
+confirmOverlay.addEventListener('click',()=>closeConfirm(false));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&confirmOverlay.classList.contains('open'))closeConfirm(false);});
+
+function setImage(file){
+  if(!file||!file.type.startsWith('image/'))return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const dataUrl=e.target.result;
+    const base64=dataUrl.split(',')[1];
+    pendingImage={base64,mediaType:file.type,dataUrl};
+    imgPreviewArea.style.display='block';
+    imgPreviewArea.innerHTML=`
+      <div class="img-preview-wrap">
+        <img class="img-preview" src="${dataUrl}" onclick="openLightbox(this.src)" title="คลิกเพื่อดูภาพขนาดใหญ่">
+        <button class="img-remove" onclick="event.stopPropagation();clearImage()" title="ลบภาพ">✕</button>
+      </div>`;
+    upd();
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearImage(){
+  pendingImage=null;
+  imgPreviewArea.style.display='none';
+  imgPreviewArea.innerHTML='';
+  imgInput.value='';
+  upd();
+}
+
+// แนบไฟล์จากปุ่ม
+imgInput.addEventListener('change',()=>{ if(imgInput.files[0]) setImage(imgInput.files[0]); });
+
+// อัดเสียง
+const micBtn=document.getElementById('micBtn');
+let mediaRecorder=null, audioChunks=[];
+
+async function doTranscribe(chunks, mimeType){
+  micBtn.className='mic-btn processing';
+  micBtn.title='กำลังแปลงเสียง...';
+  try{
+    const blob=new Blob(chunks,{type:mimeType});
+    const base64=await new Promise(res=>{
+      const r=new FileReader();
+      r.onload=e=>res(e.target.result.split(',')[1]);
+      r.readAsDataURL(blob);
+    });
+    const resp=await fetch('/api/transcribe',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({audio_base64:base64,audio_media_type:mimeType})
+    });
+    const data=await resp.json();
+    if(data.text){ txt.value=(txt.value?txt.value+' ':'')+data.text; resize();upd();txt.focus(); }
+    else alert('ไม่สามารถแปลงเสียงได้: '+(data.error||'ไม่ทราบสาเหตุ'));
+  }catch(e){ alert('เกิดข้อผิดพลาดในการแปลงเสียง'); }
+  micBtn.className='mic-btn';
+  micBtn.title='อัดเสียง';
+}
+
+micBtn.addEventListener('click', async()=>{
+  if(mediaRecorder && mediaRecorder.state==='recording'){
+    mediaRecorder.stop();
+    return;
+  }
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    const mimeType=MediaRecorder.isTypeSupported('audio/webm')?'audio/webm':'audio/mp4';
+    mediaRecorder=new MediaRecorder(stream,{mimeType});
+    audioChunks=[];
+
+    // silence detection
+    const audioCtx=new AudioContext();
+    const source=audioCtx.createMediaStreamSource(stream);
+    const analyser=audioCtx.createAnalyser();
+    analyser.fftSize=512;
+    source.connect(analyser);
+    const dataArr=new Uint8Array(analyser.frequencyBinCount);
+    let hasSpeech=false, silenceTimer=null;
+
+    function checkSilence(){
+      if(!mediaRecorder||mediaRecorder.state!=='recording') return;
+      analyser.getByteFrequencyData(dataArr);
+      const avg=dataArr.reduce((a,b)=>a+b,0)/dataArr.length;
+      if(avg>12){
+        hasSpeech=true;
+        if(silenceTimer){ clearTimeout(silenceTimer); silenceTimer=null; }
+      } else if(hasSpeech&&!silenceTimer){
+        silenceTimer=setTimeout(()=>{ mediaRecorder.stop(); audioCtx.close(); },1500);
+      }
+      requestAnimationFrame(checkSilence);
+    }
+
+    mediaRecorder.ondataavailable=e=>{ if(e.data.size>0) audioChunks.push(e.data); };
+    mediaRecorder.onstop=async()=>{ stream.getTracks().forEach(t=>t.stop()); await doTranscribe(audioChunks,mimeType); };
+    mediaRecorder.start();
+    checkSilence();
+    micBtn.className='mic-btn recording';
+    micBtn.title='กำลังอัด — คลิกเพื่อหยุด';
+  }catch(e){
+    alert('ไม่สามารถเข้าถึงไมโครโฟนได้ กรุณาอนุญาต permission ก่อน');
+  }
+});
+
+// วางภาพจาก clipboard (Ctrl+V)
+document.addEventListener('paste',e=>{
+  const items=[...e.clipboardData.items];
+  const imgItem=items.find(i=>i.type.startsWith('image/'));
+  if(imgItem){ e.preventDefault(); setImage(imgItem.getAsFile()); }
+});
+
+const HICONS={
+  danger:'<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="9" x2="12" y2="13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
+  caution:'<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="12" y1="16" x2="12.01" y2="16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
+  safe:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
+};
+const COLS={danger:'var(--red)',caution:'var(--amber)',safe:'var(--green)'};
+const IBGS={danger:'#ffe0e0',caution:'#fff0b0',safe:'#c3f7cc'};
+const DOTCOLS={danger:'#e03131',caution:'#e67700',safe:'#2f9e44'};
+const TITLES={danger:'เข้าข่ายน่าสงสัย',caution:'ควรระวัง',safe:'ดูปลอดภัย'};
+const BOT_ICON=`<img src="/static/logo.png" alt="bot" style="width:100%;height:100%;object-fit:contain">`;
+
+function openLightbox(src){
+  document.getElementById('lightboxImg').src=src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+
+function linkify(text){
+  let s=text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+  // single-pass: URL เต็มก่อน แล้วโดเมนที่รู้จัก — ใช้ regex literal เพื่อหลีกเลี่ยงปัญหา escape
+  s=s.replace(
+    /(https?:\/\/[^\s<&]+)|((?:www\.)?(?:dsi\.go\.th|ncsa\.or\.th|thaipoliceonline\.com|amlo\.go\.th|bot\.or\.th|etda\.or\.th))(?![\w/-])/g,
+    (m,url,domain)=>{
+      if(url) return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="chat-link">${url}</a>`;
+      const href=domain.startsWith('www.')?`https://${domain}`:`https://www.${domain}`;
+      return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="chat-link">${domain}</a>`;
+    }
+  );
+  return s;
+}
+
+function nowStr(){return new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}
+function scrollBot(){msgsEl.scrollTo({top:msgsEl.scrollHeight,behavior:'smooth'})}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}
+function upd(){sendBtn.classList.toggle('on',txt.value.trim().length>0||!!pendingImage)}
+function resize(){txt.style.height='auto';txt.style.height=Math.min(txt.scrollHeight,120)+'px'}
+
+function ensureStarted(){
+  if(started)return;
+  welcome.style.display='none';
+  const d=document.createElement('div');d.className='divider';d.textContent='วันนี้';
+  msgsEl.appendChild(d);started=true;
+}
+
+function addUser(text, imageDataUrl){
+  ensureStarted();
+  const r=document.createElement('div');r.className='msg-row user';
+  const imgHtml=imageDataUrl?`<img class="img-bubble" src="${imageDataUrl}" onclick="openLightbox(this.src)" title="คลิกเพื่อดูภาพขนาดใหญ่">`:'';
+  const textHtml=text?`<p>${esc(text)}</p>`:'';
+  r.innerHTML=`<div class="bubble user">${imgHtml}${textHtml}<time>${nowStr()}</time></div>`;
+  msgsEl.appendChild(r);scrollBot();
+}
+
+function buildAiBlock(s){
+  if(!s) return '';
+
+  const tactics=(s.tactics||[]).map(t=>`<span class="tactic-tag">${esc(t)}</span>`).join('');
+  const tacticsBlock=tactics?`<div class="ai-block"><div class="ai-section-title">กลโกงที่ตรวจพบ</div><div>${tactics}</div></div>`:'';
+
+  const priorityGroups=[
+    {key:'ด่วน',   label:'สิ่งที่ควรทำด่วน', cls:'p-urgent', dot:'var(--red)'},
+    {key:'ควรทำ',  label:'สิ่งที่ควรทำ',     cls:'p-should', dot:'var(--blue)'},
+    {key:'ระวัง',  label:'สิ่งที่ควรระวัง',  cls:'p-warn',   dot:'var(--amber)'},
+  ];
+  const allActions=s.actions||[];
+  const actionsBlock=priorityGroups.map(g=>{
+    const items=allActions.filter(a=>a.priority===g.key);
+    if(!items.length) return '';
+    const rows=items.map(a=>`
+      <div class="action-item" style="border-top:1px solid var(--border);padding:8px 0">
+        <div class="signal-dot" style="background:${g.dot};margin-top:5px;flex-shrink:0"></div>
+        <span class="action-text">${linkify(a.text)}</span>
+      </div>`).join('');
+    return `<div class="ai-block"><div class="ai-section-title ${g.cls}-title">${g.label}</div>${rows}</div>`;
+  }).join('');
+
+  const followUp=s.follow_up?`<div class="follow-up">${linkify(s.follow_up)}</div>`:'';
+
+  return `
+    ${actionsBlock}
+    <div class="ai-block">
+      <div class="result-summary">${linkify(s.summary||'')}</div>
+    </div>
+    ${tacticsBlock}
+    ${followUp}`;
+}
+
+function addBot(v){
+  if(v.type==='chat'){
+    const r=document.createElement('div');r.className='msg-row bot';
+    r.innerHTML=`<div class="bot-av">${BOT_ICON}</div><div class="bubble bot"><p>${linkify(v.ai_summary||'')}</p><time>${nowStr()}</time></div>`;
+    msgsEl.appendChild(r);scrollBot();return;
+  }
+  const col=COLS[v.type],ibg=IBGS[v.type],dcol=DOTCOLS[v.type];
+  const title=TITLES[v.type]||v.status;
+
+  let structured = v.ai_structured;
+  if(!structured && v.ai_summary){
+    try{
+      let t=v.ai_summary.trim();
+      if(t.includes('```')){t=t.split('```')[1].trim();if(t.startsWith('json'))t=t.slice(4).trim();}
+      const s=t.indexOf('{'),e=t.lastIndexOf('}')+1;
+      if(s!==-1)structured=JSON.parse(t.slice(s,e));
+    }catch(e){}
+  }
+  const aiContent = structured
+    ? buildAiBlock(structured)
+    : (v.ai_summary ? `<div class="ai-summary">${linkify(v.ai_summary)}</div>` : '');
+
+  const hits = (v.blacklist&&v.blacklist.hits)||[];
+  const blacklistBlock = hits.length ? `
+    <div class="bl-hits">
+      <div class="bl-hits-title">⚠️ ยืนยัน! พบในบัญชีดำ</div>
+      ${hits.map(h=>{
+        const typeLabel = h.type==='bank_account'?'เลขบัญชี':h.type==='phone'?'เบอร์โทร':h.type==='national_id'?'เลขบัตรประชาชน':'ข้อมูล';
+        const countText = h.count!=null ? `มีผู้แจ้งความไว้แล้ว <span class="bl-hit-count">${h.count} ครั้ง</span>` : '';
+        const nameLine = h.name ? `<div style="font-size:13px;color:var(--ink);line-height:1.6">ชื่อ <strong>${esc(h.name)}</strong> พบในบัญชีดำ</div>` : '';
+        return `
+        <div class="bl-hit-row">
+          <div style="font-size:13px;color:var(--ink);line-height:1.6;margin-bottom:4px">
+            ${typeLabel} <strong>${esc(h.value)}</strong> พบในบัญชีดำ
+          </div>
+          ${nameLine}
+          <div class="bl-hit-meta" style="margin-top:4px">
+            ${h.bank_name?`<span>ธนาคาร: ${esc(h.bank_name)}</span>`:''}
+            ${countText?`<span>${countText}</span>`:''}
+          </div>
+        </div>`;
+      }).join('')}
+    </div>` : '';
+
+  const r=document.createElement('div');r.className=`msg-row bot v-${v.type}`;
+  r.innerHTML=`
+    <div class="bot-av">${BOT_ICON}</div>
+    <div style="max-width:76%">
+      <div class="result-card">
+        <div class="result-header">
+          <div class="result-icon-box" style="background:${ibg}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="color:${col}">${HICONS[v.type]}</svg>
+          </div>
+          <div>
+            <div class="result-title">${title}</div>
+            <div class="result-sub">${nowStr()}</div>
+          </div>
+        </div>
+        <div class="result-body">
+          ${blacklistBlock}
+          ${aiContent}
+        </div>
+      </div>
+    </div>`;
+  msgsEl.appendChild(r);scrollBot();
+}
+
+function addError(msg, action){
+  // action: { label, onClick } — แสดงปุ่ม recovery action (Heuristic Eval H9 fix)
+  ensureStarted();
+  const r=document.createElement('div');r.className='msg-row bot';
+  const actionHtml = action
+    ? `<button class="ml-action-btn" style="margin-top:8px;padding:6px 12px;font-size:12px" data-err-action>${esc(action.label)}</button>`
+    : '';
+  // ตรวจ network status สำหรับ helpful hint
+  let networkHint = '';
+  if(!navigator.onLine){
+    networkHint = `<p style="color:var(--ink2);font-size:11px;margin-top:6px">⚠ ดูเหมือนคุณอยู่ offline — ตรวจสอบ wifi/internet</p>`;
+  }
+  r.innerHTML=`<div class="bot-av">${BOT_ICON}</div><div class="bubble bot"><p style="color:var(--red)">${esc(msg)}</p>${networkHint}${actionHtml}</div>`;
+  msgsEl.appendChild(r);scrollBot();
+  if(action){
+    r.querySelector('[data-err-action]')?.addEventListener('click', action.onClick);
+  }
+}
+
+function showTyping(){
+  const r=document.createElement('div');r.className='msg-row bot';r.id='typing';
+  r.innerHTML=`<div class="bot-av">${BOT_ICON}</div><div class="bubble bot t-bub"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>`;
+  msgsEl.appendChild(r);scrollBot();
+}
+function rmTyping(){document.getElementById('typing')?.remove()}
+
+let currentSessionId = null;
+let currentMode = 'qa';  // 'qa' or 'ml'
+let lastRawInput = '';   // เก็บข้อความที่ user พิมพ์ล่าสุด — สำหรับ reveal toggle (local-only, ไม่ส่งซ้ำ)
+
+// === ML conversational input detection (Heuristic Eval H5 fix) ===
+// ตรวจว่า text เป็น question/conversation มากกว่า raw SMS scam → แนะนำ Q&A
+const QUESTION_MARKERS = [
+  'ทำยังไง', 'ทำไง', 'ทำไม', 'อะไร', 'ที่ไหน', 'เมื่อไหร่', 'ใคร',
+  'ดีมั้ย', 'ดีไหม', 'ใช่มั้ย', 'ใช่ไหม', 'หรือเปล่า',
+  'ช่วย', 'ปรึกษา', 'แนะนำ', 'อยากรู้',
+  '?', '?', // both halfwidth + fullwidth
+];
+const NARRATIVE_MARKERS = ['มีคน', 'ผมได้รับ', 'ฉันได้รับ', 'เพื่อนบอก', 'แม่บอก'];
+function looksLikeConversation(text) {
+  if (!text || text.length < 10) return false;
+  const t = text.toLowerCase();
+  let score = 0;
+  for (const m of QUESTION_MARKERS) if (t.includes(m.toLowerCase())) score++;
+  for (const m of NARRATIVE_MARKERS) if (t.includes(m.toLowerCase())) score += 2;
+  return score >= 2;  // threshold
+}
+
+// Multi-class category → Thai display (sync กับ ml/inference.py CATEGORY_LABELS_TH)
+const CATEGORY_LABELS_TH = {
+  borrowing_scam: 'หลอกขอยืมเงิน',
+  financial_fraud: 'หลอกหักเงิน / โอนเงินผิดปกติ',
+  impersonation_authority: 'อ้างเป็นหน่วยงานรัฐ',
+  investment_scam: 'หลอกชวนลงทุน',
+  loan_offer: 'เสนอเงินกู้ปลอม',
+  phishing_link: 'ลิงก์ฟิชชิ่ง',
+  prize_scam: 'หลอกว่าได้รางวัล',
+  romance_scam: 'หลอกความรัก (Romance scam)',
+  other: 'มิจฉาชีพประเภทอื่น',
+};
+const CATEGORY_ICONS = {
+  borrowing_scam: '🆘',
+  financial_fraud: '💳',
+  impersonation_authority: '🏛️',
+  investment_scam: '📈',
+  loan_offer: '💸',
+  phishing_link: '🔗',
+  prize_scam: '🎁',
+  romance_scam: '💔',
+  other: '⚠️',
+};
+
+// === Mode switcher ===
+document.querySelectorAll('.mode-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    const mode=tab.dataset.mode;
+    if(mode===currentMode) return;
+    currentMode=mode;
+    document.querySelectorAll('.mode-tab').forEach(t=>{
+      const isActive=t.dataset.mode===mode;
+      t.classList.toggle('active',isActive);
+      t.setAttribute('aria-selected',isActive);
+    });
+    txt.placeholder = mode==='ml'
+      ? 'ตรวจเร็วทีละข้อความ — ผลทันที พร้อม top features'
+      : 'วางข้อความ เบอร์โทร เลขบัญชี ลิงก์ หรือวางภาพ (Ctrl+V)…';
+  });
+});
+
+async function send(override){
+  const val=(override??txt.value).trim();
+  const img=pendingImage;
+  if(!val && !img) return;
+
+  txt.value='';resize();
+  const imgDataUrl=img?.dataUrl||null;
+  clearImage();
+  upd();
+
+  // ML mode = stateless (no chat history append)
+  if(currentMode==='ml'){
+    // === Heuristic Eval H5 fix: detect conversational input → suggest Q&A ===
+    if(looksLikeConversation(val)){
+      const useQa = await showSuggestQaModal(val);
+      if(useQa){
+        // switch to Q&A and resend
+        document.querySelector('.mode-tab[data-mode="qa"]').click();
+        // restore text into input so send() will pick it up
+        txt.value = val;
+        upd();
+        return send(val);  // recurse with Q&A mode
+      }
+      // user chose to continue with ML anyway — proceed
+    }
+    lastRawInput=val;  // เก็บไว้สำหรับ reveal toggle (local only)
+    addUser(val, imgDataUrl);
+    showTyping();
+    try{
+      const body={text: val||''};
+      if(img){ body.image_base64=img.base64; body.image_media_type=img.mediaType; }
+      const res=await fetch('/api/ml/detect',{
+        method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)
+      });
+      rmTyping();
+      if(!res.ok){addError('ML detect ผิดพลาด — server อาจยุ่งอยู่ครู่หนึ่ง', {label:'ลองส่งใหม่', onClick:()=>send(val)});return;}
+      const data=await res.json();
+      addMlResult(data);
+    }catch(e){
+      rmTyping();addError('เชื่อมต่อ server ไม่ได้ — ตรวจสอบว่า server รันอยู่', {label:'ลองส่งใหม่', onClick:()=>send(val)});
+    }
+    return;
+  }
+
+  // Q&A mode (default)
+  addUser(val, imgDataUrl);
+  showTyping();
+  try{
+    const body={text: val||'วิเคราะห์ภาพนี้ให้ด้วยครับ', session_id:currentSessionId};
+    if(img){ body.image_base64=img.base64; body.image_media_type=img.mediaType; }
+    const res=await fetch('/api/qa/chat',{
+      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)
+    });
+    rmTyping();
+    if(!res.ok){
+      const isClientErr = res.status >= 400 && res.status < 500;
+      addError(
+        isClientErr ? `คำขอไม่ถูกต้อง (HTTP ${res.status}) — ลองพิมพ์ใหม่หรือเริ่มแชทใหม่` : 'Q&A server ผิดพลาดชั่วคราว',
+        {label:'ลองส่งใหม่', onClick:()=>send(val)}
+      );
+      return;
+    }
+    const data=await res.json();
+    if(data.session_id && !currentSessionId){
+      currentSessionId=data.session_id;
+      loadSessions();
+    }
+    addBot(data);
+  }catch(e){
+    rmTyping();addError('เชื่อมต่อ server ไม่ได้ — ตรวจสอบ internet', {label:'ลองส่งใหม่', onClick:()=>send(val)});
+  }
+}
+
+// === ML result card renderer ===
+function addMlResult(data){
+  if(welcome.style.display!=='none'){welcome.style.display='none'}
+  const verdict=data.verdict||'uncertain';
+  const conf=Math.round((data.confidence||0)*100);
+  const cat=data.category;
+  const catLabel=cat?CATEGORY_LABELS_TH[cat]||cat:'';
+  const catIcon=cat?CATEGORY_ICONS[cat]||'⚠️':'';
+
+  // verdict + category combined
+  let verdictLabel, verdictIcon;
+  if(verdict==='danger'&&catLabel){
+    verdictLabel=`อันตราย — ${catLabel}`;
+    verdictIcon=catIcon;
+  } else if(verdict==='uncertain'&&catLabel){
+    verdictLabel=`ไม่แน่ใจ (เดาว่า ${catLabel})`;
+    verdictIcon='❔';
+  } else {
+    verdictLabel={danger:'อันตราย — มิจฉาชีพ',caution:'น่าระวัง',safe:'ปลอดภัย',uncertain:'ไม่แน่ใจ'}[verdict];
+    verdictIcon={danger:'⚠️',caution:'⚡',safe:'✅',uncertain:'❔'}[verdict];
+  }
+
+  const featuresHtml=(data.top_features||[]).slice(0,5).map(f=>{
+    const w=f.weight;
+    const cls=w>0?'pos':'neg';
+    const sign=w>0?'+':'';
+    return `<div class="ml-feat-row">
+      <div class="ml-feat-name" title="${escapeHtml(f.name)}">${escapeHtml(f.name)}</div>
+      <div class="ml-feat-weight ${cls}">${sign}${w.toFixed(3)}</div>
+    </div>`;
+  }).join('');
+
+  // Build action buttons — "ปรึกษา AI ต่อ" ถ้ามี prefill_token
+  let actionsHtml='';
+  if(data.qa_prefill_token){
+    actionsHtml=`<div class="ml-actions">
+      <button class="ml-action-btn" data-prefill="${escapeHtml(data.qa_prefill_token)}">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        ปรึกษา AI ต่อ
+      </button>
+    </div>`;
+  } else if(verdict==='danger' || verdict==='caution'){
+    actionsHtml=`<div class="ml-actions">
+      <button class="ml-action-btn secondary" data-detect-another>ตรวจอันใหม่</button>
+    </div>`;
+  }
+
+  const card=document.createElement('div');
+  card.className=`ml-result ${verdict}`;
+  card.innerHTML=`
+    <div class="ml-verdict-row">
+      <span class="ml-verdict-badge ${verdict}">${verdictIcon} ${verdictLabel}</span>
+      <span class="ml-conf">ความมั่นใจ ${conf}%</span>
+    </div>
+    <div class="ml-conf-bar"><div class="ml-conf-bar-fill ${verdict}" style="width:${conf}%"></div></div>
+    <div class="ml-input-row">
+      <span class="ml-input-lbl">Input</span>
+      <span class="ml-input-text pii-cell">
+        <span class="pii-value" data-masked="${escapeHtml(data.masked_input||'')}" data-raw="${escapeHtml(lastRawInput||data.masked_input||'')}">${escapeHtml(data.masked_input||'')}</span>
+        <button class="pii-reveal" title="กดดูค่าเต็ม (เห็นเฉพาะคุณ)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/></svg>
+        </button>
+      </span>
+    </div>
+    <div class="ml-advice">${escapeHtml(data.advice_text||'')}</div>
+    ${featuresHtml?`<div class="ml-features">
+      <div class="ml-features-title">Top features ที่ทำให้ตัดสิน</div>
+      <div class="ml-feat-list">${featuresHtml}</div>
+    </div>`:''}
+    ${actionsHtml}
+    <div class="ml-meta">
+      <span class="ml-meta-item">⏱ ${data.latency_ms}ms</span>
+      <span class="ml-meta-item">📦 ${escapeHtml(data.model_version||'')}</span>
+      ${data.suggest_qa?'<span class="ml-meta-item">💡 แนะนำใช้ Q&A ต่อ</span>':''}
+    </div>
+  `;
+  msgsEl.appendChild(card);
+  card.scrollIntoView({behavior:'smooth',block:'end'});
+
+  // Wire "ปรึกษา AI ต่อ" → switch to Q&A mode + send with prefill
+  const prefillBtn=card.querySelector('[data-prefill]');
+  if(prefillBtn){
+    prefillBtn.addEventListener('click',async()=>{
+      const token=prefillBtn.dataset.prefill;
+      // switch UI to Q&A mode
+      document.querySelector('.mode-tab[data-mode="qa"]').click();
+      // reset session
+      currentSessionId=null;
+      showTyping();
+      try{
+        const res=await fetch('/api/qa/chat',{
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({prefill_token:token})
+        });
+        rmTyping();
+        if(!res.ok){
+          const expired = res.status === 410;
+          addError(
+            expired ? 'Token หมดอายุ (5 นาที) — ส่งข้อความใน ML mode ใหม่ก่อน' : 'Q&A ปรึกษาต่อล้มเหลว',
+            expired ? {label:'กลับ ML mode', onClick:()=>document.querySelector('.mode-tab[data-mode="ml"]').click()} : null
+          );
+          return;
+        }
+        const data=await res.json();
+        if(data.session_id) {currentSessionId=data.session_id; loadSessions();}
+        addBot(data);
+      }catch(e){rmTyping();addError('เชื่อมต่อ Q&A ล้มเหลว');}
+    });
+  }
+  const anotherBtn=card.querySelector('[data-detect-another]');
+  if(anotherBtn){anotherBtn.addEventListener('click',()=>{txt.focus()})}
+
+  // PII reveal toggle — local UI state, ไม่ส่งไป server (CLAUDE.md 2.8 UI Reveal Rule)
+  const revealBtn=card.querySelector('.pii-reveal');
+  if(revealBtn){
+    revealBtn.addEventListener('click',()=>{
+      const cell=card.querySelector('.pii-value');
+      const revealed=revealBtn.classList.toggle('revealed');
+      cell.textContent = revealed ? cell.dataset.raw : cell.dataset.masked;
+      revealBtn.title = revealed ? 'ซ่อนค่าเต็ม' : 'กดดูค่าเต็ม (เห็นเฉพาะคุณ)';
+    });
+  }
+}
+
+function escapeHtml(s){
+  return String(s||'').replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[c]);
+}
+
+function reset(){
+  msgsEl.innerHTML='';welcome.style.display='';msgsEl.appendChild(welcome);
+  started=false;txt.value='';resize();upd();currentSessionId=null;
+}
+
+async function loadSessions(){
+  try{
+    const res=await fetch('/api/qa/sessions');
+    const sessions=await res.json();
+    const sbBody=document.querySelector('.sb-body');
+    sbBody.innerHTML='<p class="sec-lbl">Recent</p>';
+    sessions.forEach(s=>{
+      const wrap=document.createElement('div');
+      wrap.className='h-item-wrap'+(s.session_id===currentSessionId?' active':'');
+      wrap.dataset.sid=s.session_id;
+      wrap.innerHTML=`
+        <button class="h-item-btn" title="${esc(s.title)}">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;color:var(--ink3)"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.8"/></svg>
+          <span class="h-item-text">${esc(s.title)}</span>
+        </button>
+        <button class="h-del-btn" title="ลบแชทนี้">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>`;
+      wrap.querySelector('.h-item-btn').addEventListener('click',()=>loadSession(s.session_id, s.title));
+      wrap.querySelector('.h-del-btn').addEventListener('click',async(e)=>{
+        e.stopPropagation();
+        const ok=await showConfirm();
+        if(!ok) return;
+        await fetch(`/api/qa/sessions/${s.session_id}`,{method:'DELETE'});
+        if(currentSessionId===s.session_id){reset();}
+        loadSessions();
+      });
+      sbBody.appendChild(wrap);
+    });
+  }catch(e){}
+}
+
+async function loadSession(sessionId, title){
+  try{
+    const res=await fetch(`/api/qa/sessions/${sessionId}/messages`);
+    const messages=await res.json();
+    msgsEl.innerHTML='';
+    welcome.style.display='none';
+    const d=document.createElement('div');d.className='divider';d.textContent=title;
+    msgsEl.appendChild(d);
+    started=true;
+    currentSessionId=sessionId;
+    document.querySelectorAll('.h-item-wrap').forEach(w=>w.classList.toggle('active',parseInt(w.dataset.sid)===sessionId));
+    messages.forEach(m=>{
+      try{
+        if(m.role==='user') addUser(m.content);
+        else if(m.result_data) addBot(m.result_data);
+        else if(m.role==='bot'&&m.content) addBot({type:'chat',ai_summary:m.content});
+      }catch(e){console.warn('render msg failed',e);}
+    });
+  }catch(e){addError('โหลด history ไม่สำเร็จ');}
+}
+
+txt.addEventListener('input',()=>{upd();resize()});
+txt.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();if(txt.value.trim())send()}});
+sendBtn.addEventListener('click',()=>send());
+newBtn.addEventListener('click',reset);
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>send(c.dataset.msg)));
+
+function checkMobile(){menuBtn.style.display=window.innerWidth<=700?'flex':'none'}
+menuBtn.addEventListener('click',()=>sb.classList.toggle('open'));
+document.addEventListener('click',e=>{if(sb.classList.contains('open')&&!sb.contains(e.target)&&e.target!==menuBtn)sb.classList.remove('open')});
+window.addEventListener('resize',checkMobile);
+checkMobile();
+loadSessions();
+</script>
+</body>
+</html>

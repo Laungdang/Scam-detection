@@ -1,0 +1,419 @@
+# Scam Lexicon — shared signal vocabulary (Q&A evidence + ML features)
+#
+# หลักการ (CLAUDE.md Section 2.1, 5.2, 6.8):
+#   - ไฟล์นี้คือ "พจนานุกรมสัญญาณ" ไม่ใช่ "กฎตัดสิน"
+#   - แต่ละ dimension = มิติทางจิตวิทยา/โครงสร้างที่มิจฉาชีพใช้ (อ้างอิง Stajano & Wilson 2011,
+#     "Understanding scam victims: seven principles for systems security"; Cialdini 2007)
+#   - การพบคำใน dimension เดียว **ไม่ใช่** หลักฐานว่าเป็น scam — "ด่วน" อยู่ใน flash sale และ
+#     อาจารย์ทวงงานได้ — ผู้ตัดสิน (Claude ใน Q&A / model ใน ML) เป็นคนชั่งน้ำหนักว่าหลาย
+#     dimension co-occur หรือไม่
+#   - ห้ามใส่ verdict / severity / weight ในไฟล์นี้ (จะกลายเป็น decision rule)
+#
+# Matching (app/services/pattern_service.py):
+#   - terms: ตัดคำด้วย PyThaiNLP newmm ทั้ง text และ term แล้ว match เป็น token subsequence
+#     → "ด่วน" ไม่ match "รถด่วน", "ถูกมาก" ไม่ match "ถูกมากกว่า"
+#   - regex: ใช้กับ raw text — รายงานแค่ **ชื่อ** regex ไม่รายงานข้อความที่ match (กัน PII หลุด)
+#
+# Provenance ของคำ (evidence):
+#   corpus_tierA    = พบใน Thai verbatim scam records (data/raw/scam_corpus.jsonl, extraction=verbatim_html,
+#                     n=80) — ตัวเลขในวงเล็บคือจำนวน record ที่พบ (นับเมื่อ 2026-08-29)
+#   afnc            = ศูนย์ต่อต้านข่าวปลอม "รวมข้อความ SMS ที่มิจฉาชีพมักแนบลิงก์หลอกเหยื่อ"
+#                     https://www.antifakenewscenter.com/คลังความรู้/รวมข้อความ-sms-ที่มิจฉาชีพมักแนบลิงก์หลอกเหยื่อ/
+#   police9         = https://www.police9.go.th/ระวังภัย-sms-มิจฉาชีพ-กับกล/
+#   tidlor          = https://www.tidlor.com/th/article/lifestyle/general/how-to-avoid-phishing-scams
+#   thaicert        = https://www.thaicert.or.th/ (บทความเตือนภัย 2026: คนละครึ่งพลัส, จัดหางานปลอม, CAPTCHA ปลอม)
+#   domain          = ความรู้ทั่วไปของหมวด scam ตาม category schema (CLAUDE.md 4.5) — ต้อง verify กับ
+#                     tier A เพิ่มเมื่อ corpus โต
+
+version: "1.1"   # 2026-08-29: 14 มิติ + caveat + คำบริบทนักศึกษา (guideline v1.1 §3)
+tokenizer: newmm
+
+dimensions:
+
+  - key: urgency
+    label_th: เร่งให้รีบตัดสินใจ
+    principle: time_pressure
+    note: >
+      พบในข้อความปกติได้บ่อยมาก (โปรโมชั่น, งาน, ครอบครัว) — มีค่าเฉพาะเมื่อ co-occur กับ
+      money_request / credential_request / link_action
+    terms:
+      - {term: ด่วน, evidence: [corpus_tierA, police9]}
+      - {term: ทันที, evidence: [corpus_tierA(8)]}
+      - {term: รีบ, evidence: [domain]}
+      - {term: เร่ง, evidence: [domain]}
+      - {term: หมดเขต, evidence: [domain]}
+      - {term: ครั้งสุดท้าย, evidence: [domain]}
+      - {term: วันนี้เท่านั้น, evidence: [domain]}
+      - {term: ก่อนจะสาย, evidence: [domain]}
+      - {term: ภายในวันนี้, evidence: [afnc]}
+      - {term: มิฉะนั้น, evidence: [afnc]}
+      - {term: หากไม่ดำเนินการ, evidence: [afnc]}
+      # จาก external comparison (kaggle_tu, 2026-08-29): urgency เชิงโปรโมชั่นที่ evidence เคยรายงาน "ไม่พบ"
+      - {term: ถึงวันนี้, evidence: [kaggle_tu(synthetic)]}
+      - {term: วันนี้วันเดียว, evidence: [domain]}
+      - {term: ราคาพิเศษถึง, evidence: [kaggle_tu(synthetic)]}
+      # scarcity pressure (ของมีจำกัด) — kaggle_tu รอบ 2 "รีบโอนก่อนนะ เหลือคนเดียวแล้ว"
+      - {term: เหลือคนเดียว, evidence: [kaggle_tu(synthetic)]}
+      - {term: เหลือชิ้นเดียว, evidence: [domain]}
+      - {term: เหลือตัวเดียว, evidence: [domain]}
+      - {term: คนจองเยอะ, evidence: [domain]}
+      - {term: คนจองหลายคน, evidence: [kaggle_tu(synthetic)]}
+      - {term: โอนก่อนได้ก่อน, evidence: [domain]}
+      - {term: จองก่อนได้ก่อน, evidence: [domain]}
+      # scarcity/เสียสิทธิ์ — ย้ายจาก threat ตาม guideline v1.1 §3 (Q7: "หมดสิทธิ์" ไม่ใช่การขู่)
+      - {term: หมดสิทธิ์, evidence: [kaggle_tu(synthetic)]}
+      - {term: เสียสิทธิ์, evidence: [domain]}
+      - {term: ตัดสิทธิ์, evidence: [domain]}
+      - {term: ที่นั่งเต็ม, evidence: [domain]}
+      - {term: ของหมด, evidence: [domain]}
+    regex:
+      - {name: deadline_hours, pattern: 'ภายใน\s*\d+\s*(ชั่วโมง|ชม\.?|นาที|วัน)'}
+      - {name: consequence_if_not, pattern: 'ไม่งั้น|ไม่เช่นนั้น|มิฉะนั้น|หากไม่|ถ้าไม่.{0,12}จะ'}
+
+  - key: money_request
+    label_th: ขอให้โอน/จ่ายเงิน
+    principle: extraction
+    # บทเรียน kaggle_tu comparison 2026-08-29: "ขอเลขพร้อมเพย์ จะโอนค่าชีท" ถูกอ่านเป็นการขอเงิน
+    caveat: >
+      คำว่า โอน/พร้อมเพย์/เลขบัญชี ไม่บอกว่าใครจ่ายใคร — ถ้าผู้ส่งจะโอน "ให้" ผู้รับ ผู้รับไม่เสียอะไร
+    terms:
+      - {term: โอนเงิน, evidence: [corpus_tierA, tidlor]}
+      - {term: โอน, evidence: [corpus_tierA]}
+      - {term: ค่าธรรมเนียม, evidence: [domain]}
+      - {term: มัดจำ, evidence: [domain]}
+      - {term: ค่าดำเนินการ, evidence: [domain]}
+      - {term: เงินประกัน, evidence: [corpus_tierA(4)]}
+      - {term: ค่าประกัน, evidence: [domain]}
+      - {term: ชำระ, evidence: [corpus_tierA(4), afnc]}
+      - {term: จ่ายก่อน, evidence: [domain]}
+      - {term: วางเงิน, evidence: [domain]}
+      - {term: พร้อมเพย์, evidence: [domain]}
+      - {term: PromptPay, evidence: [domain]}
+      - {term: ค่าปลดล็อก, evidence: [domain]}
+      - {term: ค่าภาษี, evidence: [domain]}
+      # marketplace pay-first (kaggle_tu comparison 2026-08-29 — judge+skeptic เห็นตรงกันว่าระบบพลาด)
+      - {term: โอนก่อน, evidence: [kaggle_tu(synthetic), afnc]}
+      - {term: โอนก่อนส่ง, evidence: [kaggle_tu(synthetic)]}
+      - {term: โอนเต็ม, evidence: [kaggle_tu(synthetic)]}
+      - {term: จ่ายเต็ม, evidence: [domain]}
+      - {term: เต็มจำนวน, evidence: [domain]}
+      - {term: โอนมาเลย, evidence: [kaggle_tu(synthetic)]}
+      # บัญชีบุคคลที่สาม (บัญชีม้า) — police9/thaicert เตือนเรื่องชื่อบัญชีไม่ตรงผู้ขาย
+      - {term: บัญชีแฟน, evidence: [kaggle_tu(synthetic), domain]}
+      - {term: บัญชีเพื่อน, evidence: [domain]}
+      - {term: บัญชีญาติ, evidence: [domain]}
+      - {term: ชื่อบัญชีไม่ตรง, evidence: [thaicert]}
+      # ค่าธรรมเนียมเพื่อ "รับสิทธิ์" (guideline v1.1 §2 financial_fraud / advance fee)
+      - {term: ค่าชีท, evidence: [kaggle_tu(synthetic)]}
+      - {term: ค่าจอง, evidence: [kaggle_tu(synthetic)]}
+      - {term: ค่าจองสิทธิ์, evidence: [kaggle_tu(synthetic)]}
+      - {term: ค่ายืนยันสิทธิ์, evidence: [domain]}
+      - {term: ค่ากิจกรรม, evidence: [domain]}
+    regex:
+      # บัญชีบุคคลที่สาม / ชื่อไม่ตรง — สัญญาณโดยลำพัง (b) ใน guideline v1.1 §1.1 (Q2)
+      - {name: third_party_account, pattern: 'บัญชี(นี้|นั้น)?(ของ|เป็นของ|ชื่อ)?(แฟน|เพื่อน|ญาติ|พี่สาว|พี่ชาย|น้อง|แม่|พ่อ|ลูก|หลาน|คนอื่น|คนรู้จัก)'}
+      - {name: account_name_mismatch, pattern: 'ชื่อ(บัญชี)?\s*ไม่ตรง|ไม่ตรงกับชื่อ|คนละชื่อ'}
+      # รวมรูป masked/placeholder ที่ corpus v2 ใช้ (xxx-x-xx5678, <BANK_ACCOUNT>) และพร้อมเพย์เบอร์
+      - {name: bank_account_format, pattern: '\b\d{3}-?\d-?\d{5}-?\d\b|\bx{3}-x-x{2}\d{4}\b|\bx{3}-x-x{5}-x\b|<BANK_ACCOUNT>'}
+      - {name: promptpay_phone, pattern: 'พร้อมเพย์\s*(?:0\d[\d-]{7,}|xxx-xxx-\d{4}|<PHONE>)'}
+      # money_amount ย้ายไปมิติ amount_mention (2026-08-29 รอบ 2): "ชั่วโมงละ 70 บาท" ไม่ใช่การขอเงิน
+
+  - key: amount_mention
+    label_th: พบจำนวนเงิน (ยังไม่ทราบว่าแจ้งหรือขอ)
+    principle: metadata
+    note: >
+      แยกจาก money_request เพราะจำนวนเงินปรากฏในค่าจ้าง/ราคาสินค้า/แจ้งยอด ได้ตลอด —
+      มิตินี้ "อ่อน" ไม่เปิด RAG และไม่นับเป็นการขอ (บทเรียน kaggle_tu รอบ 2)
+    terms: []
+    regex:
+      - {name: money_amount, pattern: '\d{1,3}(?:,\d{3})+\s*(?:บาท|บ\.)|\d+\s*บาท'}
+
+  - key: inbound_payment_offer
+    label_th: ผู้ส่งเสนอจะจ่าย/โอนให้ผู้รับ (ขอเลขบัญชีผู้รับ)
+    principle: metadata
+    note: >
+      ทิศทางเงินกลับด้าน — ผู้ส่งบอกว่าเป็นฝ่ายจ่าย ขอเลขบัญชีผู้รับ; guideline v2.1 สัญญาณ #10:
+      จากคนไม่รู้จัก = บัญชีม้าโดยไม่รู้ตัว (โอนเข้าแล้วอ้าง "โอนเกิน ช่วยโอนคืน" / สลิปปลอม) — มิตินี้เป็น
+      ข้อเท็จจริงว่าพบรูปประโยคนี้ ไม่ใช่ verdict; ไม่เปิด RAG (เคสคล้ายมักเป็นเรื่องอื่น)
+    terms: []
+    regex:
+      - {name: asks_recipient_account_to_pay, pattern: 'ขอ\s*(เลข)?\s*(บช|บัญชี|พร้อมเพย์|promptpay)[^\n]{0,25}(จะ|เดี๋ยว|เดี๋ยวจะ|เดี๋ยวจ่าย)\s*(โอน|จ่าย)|(จะ|เดี๋ยว)\s*โอน\s*(ให้|ค่า)'}
+
+  - key: credential_request
+    label_th: ขอข้อมูลส่วนตัว/รหัส
+    principle: extraction
+    terms:
+      - {term: OTP, evidence: [domain]}
+      - {term: รหัสผ่าน, evidence: [domain]}
+      - {term: รหัส, evidence: [domain]}
+      - {term: PIN, evidence: [domain]}
+      - {term: เลขหลังบัตร, evidence: [domain]}
+      - {term: CVV, evidence: [domain]}
+      - {term: ยืนยันตัวตน, evidence: [corpus_tierA(5), police9]}
+      - {term: กรอกข้อมูล, evidence: [corpus_tierA(3), tidlor]}
+      - {term: อัปเดตข้อมูล, evidence: [corpus_tierA(6), afnc]}
+      - {term: อัพเดทข้อมูล, evidence: [afnc]}
+      - {term: เลขบัตรประชาชน, evidence: [domain]}
+      - {term: ข้อมูลส่วนตัว, evidence: [domain]}
+      - {term: ยืนยันบัญชี, evidence: [afnc]}
+      # kaggle_tu รอบ 2: "ระบบแจ้งให้ยืนยันข้อมูลบางอย่างภายในวันนี้" เคยรายงาน "ไม่พบ"
+      - {term: ยืนยันข้อมูล, evidence: [kaggle_tu(synthetic), afnc]}
+      - {term: ยืนยันสิทธิ์, evidence: [afnc]}
+      - {term: ตรวจสอบข้อมูล, evidence: [domain]}
+      - {term: ส่งรูปบัตร, evidence: [afnc]}
+      - {term: สำเนาบัตร, evidence: [domain]}
+      - {term: หน้าสมุดบัญชี, evidence: [domain]}
+
+  - key: link_action
+    label_th: ให้กดลิงก์/ติดตั้งแอป
+    principle: action_lure
+    terms:
+      - {term: คลิก, evidence: [corpus_tierA(16), police9]}
+      - {term: กดลิงก์, evidence: [domain]}
+      - {term: ลิงก์, evidence: [corpus_tierA(11)]}
+      - {term: ลิ้ง, evidence: [kaggle_tu(synthetic)]}
+      - {term: ลิ้งค์, evidence: [domain]}
+      - {term: ลิงค์, evidence: [domain]}
+      - {term: ดาวน์โหลด, evidence: [domain]}
+      - {term: ติดตั้งแอป, evidence: [thaicert]}
+      - {term: ติดตั้ง, evidence: [thaicert]}
+      - {term: สแกน, evidence: [domain]}
+      - {term: เข้าเว็บ, evidence: [domain]}
+      - {term: ตามลิงก์, evidence: [afnc]}
+    regex:
+      - {name: url, pattern: 'https?://\S+|www\.\S+|<URL>'}
+      - {name: url_shortener, pattern: '\b(bit\.ly|tinyurl\.com|cutt\.ly|shorturl\.at|is\.gd|t\.co|rb\.gy)\b'}
+      - {name: suspicious_tld, pattern: '\b[a-z0-9-]+\.(xyz|top|cc|club|icu|buzz|live|vip|site|online|shop|pw)\b'}
+      - {name: ip_url, pattern: 'https?://\d{1,3}(?:\.\d{1,3}){3}'}
+
+  - key: authority_claim
+    label_th: อ้างหน่วยงาน/แบรนด์
+    principle: authority
+    note: >
+      ข้อความจริงจากธนาคาร/หน่วยงานก็มีคำพวกนี้ — มิตินี้บอกแค่ว่า "มีการอ้างชื่อ"
+      การตัดสินว่าอ้างจริงหรือปลอมอยู่ที่ผู้ตัดสิน (ดูร่วมกับ link_action/credential_request)
+    terms:
+      - {term: ธนาคาร, evidence: [corpus_tierA(11)]}
+      - {term: ตำรวจ, evidence: [domain]}
+      - {term: DSI, evidence: [domain]}
+      - {term: กรมสอบสวนคดีพิเศษ, evidence: [domain]}
+      - {term: สรรพากร, evidence: [domain]}
+      - {term: ปปง, evidence: [domain]}
+      - {term: ศาล, evidence: [domain]}
+      - {term: ไปรษณีย์, evidence: [domain]}
+      - {term: กสทช, evidence: [domain]}
+      - {term: ธปท, evidence: [corpus_tierA(2), tidlor]}
+      - {term: การไฟฟ้า, evidence: [corpus_tierA, police9]}
+      - {term: ไฟฟ้าส่วนภูมิภาค, evidence: [corpus_tierA(2)]}
+      - {term: ประกันสังคม, evidence: [domain]}
+      - {term: ศุลกากร, evidence: [domain]}
+      - {term: เจ้าหน้าที่, evidence: [domain]}
+      - {term: กระทรวง, evidence: [domain]}
+      - {term: รัฐบาล, evidence: [thaicert]}
+      # อ้างบทบาทในสถาบัน/องค์กร (kaggle_tu รอบ 2: "แอดมินคณะขอค่าจองสิทธิ์สอบ"; AFNC เคสแอดมินเพจปลอม)
+      - {term: แอดมิน, evidence: [kaggle_tu(synthetic), afnc]}
+      - {term: แอดมินกลุ่ม, evidence: [kaggle_tu(synthetic)]}
+      - {term: แอดมินคณะ, evidence: [kaggle_tu(synthetic)]}
+      - {term: คณะ, evidence: [kaggle_tu(synthetic)]}
+      - {term: มหาวิทยาลัย, evidence: [domain]}
+      - {term: มหาลัย, evidence: [kaggle_tu(synthetic)]}
+      - {term: สำนักทะเบียน, evidence: [domain]}
+      - {term: ฝ่ายบุคคล, evidence: [domain]}
+      - {term: HR, evidence: [domain]}
+      - {term: สโมสร, evidence: [domain]}
+      - {term: หัวหน้าห้อง, evidence: [domain]}
+      - {term: พี่รหัส, evidence: [domain]}
+      - {term: เจ้าหน้าที่ทะเบียน, evidence: [domain]}
+      - {term: งานทะเบียน, evidence: [domain]}
+      - {term: กสิกร, evidence: [corpus_tierA(4)]}
+      - {term: KBank, evidence: [domain]}
+      - {term: SCB, evidence: [domain]}
+      - {term: ไทยพาณิชย์, evidence: [domain]}
+      - {term: BBL, evidence: [corpus_tierA(4)]}
+      - {term: กรุงเทพ, evidence: [domain]}
+      - {term: กรุงไทย, evidence: [domain]}
+      - {term: ออมสิน, evidence: [domain]}
+      - {term: ttb, evidence: [domain]}
+      - {term: Shopee, evidence: [domain]}
+      - {term: Lazada, evidence: [domain]}
+      - {term: Kerry, evidence: [domain]}
+      - {term: Flash Express, evidence: [domain]}   # ไม่ใช้ "Flash" เดี่ยว — ชน "Flash Sale"
+      - {term: แฟลช, evidence: [domain]}
+      - {term: คนละครึ่ง, evidence: [thaicert]}
+      - {term: เงินดิจิทัล, evidence: [domain]}
+
+  - key: threat
+    label_th: ขู่/สร้างความกลัว
+    principle: fear
+    terms:
+      - {term: คดี, evidence: [police9]}
+      - {term: อายัด, evidence: [domain]}
+      - {term: หมายจับ, evidence: [domain]}
+      - {term: หมายเรียก, evidence: [domain]}
+      - {term: ระงับ, evidence: [corpus_tierA(3), police9]}
+      - {term: ถูกระงับ, evidence: [police9]}
+      - {term: ฟอกเงิน, evidence: [domain]}
+      - {term: ดำเนินคดี, evidence: [domain]}
+      - {term: ผิดกฎหมาย, evidence: [domain]}
+      - {term: ถูกแฮก, evidence: [afnc]}
+      - {term: โดนแฮก, evidence: [afnc]}
+      - {term: ผิดปกติ, evidence: [tidlor]}
+      - {term: ค้างชำระ, evidence: [afnc]}
+      - {term: ยังไม่ชำระ, evidence: [afnc]}
+      - {term: ถูกถอน, evidence: [tidlor]}
+      - {term: ตัดสัญญาณ, evidence: [domain]}
+      - {term: พัสดุตกค้าง, evidence: [domain]}
+      - {term: ค่าปรับ, evidence: [domain]}
+      - {term: ถูกล็อก, evidence: [domain]}
+    # หมดสิทธิ์/ที่นั่งเต็ม ย้ายไป urgency (guideline v1.1 §3, Q7): ขู่ = คดี/อายัด/ระงับ/ถูกแฮก ที่ต้อง "แก้"
+    note: ขู่ = คดี/อายัด/ระงับ/ถูกแฮก ที่ต้อง "แก้" โดยโอน/กดลิงก์/โทรกลับ — "หมดสิทธิ์/ของหมด" เป็น urgency ไม่ใช่มิตินี้
+
+  - key: reward
+    label_th: ล่อด้วยรางวัล/เงินคืน
+    principle: greed
+    terms:
+      - {term: รางวัล, evidence: [corpus_tierA(4), police9]}
+      - {term: ผู้โชคดี, evidence: [tidlor]}
+      - {term: โชคดี, evidence: [corpus_tierA(2)]}
+      - {term: ยินดีด้วย, evidence: [tidlor]}
+      - {term: เงินคืน, evidence: [police9]}
+      - {term: คืนเงิน, evidence: [corpus_tierA]}
+      - {term: ฟรี, evidence: [corpus_tierA(5), tidlor]}
+      - {term: โบนัส, evidence: [domain]}
+      - {term: ของขวัญ, evidence: [domain]}
+      - {term: คืนภาษี, evidence: [domain]}
+      - {term: เงินเยียวยา, evidence: [domain]}
+      - {term: รับสิทธิ์, evidence: [domain]}
+      - {term: iPhone, evidence: [police9]}
+
+  - key: financial_offer
+    label_th: เสนอเงินกู้/ลงทุน/รายได้
+    principle: greed
+    terms:
+      - {term: สินเชื่อ, evidence: [corpus_tierA(8), tidlor]}
+      - {term: เงินกู้, evidence: [corpus_tierA(3), tidlor]}
+      - {term: กู้, evidence: [domain]}
+      - {term: ไม่ต้องค้ำ, evidence: [domain]}
+      - {term: ไม่เช็คเครดิต, evidence: [domain]}
+      - {term: อนุมัติไว, evidence: [domain]}
+      - {term: อนุมัติทันที, evidence: [domain]}
+      - {term: ดอกเบี้ยต่ำ, evidence: [domain]}
+      - {term: วงเงิน, evidence: [tidlor]}
+      - {term: ผลตอบแทน, evidence: [domain]}
+      - {term: กำไร, evidence: [domain]}
+      - {term: ลงทุน, evidence: [domain]}
+      - {term: รับประกันผลตอบแทน, evidence: [domain]}
+      - {term: หุ้น, evidence: [domain]}
+      - {term: คริปโต, evidence: [domain]}
+      - {term: Forex, evidence: [domain]}
+      - {term: เทรด, evidence: [domain]}
+      - {term: รายได้เสริม, evidence: [thaicert]}
+      - {term: งานออนไลน์, evidence: [thaicert]}
+      - {term: ทำงานต่างประเทศ, evidence: [thaicert]}
+      # job-scam opener (kaggle_tu comparison 2026-08-29; thaicert จัดหางานปลอม)
+      - {term: ไม่ต้องสัมภาษณ์, evidence: [kaggle_tu(synthetic), thaicert]}
+      - {term: ไม่ต้องมีประสบการณ์, evidence: [kaggle_tu(synthetic), thaicert]}
+      - {term: รับสมัครด่วน, evidence: [domain]}
+      - {term: ได้เงินเร็ว, evidence: [kaggle_tu(synthetic), thaicert]}
+      - {term: งานง่าย, evidence: [thaicert]}
+      - {term: สมัครง่าย, evidence: [domain]}
+      - {term: รายได้ดี, evidence: [thaicert]}
+      - {term: ค่าสมัคร, evidence: [kaggle_tu(synthetic), thaicert]}
+    regex:
+      # ต้องมี "ต่อ"/"ราย" — ไม่งั้น "ลด 50% วันนี้" (flash sale) จะติด
+      - {name: return_rate, pattern: '\d+\s*%\s*(?:ต่อ|ราย)\s*(?:วัน|สัปดาห์|เดือน|ปี)'}
+      # "ได้เงินวันละ 10,000" — รายได้ต่อวันเกินจริง (งานจริงมักบอกต่อชั่วโมง/เดือน)
+      - {name: daily_income, pattern: 'วันละ\s*\d[\d,]{3,}'}
+
+  - key: secrecy
+    label_th: ให้ปิดเป็นความลับ/ห้ามติดต่อคนอื่น
+    principle: isolation
+    terms:
+      - {term: ห้ามบอกใคร, evidence: [domain]}
+      - {term: อย่าบอกใคร, evidence: [domain]}
+      - {term: เป็นความลับ, evidence: [domain]}
+      - {term: ความลับ, evidence: [domain]}
+      - {term: ห้ามแจ้ง, evidence: [domain]}
+      - {term: ห้ามวางสาย, evidence: [domain]}
+      - {term: อย่าวางสาย, evidence: [domain]}
+      - {term: ห้ามติดต่อธนาคาร, evidence: [domain]}
+
+  - key: refuse_verification
+    label_th: ปฏิเสธการตรวจสอบ/นัดรับ
+    principle: isolation
+    note: ผู้ขายจริงบางรายก็ส่งอย่างเดียว — มีน้ำหนักเมื่อคู่กับ โอนก่อน/โอนเต็ม จากคนไม่รู้จัก (kaggle_tu รอบ 2)
+    terms:
+      - {term: ไม่รับนัด, evidence: [kaggle_tu(synthetic)]}
+      - {term: ไม่นัดรับ, evidence: [domain]}
+      - {term: ไม่สะดวกนัดรับ, evidence: [kaggle_tu(synthetic)]}
+      - {term: ไม่รับวิดีโอคอล, evidence: [kaggle_tu(synthetic)]}
+      - {term: ไม่รับ COD, evidence: [domain]}
+      - {term: ไม่เก็บปลายทาง, evidence: [domain]}
+      - {term: ส่งอย่างเดียว, evidence: [kaggle_tu(synthetic)]}
+      - {term: ไม่สะดวกคอล, evidence: [domain]}
+
+  - key: channel_shift
+    label_th: ให้ย้ายไปคุยช่องทางอื่น
+    principle: isolation
+    caveat: >
+      inbox/DM บนแพลตฟอร์มเดิม อ่อนกว่า LINE/Telegram ID ภายนอกจากคนไม่รู้จัก; contact ที่ผู้โพสต์แนบกับโพสต์
+      "หาซื้อ/ประกาศ" ไม่ใช่การให้ผู้อ่านย้ายช่องทาง
+    terms:
+      - {term: แอดไลน์, evidence: [domain]}
+      - {term: แอด LINE, evidence: [domain]}
+      - {term: เพิ่มเพื่อน, evidence: [domain]}
+      - {term: LINE ID, evidence: [domain]}
+      - {term: ไอดีไลน์, evidence: [domain]}
+      - {term: ทักมา, evidence: [thaicert]}
+      - {term: ทักแชท, evidence: [thaicert]}
+      # ภาษานักศึกษา (kaggle_tu comparison 2026-08-29 — lexicon เคยรายงาน "ไม่พบการย้ายช่องทาง" ทั้งที่มี "inbox ได้")
+      # หมายเหตุ: inbox/DM บนแพลตฟอร์มเดิม อ่อนกว่า แอดไลน์/Telegram ID ภายนอก — ผู้ตัดสินดูบริบท
+      - {term: inbox, evidence: [kaggle_tu(synthetic)]}
+      - {term: อินบ็อกซ์, evidence: [domain]}
+      - {term: ib, evidence: [domain]}
+      - {term: DM, evidence: [kaggle_tu(synthetic)]}
+      - {term: ทัก DM, evidence: [kaggle_tu(synthetic)]}
+      - {term: ทักส่วนตัว, evidence: [domain]}
+      - {term: ทักไลน์, evidence: [kaggle_tu(synthetic)]}
+      - {term: ทัก LINE, evidence: [domain]}
+      - {term: ไลน์มา, evidence: [domain]}
+      - {term: Telegram, evidence: [domain]}
+      - {term: WhatsApp, evidence: [domain]}
+      - {term: คุยทางนี้, evidence: [domain]}
+    regex:
+      - {name: line_id_handle, pattern: '(?<![\w.])@[A-Za-z0-9_.]{3,}'}
+      - {name: line_me_url, pattern: 'line\.me/\S+|lin\.ee/\S+'}
+
+  - key: relationship_lure
+    label_th: สร้างความสนิท/ทักผิด
+    principle: social_compliance
+    terms:
+      - {term: ที่รัก, evidence: [domain]}
+      - {term: คิดถึง, evidence: [domain]}
+      - {term: ทักผิด, evidence: [domain]}
+      - {term: ขอโทษที่รบกวน, evidence: [corpus_tierB]}
+      - {term: อยากรู้จัก, evidence: [domain]}
+      - {term: เหงา, evidence: [domain]}
+      - {term: โสด, evidence: [domain]}
+      - {term: คุยเป็นเพื่อน, evidence: [domain]}
+      - {term: จำฉันได้ไหม, evidence: [domain]}
+
+  - key: borrowing_pretext
+    label_th: อ้างเป็นคนรู้จัก/อ้างคนรู้จักฝากบอก (ยืมเงิน/ฉุกเฉิน/ค่าใช้จ่าย)
+    principle: social_compliance
+    caveat: >
+      "รุ่นพี่/เพื่อน/ฝากบอก" เป็นคำอ้างในข้อความ ไม่ยืนยันว่ารู้จักจริง — ข้อความจากคนรู้จักจริงก็ใช้คำพวกนี้;
+      บริบทชอบธรรมต้องมาจากสิ่งที่ผู้ใช้ยืนยันเอง (guideline v1.1 Q7)
+    terms:
+      - {term: ฝากบอก, evidence: [kaggle_tu(synthetic)]}
+      - {term: รุ่นพี่ฝากบอก, evidence: [kaggle_tu(synthetic)]}
+      - {term: เพื่อนฝากบอก, evidence: [domain]}
+      - {term: ยืมเงิน, evidence: [domain]}
+      - {term: ขอยืม, evidence: [domain]}
+      - {term: เปลี่ยนเบอร์, evidence: [domain]}
+      - {term: เบอร์ใหม่, evidence: [domain]}
+      - {term: ฉุกเฉิน, evidence: [domain]}
+      - {term: อุบัติเหตุ, evidence: [domain]}
+      - {term: โรงพยาบาล, evidence: [domain]}
+      - {term: เดี๋ยวคืนให้, evidence: [domain]}
+      - {term: โอนให้ก่อน, evidence: [domain]}

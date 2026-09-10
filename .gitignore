@@ -1,0 +1,24 @@
+venv/
+__pycache__/
+*.pyc
+.env
+.streamlit/
+.pytest_cache/
+data/chroma_db/
+*.xlsx
+
+# log อาจมี PII จากยุคก่อน pii_masker — ห้ามเข้า git (บทเรียน 2026-09-10: เลขบัญชีดิบใน app.log)
+logs/
+
+# binary ที่ดาวน์โหลดได้เอง (cloudflared)
+scripts/bin/
+
+# model artifact v1 (train บน data ที่ archive แล้ว) — เก็บ local พอ
+models/
+
+# ร่าง thesis — ไม่ควร public ก่อน defense (กัน plagiarism)
+thesis/
+
+# Data v2 snapshots (HTML/JSON ต้นทาง — เก็บ local + backup, ไม่เข้า git)
+data/raw/snapshots/
+.deploy_hf/

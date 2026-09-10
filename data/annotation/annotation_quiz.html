@@ -1,0 +1,241 @@
+<title>แบบตัดสินข้อความ v2.2</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600&family=Sarabun:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#F2F4F7; --surface:#FFFFFF; --ink:#16202A; --muted:#5B6B7A; --line:#D6DDE5;
+  --accent:#1F5FBF; --accent-ink:#FFFFFF; --focus:#1F5FBF;
+  --safe:#2E8B57; --safe-bg:#E4F3EA; --caution:#B86E00; --caution-bg:#FFF1DC; --danger:#C0392B; --danger-bg:#FBE3E0;
+  --ok:#2E8B57; --bad:#C0392B;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0F1519; --surface:#18222A; --ink:#E6EDF3; --muted:#93A4B3; --line:#2A3743;
+  --accent:#7FB0FF; --accent-ink:#0F1519; --focus:#7FB0FF;
+  --safe:#6BCB93; --safe-bg:#173226; --caution:#F2B14C; --caution-bg:#3A2A10; --danger:#F08A7E; --danger-bg:#3C1B18;
+  --ok:#6BCB93; --bad:#F08A7E;
+}}
+:root[data-theme="dark"]{
+  --bg:#0F1519; --surface:#18222A; --ink:#E6EDF3; --muted:#93A4B3; --line:#2A3743;
+  --accent:#7FB0FF; --accent-ink:#0F1519; --focus:#7FB0FF;
+  --safe:#6BCB93; --safe-bg:#173226; --caution:#F2B14C; --caution-bg:#3A2A10; --danger:#F08A7E; --danger-bg:#3C1B18;
+  --ok:#6BCB93; --bad:#F08A7E;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Sarabun",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.65}
+h1,h2,h3{font-family:"Kanit","Sarabun",sans-serif;font-weight:600;line-height:1.25;text-wrap:balance;margin:0}
+h1{font-size:1.6rem} h2{font-size:1.25rem} h3{font-size:1.05rem}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-weight:500;letter-spacing:.02em}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 80px}
+header.top{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0 8px;border-bottom:1px solid var(--line)}
+.top .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-family:"Kanit",sans-serif}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-top:8px}
+.bar>i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+@media (prefers-reduced-motion: reduce){.bar>i{transition:none}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;margin-top:16px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.lead{font-size:1.1rem;font-weight:600}
+.q{font-family:"Kanit",sans-serif;font-weight:500;font-size:1.3rem;line-height:1.45;padding:14px 16px;border-left:4px solid var(--accent);background:var(--bg);border-radius:6px}
+.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:480px){.choices{grid-template-columns:1fr}}
+.choice{border:2px solid var(--line);border-radius:10px;padding:12px;cursor:pointer;background:var(--surface);text-align:left;font:inherit;color:var(--ink)}
+.choice b{display:block;font-family:"Kanit",sans-serif;font-size:1.05rem}
+.choice small{color:var(--muted)}
+.choice:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.choice.safe.on{border-color:var(--safe);background:var(--safe-bg)}
+.choice.caution.on{border-color:var(--caution);background:var(--caution-bg)}
+.choice.danger.on{border-color:var(--danger);background:var(--danger-bg)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);border-radius:999px;padding:6px 12px;background:var(--surface);cursor:pointer;font:inherit;font-size:.92rem;color:var(--ink)}
+.chip.on{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
+.chip:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+textarea,input,select{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px;width:100%}
+textarea:focus,input:focus,select:focus{outline:3px solid var(--focus);outline-offset:1px}
+.btns{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;margin-top:8px}
+button.primary,button.ghost{font:inherit;font-family:"Kanit",sans-serif;font-weight:500;border-radius:10px;padding:10px 18px;cursor:pointer}
+button.primary{background:var(--accent);color:var(--accent-ink);border:2px solid var(--accent)}
+button.primary[disabled]{opacity:.45;cursor:not-allowed}
+button.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.hint{color:var(--muted);font-size:.95rem}
+.fb{border-radius:8px;padding:12px 14px;margin-top:10px}
+.fb.ok{background:var(--safe-bg);border:1px solid var(--safe)} .fb.bad{background:var(--danger-bg);border:1px solid var(--danger)}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+td,th{border-bottom:1px solid var(--line);padding:8px 6px;vertical-align:top;text-align:left}
+th{font-family:"Kanit",sans-serif;font-weight:500;color:var(--muted)}
+.tag{display:inline-block;padding:2px 10px;border-radius:999px;font-family:"Kanit",sans-serif;font-size:.9rem}
+.tag.safe{background:var(--safe-bg);color:var(--safe)} .tag.caution{background:var(--caution-bg);color:var(--caution)} .tag.danger{background:var(--danger-bg);color:var(--danger)}
+ol.sig{padding-left:1.3em;margin:0} ol.sig li{margin:4px 0}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.summary div{border-radius:10px;padding:12px;text-align:center}
+.summary .n{font-family:"Kanit",sans-serif;font-size:1.8rem;font-variant-numeric:tabular-nums}
+.k{font-family:"Kanit",sans-serif;font-weight:500}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="row"><span class="eyebrow">Annotation · guideline v2.2</span><span id="who" class="mono hint"></span></div>
+  <div class="bar"><i id="prog"></i></div>
+</header>
+
+<!-- STEP 0: เริ่ม -->
+<section id="s0" class="card stack">
+  <h1>แบบตัดสินข้อความ 39 ข้อ</h1>
+  <p class="lead">คำถามเดียวที่ต้องตอบทุกข้อ: <u>ถ้าฉันทำตามที่ข้อความบอก</u> (โอน / กรอก / กด / แอด / ให้เลขบัญชี) ฉันจะเสียเงินหรือข้อมูลไหม?</p>
+  <p class="hint">❌ ไม่ใช่ "ถ้าฉัน<u>ไม่</u>ทำตาม ฉันจะเสียอะไร" — โดนหักคะแนน / พลาดโปร ไม่ใช่ความเสียหายจากมิจฉาชีพ</p>
+  <label>คุณคือใคร
+    <select id="annot"><option value="">— เลือก —</option><option>A1</option><option>A2</option><option>A3</option><option>อื่นๆ</option></select>
+  </label>
+  <div class="btns"><span></span><button class="primary" id="b0" disabled>อ่านกติกา →</button></div>
+</section>
+
+<!-- STEP 1: กติกา -->
+<section id="s1" class="card stack" hidden>
+  <h2>กติกา (อ่าน 3 นาที)</h2>
+  <table>
+    <tr><th style="width:110px">ตอบ</th><th>หมายถึง</th><th>ได้ค่านี้เมื่อ</th></tr>
+    <tr><td><span class="tag safe">safe</span></td><td>ทำตามได้ ไม่เสียอะไร</td><td>ข้อความไม่ได้ขอให้เสียเงิน / ข้อมูล-รหัส / ติดตั้งแอป / เลขบัญชีของฉัน</td></tr>
+    <tr><td><span class="tag danger">danger</span></td><td>อย่าทำ + แจ้ง 1441</td><td>มีการขอ <b>และ</b> มีสัญญาณจากรายการ 11 ข้อ (ข้างล่าง) อย่างน้อย 1</td></tr>
+    <tr><td><span class="tag caution">caution</span></td><td>อย่าเพิ่งทำ จนกว่าจะเช็ค <b>X</b></td><td>มีการขอ แต่ไม่เข้า 11 ข้อ → <b>ต้องบอกว่า X คืออะไร</b> — caution ที่บอกไม่ได้ว่าจะเช็คอะไร = ไม่มี</td></tr>
+  </table>
+  <h3>สัญญาณ danger — 11 ข้อ (ต้องอยู่ในตัวข้อความ)</h3>
+  <ol class="sig">
+    <li><b>ขอ</b> OTP / รหัส / PIN / เลขบัตร ผ่านแชท (ไม่ว่าอ้างเป็นใคร)</li>
+    <li>ให้โอนเข้าบัญชี<b>คนอื่น</b> / ชื่อไม่ตรงผู้ขาย ("บัญชีนี้ของแฟนเรา")</li>
+    <li>จ่ายเงินหรือให้ข้อมูล<b>ก่อน</b> เพื่อ "ได้" งาน / รางวัล / ทุน / สิทธิ์ ("โอนค่าดำเนินการก่อนรับทุน", "กรอกข้อมูลเพื่อรับสิทธิ์")</li>
+    <li>ขู่ (คดี / อายัด / ระงับ / แฮก) + ให้ "แก้" ด้วยโอน / กดลิงก์ / โทรกลับ</li>
+    <li>อ้างหน่วยงาน / บทบาททางการ (ธนาคาร, แอดมินคณะ, ทะเบียน) + ให้โอนเข้าบัญชี/พร้อมเพย์<b>บุคคล</b></li>
+    <li><b>ข้อเสนอเกินจริง</b> — รายได้วันละ ≥ 1,000 ไม่ต้องทักษะ/สัมภาษณ์, ผลตอบแทน > 15%/ปี, กู้ไม่ต้องค้ำ, "ผู้โชคดีได้รับวงเงิน" — <u>ไม่ต้องมีช่องทาง</u></li>
+    <li>ห้ามบอกใคร / ห้ามวางสาย / ห้ามติดต่อธนาคาร</li>
+    <li><b>จ่ายเต็มก่อนเป็นทางเดียว</b> จากผู้ขายไม่รู้จัก — "โอนเต็มก่อน", "โอนก่อนส่ง<b>เท่านั้น</b>", หรือปฏิเสธการตรวจสอบทุกทาง (ไม่รับนัด ไม่วิดีโอคอล ไม่ COD) — ต่างจาก "มัดจำ/รีบโอนก่อนนะ" ที่ยังตรวจสอบได้ = caution</li>
+    <li>ลิงก์ที่ตรวจไม่ได้ (bit.ly, .xyz/.top/.cc, IP, โดเมนเลียนแบบ) + ข้อเสนอหรือคำขอใดๆ</li>
+    <li>คนไม่รู้จักขอ<b>เลขบัญชี/พร้อมเพย์ของฉัน</b> "จะโอนให้" (โอนเข้าแล้วอ้างโอนเกิน ให้โอนคืน = บัญชีม้าโดยไม่รู้ตัว)</li>
+    <li>อ้างเป็นคนรู้จัก<b>จากเบอร์/ไอดีใหม่ + ขอเงิน</b> ("เปลี่ยนเบอร์ใหม่นะ ขอยืมเงิน 5,000 ด่วน")</li>
+  </ol>
+  <h3>ที่<u>ไม่ใช่</u>สัญญาณ (ได้ caution ไม่ใช่ danger)</h3>
+  <p>มัดจำ / "รีบโอนก่อนนะ" ที่ยังตรวจสอบได้ · ทัก DM · LINE ของผู้ขาย · เร่ง/หมดเขต/เหลือชิ้นเดียว/หมดสิทธิ์ · ราคาถูก · ชื่อธนาคาร/แบรนด์ · "ฟรี" · ภาษาไม่ทางการ · อ้างเป็นคนรู้จักโดยไม่ขอเงิน · "ทักไลน์อย่างเดียว ไม่ตอบในกลุ่ม" (= caution เช็คเครดิตในกลุ่ม) · "จอง" ของถูกจากคนไม่รู้จัก (= caution)</p>
+  <h3>สิ่งที่ต้องเช็ค (เลือกเมื่อตอบ caution)</h3>
+  <p><span class="k">url</span> ลิงก์ไปที่ไหน · <span class="k">ใครส่ง</span> · <span class="k">ถามคนที่ถูกอ้าง</span> (แม่/รุ่นพี่ ผ่านช่องทางเดิม) · <span class="k">ผู้ขายเป็นใคร</span> · <span class="k">กฎแพลตฟอร์ม</span> (ซื้อผ่านแอปที่คุ้มครองไหม) · <span class="k">เครดิตผู้ขาย</span> (คนในกลุ่มเคยซื้อ/รีวิว) · <span class="k">ชื่อบัญชีตรงไหม</span></p>
+  <p class="hint">กติกา: สมมติเสมอว่าผู้ส่งเป็นคนไม่รู้จัก · ตัดสินจากตัวข้อความเท่านั้น · ข้อความ "เล่าเหตุการณ์" ("มีคนขอ… บอกว่าเป็น…") ให้ตัดสินสิ่งที่ถูกเล่า</p>
+  <div class="btns"><button class="ghost" data-back="0">← กลับ</button><button class="primary" data-next="2">ทดสอบตัวเอง 3 ข้อ →</button></div>
+</section>
+
+<!-- STEP 2: self-test -->
+<section id="s2" class="card stack" hidden>
+  <h2>ทดสอบตัวเอง 3 ข้อ (มีเฉลย)</h2>
+  <p class="hint">ถ้าตอบผิด อ่านเฉลยแล้วไปต่อได้ — 3 ข้อนี้ไม่นับคะแนน</p>
+  <div id="selftest" class="stack"></div>
+  <div class="btns"><button class="ghost" data-back="1">← กลับ</button><button class="primary" id="b2" disabled>เริ่ม 39 ข้อ →</button></div>
+</section>
+
+<!-- STEP 3: 39 ข้อ -->
+<section id="s3" class="card stack" hidden>
+  <div class="row" style="display:flex;justify-content:space-between;align-items:baseline">
+    <span class="eyebrow">ข้อ <span id="qn"></span> / 39</span><span class="mono hint" id="qid"></span>
+  </div>
+  <div class="q" id="qtext"></div>
+  <p class="hint">ถ้าฉันทำตามข้อความนี้ ฉันจะเสียอะไรไหม? (กด 1 / 2 / 3 ก็ได้)</p>
+  <div class="choices">
+    <button class="choice safe" data-v="safe"><b>1 · safe</b><small>ทำตามได้ ไม่เสียอะไร</small></button>
+    <button class="choice caution" data-v="caution"><b>2 · caution</b><small>อย่าเพิ่งทำ เช็คก่อน</small></button>
+    <button class="choice danger" data-v="danger"><b>3 · danger</b><small>อย่าทำ เข้าสัญญาณ 11 ข้อ</small></button>
+  </div>
+  <div id="ni" hidden class="stack">
+    <div class="hint">ต้องเช็คอะไรก่อน? (เลือกได้หลายอัน — caution ต้องมีอย่างน้อย 1)</div>
+    <div class="chips" id="chips"></div>
+  </div>
+  <label>เหตุผลสั้นๆ (ไม่บังคับ)<input id="note" placeholder="เช่น เข้าสัญญาณข้อ 3 / ต้องถามรุ่นพี่ก่อน"></label>
+  <div class="btns"><button class="ghost" id="prev">← ข้อก่อน</button><button class="primary" id="next" disabled>ข้อถัดไป →</button></div>
+</section>
+
+<!-- STEP 4: ผล -->
+<section id="s4" class="card stack" hidden>
+  <h2>เสร็จแล้ว — คัดลอกคำตอบส่งให้ผู้ทำ thesis</h2>
+  <div class="summary">
+    <div style="background:var(--safe-bg);color:var(--safe)"><div class="n" id="c-safe">0</div>safe</div>
+    <div style="background:var(--caution-bg);color:var(--caution)"><div class="n" id="c-caution">0</div>caution</div>
+    <div style="background:var(--danger-bg);color:var(--danger)"><div class="n" id="c-danger">0</div>danger</div>
+  </div>
+  <p class="hint">กด "คัดลอก" แล้ววางในแชท/ไลน์ — หรือคัดลอกเองจากกล่องข้างล่าง (คำตอบยังเก็บอยู่ในเบราว์เซอร์นี้ กลับมาแก้ได้)</p>
+  <textarea id="out" rows="14" readonly></textarea>
+  <div class="btns"><button class="ghost" id="review">← ย้อนดู/แก้คำตอบ</button><button class="primary" id="copy">คัดลอกคำตอบ</button></div>
+  <p id="copied" class="hint" hidden>คัดลอกแล้ว ✓</p>
+</section>
+</div>
+
+<script>
+const ROWS = [{"id": "C01", "text": "ส่งงานด่วนนะครับ พรุ่งนี้เช้าอาจารย์จะตรวจ"}, {"id": "C02", "text": "ด่วน! Flash Sale ลด 50% วันนี้วันเดียว ที่ Shopee"}, {"id": "C03", "text": "ของถูกมาก แต่ต้องจองภายในวันนี้"}, {"id": "C04", "text": "แม่โอนเงินค่าเทอมให้ด่วนหน่อย พรุ่งนี้วันสุดท้าย"}, {"id": "C06", "text": "รหัส OTP ของคุณคือ 482913 ห้ามบอกรหัสนี้กับผู้อื่น"}, {"id": "C07", "text": "SCB: รายการโอนเงิน 500.00 บาท ไปยัง xxx-x-x1234 เวลา 10:15 น."}, {"id": "C08", "text": "บัญชีของคุณถูกระงับ กรุณายืนยันตัวตนด่วนที่ลิงก์นี้ http://scb-verify.xyz"}, {"id": "C09", "text": "ระบบแจ้งให้ยืนยันข้อมูลบางอย่างภายในวันนี้"}, {"id": "C10", "text": "กสิกรไทย ยกเลิกส่ง SMS แบบลิงก์ เพิ่มความปลอดภัย มีผลตั้งแต่วันนี้"}, {"id": "C11", "text": "คุณเป็นผู้โชคดีได้รับวงเงินกู้จาก ธปท. 200,000 บาท"}, {"id": "C12", "text": "คุณเป็นผู้โชคดีได้รับวงเงินกู้จาก ธปท. 200,000 บาท กดรับสิทธิ์ที่ <URL>"}, {"id": "C13", "text": "หวัดดี เปลี่ยนเบอร์ใหม่นะ เซฟไว้ด้วย"}, {"id": "C14", "text": "หวัดดี เปลี่ยนเบอร์ใหม่นะ ขอยืมเงิน 5,000 ด่วน เดี๋ยวคืนพรุ่งนี้"}, {"id": "C15", "text": "ขอโทษที่รบกวน ฉันอ่านโปรไฟล์คุณบน LinkedIn อยากเรียนรู้จากคุณ"}, {"id": "C16", "text": "งานออนไลน์ กดไลค์ได้เงิน วันละ 500-2,000 บาท สนใจทัก LINE @job888"}, {"id": "C17", "text": "งานออนไลน์ได้เงินวันละ 10,000 ไม่ต้องสัมภาษณ์ สมัครด่วน"}, {"id": "C18", "text": "งานออนไลน์ได้เงินวันละ 10,000 ไม่ต้องสัมภาษณ์ สมัครด่วน inbox ได้"}, {"id": "C19", "text": "ร้านกาแฟแถวรังสิตรับพาร์ทไทม์ ชั่วโมงละ 70 บาท มีสัมภาษณ์หน้าร้าน ทัก DM"}, {"id": "C20", "text": "สมัครงานง่ายๆ ได้เงินเร็ว แต่ต้องจ่ายค่าสมัครก่อน ทัก DM"}, {"id": "C21", "text": "ขอเลขบชพร้อมเพย์หน่อยคับ จะโอนค่าชีท"}, {"id": "C22", "text": "ขอเลขบัญชีพร้อมเพย์หน่อยครับ จะโอนค่าชีท line: @id"}, {"id": "C23", "text": "มีใครขายชีท SC135 บ้างครับ line: @id"}, {"id": "C24", "text": "ขอโอนเต็มก่อน เดี๋ยวส่งเลขพัสดุให้"}, {"id": "C25", "text": "ของอยู่ต่างจังหวัด โอนก่อนส่งเท่านั้น ราคาพิเศษถึงวันนี้"}, {"id": "C26", "text": "รีบโอนก่อนนะ เหลือคนเดียวแล้ว"}, {"id": "C27", "text": "รีบโอนก่อนนะ เหลือคนเดียวแล้ว line: @id"}, {"id": "C28", "text": "มีคนจองหลายคน ถ้าเอาโอนมัดจำมาก่อนได้เลย ทัก DM"}, {"id": "C29", "text": "โอนเต็มก่อนเท่านั้น ไม่รับนัด ไม่รับวิดีโอคอล inbox ได้"}, {"id": "C30", "text": "บัญชีนี้ของแฟนเราเอง ปลอดภัยแน่นอน โอนมาเลย"}, {"id": "C31", "text": "ทักไลน์อย่างเดียวคับ ไม่ค่อยตอบในกลุ่ม"}, {"id": "C32", "text": "ทักไลน์อย่างเดียวคับ ไม่ค่อยตอบในกลุ่ม line: @id"}, {"id": "C33", "text": "มีคนขอรหัสยืนยัน บอกว่าเป็นแอดมินกลุ่ม"}, {"id": "C34", "text": "อ้างว่าเป็นรุ่นพี่คณะ ขอให้โอนเงินช่วยจองสิทธิ์"}, {"id": "C35", "text": "รุ่นพี่ฝากบอกให้โอนค่าชีทด่วน ไม่งั้นหมดสิทธิ์"}, {"id": "C36", "text": "แอดมินคณะขอค่าจองสิทธิ์สอบ โอนมาที่ พร้อมเพย์ 08x-xxx-xxxx ภายในวันนี้"}, {"id": "C37", "text": "แอดมินคณะขอค่าจองสิทธิ์สอบ โอนมาที่ บัญชี xxx123 ภายในวันนี้"}, {"id": "C38", "text": "มีลิงก์ให้กรอกข้อมูลเพื่อรับสิทธิ์ ลองเช็คก่อนนะ"}, {"id": "C38b", "text": "มีลิงก์รายละเอียดกิจกรรมส่งมาในกลุ่ม ลองดูนะ"}, {"id": "C39", "text": "ลด 90% วันนี้เท่านั้น bit.ly/xxxx"}];
+const NI = [["url","url — ลิงก์ไปที่ไหน"],["sender_identity","ใครส่ง"],["verify_with_claimed_person","ถามคนที่ถูกอ้าง (แม่/รุ่นพี่) ผ่านช่องทางเดิม"],["seller_identity","ผู้ขายเป็นใคร"],["platform_policy","กฎแพลตฟอร์ม / ซื้อผ่านแอปที่คุ้มครองไหม"],["seller_reputation","เครดิตผู้ขาย / คนในกลุ่มเคยซื้อ"],["account_name_match","ชื่อบัญชีปลายทางตรงไหม"]];
+const SELF = [
+  {t:"ส่งงานด่วนนะครับ พรุ่งนี้เช้าอาจารย์จะตรวจ", a:"safe", why:"ทำตาม (ส่งงาน) แล้วไม่เสียเงิน/ข้อมูลอะไรเลย — \"ถ้าไม่ส่งจะโดนหักคะแนน\" ไม่ใช่ความเสียหายจากมิจฉาชีพ"},
+  {t:"รหัส OTP ของคุณคือ 482913 ห้ามบอกรหัสนี้กับผู้อื่น", a:"safe", why:"ระบบ <b>ส่ง</b> รหัสให้ ไม่ได้ <b>ขอ</b> อะไรจากเรา — ไม่มีการขอ = safe (สัญญาณข้อ 1 คือ \"ขอ OTP\" ไม่ใช่ \"ส่ง OTP\")"},
+  {t:"บัญชีของคุณถูกระงับ กรุณายืนยันตัวตนด่วนที่ลิงก์นี้ http://scb-verify.xyz", a:"danger", why:"ขู่ระงับ + ให้แก้ด้วยการกดลิงก์ (สัญญาณข้อ 4) และโดเมน .xyz เลียนแบบ (ข้อ 9)"},
+];
+const KEY = "annot-quiz-v22";
+let S = {who:"", self:{}, i:0, ans:{}};
+try{ const raw = localStorage.getItem(KEY); if(raw){ S = Object.assign(S, JSON.parse(raw)); } }catch(e){}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+const $ = s => document.querySelector(s);
+const secs = [0,1,2,3,4].map(n => $("#s"+n));
+function show(n){ secs.forEach((el,k)=> el.hidden = (k!==n)); window.scrollTo({top:0}); setProg(n); }
+function setProg(n){ const answered = Object.keys(S.ans).filter(k=>S.ans[k].v).length; const pct = n<3 ? (n*8) : 24 + Math.round(76*answered/ROWS.length); $("#prog").style.width = pct+"%"; }
+
+// step 0
+$("#annot").value = S.who || "";
+$("#b0").disabled = !S.who;
+$("#who").textContent = S.who ? "ผู้ตอบ: "+S.who : "";
+$("#annot").addEventListener("change", e => { S.who = e.target.value; $("#b0").disabled = !S.who; $("#who").textContent = S.who ? "ผู้ตอบ: "+S.who : ""; save(); });
+$("#b0").addEventListener("click", () => show(1));
+document.querySelectorAll("[data-next]").forEach(b => b.addEventListener("click", () => show(+b.dataset.next)));
+document.querySelectorAll("[data-back]").forEach(b => b.addEventListener("click", () => show(+b.dataset.back)));
+
+// step 2 self-test
+const st = $("#selftest");
+SELF.forEach((q,k) => {
+  const d = document.createElement("div"); d.className = "stack";
+  d.innerHTML = `<div class="q">${q.t}</div><div class="choices">${["safe","caution","danger"].map(v=>`<button class="choice ${v}" data-k="${k}" data-v="${v}"><b>${v}</b></button>`).join("")}</div><div class="fbwrap"></div>`;
+  st.appendChild(d);
+  d.querySelectorAll(".choice").forEach(b => b.addEventListener("click", () => {
+    d.querySelectorAll(".choice").forEach(x=>x.classList.remove("on")); b.classList.add("on");
+    const ok = b.dataset.v === q.a; S.self[k] = b.dataset.v; save();
+    d.querySelector(".fbwrap").innerHTML = `<div class="fb ${ok?"ok":"bad"}"><b>${ok?"ถูกต้อง":"ยังไม่ใช่ — คำตอบคือ "+q.a}</b><br>${q.why}</div>`;
+    $("#b2").disabled = Object.keys(S.self).length < SELF.length;
+  }));
+  if (S.self[k]) { d.querySelector(`[data-v="${S.self[k]}"]`).click(); }
+});
+$("#b2").addEventListener("click", () => { render(); show(3); });
+
+// step 3 questions
+const chips = $("#chips");
+NI.forEach(([code,label]) => { const b = document.createElement("button"); b.className="chip"; b.dataset.code=code; b.textContent=label; b.addEventListener("click", () => { b.classList.toggle("on"); cur().ni = [...chips.querySelectorAll(".on")].map(x=>x.dataset.code); gate(); save(); }); chips.appendChild(b); });
+function cur(){ const id = ROWS[S.i].id; return S.ans[id] || (S.ans[id] = {v:"", ni:[], note:""}); }
+function render(){
+  const r = ROWS[S.i]; const a = cur();
+  $("#qn").textContent = S.i+1; $("#qid").textContent = r.id; $("#qtext").textContent = r.text;
+  document.querySelectorAll("#s3 .choice").forEach(b => b.classList.toggle("on", b.dataset.v === a.v));
+  $("#ni").hidden = a.v !== "caution";
+  chips.querySelectorAll(".chip").forEach(c => c.classList.toggle("on", a.ni.includes(c.dataset.code)));
+  $("#note").value = a.note || "";
+  $("#prev").disabled = S.i === 0;
+  $("#next").textContent = S.i === ROWS.length-1 ? "ดูสรุป →" : "ข้อถัดไป →";
+  gate(); setProg(3);
+}
+function gate(){ const a = cur(); $("#next").disabled = !(a.v && (a.v !== "caution" || a.ni.length)); }
+document.querySelectorAll("#s3 .choice").forEach(b => b.addEventListener("click", () => { cur().v = b.dataset.v; if (b.dataset.v !== "caution") cur().ni = []; save(); render(); }));
+$("#note").addEventListener("input", e => { cur().note = e.target.value; save(); });
+$("#prev").addEventListener("click", () => { if (S.i>0){ S.i--; save(); render(); } });
+$("#next").addEventListener("click", () => { if (S.i < ROWS.length-1){ S.i++; save(); render(); } else { finish(); } });
+document.addEventListener("keydown", e => { if (secs[3].hidden || e.target.tagName === "INPUT") return; const m = {"1":"safe","2":"caution","3":"danger"}[e.key]; if (m){ cur().v = m; if (m!=="caution") cur().ni=[]; save(); render(); } });
+
+// step 4
+function finish(){
+  const c = {safe:0,caution:0,danger:0}; const lines = [`# ${S.who} · guideline v2.2 · ${ROWS.length} ข้อ`];
+  ROWS.forEach(r => { const a = S.ans[r.id] || {}; if (a.v) c[a.v]++; lines.push(`${r.id} ${a.v||"-"}${a.ni && a.ni.length ? " "+a.ni.join(";") : ""}${a.note ? " | "+a.note : ""}`); });
+  ["safe","caution","danger"].forEach(v => $("#c-"+v).textContent = c[v]);
+  $("#out").value = lines.join("\n"); $("#copied").hidden = true; show(4); $("#prog").style.width = "100%";
+}
+$("#copy").addEventListener("click", async () => { const t = $("#out"); try{ await navigator.clipboard.writeText(t.value); }catch(e){ t.select(); document.execCommand("copy"); } $("#copied").hidden = false; });
+$("#review").addEventListener("click", () => { S.i = 0; save(); render(); show(3); });
+
+// resume
+if (S.who && Object.keys(S.ans).length) { render(); show(3); } else { show(0); }
+</script>

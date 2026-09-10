@@ -1,0 +1,24 @@
+{
+  "random_seed": 42,
+  "corpus_size": 1164,
+  "splits": {
+    "train": {
+      "size": 814,
+      "hash": "1a94bea13c7ab306"
+    },
+    "val": {
+      "size": 175,
+      "hash": "95ef77d7960d1e05"
+    },
+    "test": {
+      "size": 175,
+      "hash": "3cb165c146701cbc"
+    }
+  },
+  "stratify_by": "verdict",
+  "ratios": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  }
+}

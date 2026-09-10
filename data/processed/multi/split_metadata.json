@@ -1,0 +1,37 @@
+{
+  "schema": "v2",
+  "task": "multi",
+  "random_seed": 42,
+  "corpus_size": 1672,
+  "tier_rules": "test=A∪S only; val=A∪S rest 15% + B 15%; train=rest + C(approved); N excluded",
+  "test_locked": false,
+  "splits": {
+    "train": {
+      "size": 815,
+      "hash": "84ad9c76924b96f3",
+      "tiers": {
+        "S": 274,
+        "A": 45,
+        "B": 496
+      }
+    },
+    "val": {
+      "size": 175,
+      "hash": "c631d5c9f13666f4",
+      "tiers": {
+        "S": 76,
+        "A": 11,
+        "B": 88
+      }
+    },
+    "test": {
+      "size": 174,
+      "hash": "9d058f9425f43a6b",
+      "tiers": {
+        "S": 150,
+        "A": 24
+      }
+    }
+  },
+  "stratify_by": "category_or_safe"
+}
